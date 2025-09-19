@@ -1,0 +1,75 @@
+.register_range {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.register_form {
+    background: rgba(255, 255, 255, 0.45);
+    border-radius: 20px;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+.register_form a {
+    text-align: center;
+    background: rgba(0, 0, 0, 0.655);
+    color: aquamarine;
+    width: fit-content;
+    max-width: 150px;
+    height: fit-content;
+    padding: 16px 24px;
+
+}
+
+.register_form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.register_form form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+
+.register_form input {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #999;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.register_form button {
+    padding: 16px 24px;
+    background: rgba(0, 0, 0, 0.655);
+    border: 1cqh;
+    border-radius: 20px;
+    color: aquamarine;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: medium;
+    width: fit-content;
+    height: fit-content;
+}
+
+.signin_signup {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 20px
+}
+
+.mb-3 input {
+  border-radius: 40px;
+  background: rgba(99, 99, 99, 0.655);
+  color: azure;
+  border: none;
+}

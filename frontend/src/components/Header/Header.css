@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Vast+Shadow&display=swap');
+
+.header {
+    display: flex;
+    justify-content: center;
+    box-sizing: content-box;
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: auto;
+    padding-top: 20px;
+}
+
+.header img {
+    opacity: 0.35;
+    height: 90vb;
+    position: relative;
+    object-fit: contain;
+    border-radius: 8%;
+}
+
+.header-contents {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 2vw;
+    max-width: 50%;
+    top: 30%;
+    left: 15vw;
+    animation: fadeIn 3s;
+}
+
+.header-contents h2 {
+    font-family: Vast Shadow;
+    font-weight: 500;
+    color: black;
+    font-size: max(1vw, 22px);
+}
+
+.header-contents p {
+    color: black;
+    font-size: 1vw;
+}
+
+.header-contents button {
+    border: none;
+    color: #747474;
+    font-weight: 500;
+    padding: 1vw 2.3vw;
+    background-color: rgb(255, 189, 163);
+    font-size: max(1vw, 13px);
+    border-radius: 50px;
+}

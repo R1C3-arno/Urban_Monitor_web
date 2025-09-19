@@ -1,0 +1,91 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    position: relative;
+    justify-content: center;
+    gap: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.navbar .logo {
+    width: 80px;
+    height: auto;
+    opacity: 0.6;
+    display: block;
+}
+
+.navbar-menu {
+    margin: 0 auto;
+    display: flex;
+    list-style: none;
+    gap: 50px;
+    color: #167f84;
+    font-size: 18px;
+}
+
+.navbar-menu li {
+    border: 0px solid rgba(13, 97, 101, 0.445);
+    border-radius: 20px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: rgba(51, 192, 239, 0.1);
+    
+}
+
+.navbar-menu li:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.navbar-right {
+    position: absolute;
+    right: -250px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.navbar-right img {
+    width: auto;
+    cursor: pointer;
+}
+
+.navbar-invest img {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.navbar button {
+    background: rgba(255, 255, 255, 0.3);
+    font-size: 16px;
+    color: rgb(57, 60, 202);
+    border: 0px solid #134c8c;
+    padding: 10px 30px;
+    border-radius: 50px;
+    cursor: pointer;
+    background: rgba(17, 33, 131, 0.235);
+    transition: all 0.3s ease;
+}
+
+.navbar button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.navbar .active {
+    padding-bottom: 2px;
+    border-bottom: 2px solid #49557e;
+}

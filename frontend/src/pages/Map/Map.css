@@ -1,0 +1,17 @@
+.Map {
+    box-sizing: content-box;
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 90%;
+    padding-top: 20px;
+}
+
+.Map h1 {
+    align-self: center;
+    color: bisque;
+    font-size: 5cap;
+}

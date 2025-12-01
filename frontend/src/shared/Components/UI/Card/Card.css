@@ -1,0 +1,47 @@
+:root {
+    --card-bg: #ECF4E8;
+    --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --card-header-border: #CBF3BB;
+    --card-footer-bg: #ABE7B2;
+    --card-title-color: #93BFC7;
+    --card-subtitle-color: #96A78D;
+}
+
+.card {
+    background: var(--card-bg);
+    border-radius: 0.5rem;
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+    transition: all 0.2s;
+}
+
+.card-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+.card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--card-title-color);
+}
+
+.card-subtitle {
+    font-size: 0.875rem;
+    color: var(--card-subtitle-color);
+    margin: 0.25rem 0 0 0;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.card-footer {
+    padding: 1rem 1.5rem;
+    background: var(--card-footer-bg);
+    border-top: 1px solid #e5e7eb;
+}

@@ -1,0 +1,67 @@
+:root {
+    --color-primary: #1B3C53;
+    --color-secondary: #305669;
+    --color-success: #B7E5CD;
+    --color-error: #C1785A;
+    --color-warning: #E3E3E3;
+}
+
+/* spinner base */
+.spinner {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* circle */
+.spinner-circle {
+    border: 3px solid rgba(0,0,0,0.2);
+    border-top-color: var(--color-primary); /* default màu primary */
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+}
+
+/* size variants */
+.spinner-sm .spinner-circle {
+    width: 1rem;
+    height: 1rem;
+    border-width: 2px;
+}
+
+.spinner-md .spinner-circle {
+    width: 2rem;
+    height: 2rem;
+    border-width: 3px;
+}
+
+.spinner-lg .spinner-circle {
+    width: 3rem;
+    height: 3rem;
+    border-width: 4px;
+}
+
+/* color variants */
+.spinner-primary .spinner-circle {
+    border-top-color: var(--color-primary);
+}
+
+.spinner-secondary .spinner-circle {
+    border-top-color: var(--color-secondary);
+}
+
+.spinner-success .spinner-circle {
+    border-top-color: var(--color-success);
+}
+
+.spinner-error .spinner-circle {
+    border-top-color: var(--color-error);
+}
+
+.spinner-warning .spinner-circle {
+    border-top-color: var(--color-warning);
+}
+
+/* animation */
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}

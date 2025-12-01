@@ -1,0 +1,44 @@
+.nav_container {
+    width: 100%;
+    color: white;
+    padding-top: 2rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    display: flex; /* Thêm này */
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.navbar-menu {
+    text-decoration: none;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    gap: 3em;
+
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
+}
+
+.navbar-menu li {
+    list-style: none;
+    color: #EFECE3;
+    transition: color 0.3s ease; /* Thêm effect hover */
+}
+
+.navbar-menu li:hover {
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.logo_dark {
+    width: auto;
+    max-height: 5rem; /* Giảm size xuống cho cân đối hơn */
+}

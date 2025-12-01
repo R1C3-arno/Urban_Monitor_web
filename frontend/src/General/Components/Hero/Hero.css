@@ -1,0 +1,129 @@
+.hero_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-section {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #0a0a0a;
+    color: #fff;
+    padding: 4rem 6rem;
+    align-items: center;
+}
+
+.hero-content {
+    max-width: 1400px;
+    margin: 0 auto;
+
+}
+
+/* Subtitle nhỏ phía trên */
+.hero-subtitle {
+    display: block;
+    font-size: 0.875rem;
+    letter-spacing: 2px;
+    color: #888;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+}
+
+/* Title chính - phần quan trọng nhất */
+.hero-title {
+    font-size: clamp(3rem, 8vw, 6rem); /* Responsive size */
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 3rem;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+/* Container cho hình ảnh */
+.hero-image-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto 4rem;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.hero-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* Phần description bên dưới */
+.hero-description {
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+}
+.hero-description span {
+    text-align: left;
+}
+
+.description-subtitle {
+    font-size: 0.875rem;
+    letter-spacing: 2px;
+    color: #888;
+    font-weight: 400;
+}
+
+.description-content {
+    text-align: right;
+    max-width: 600px;
+}
+
+.description-content p {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: #ccc;
+    margin-bottom: 2rem;
+}
+
+/* Button CTA */
+.cta-button {
+    background-color: #fff;
+    color: #0a0a0a;
+    padding: 1rem 2.5rem;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.cta-button:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 2rem 1.5rem;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-description {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .description-content p {
+        font-size: 1rem;
+    }
+}

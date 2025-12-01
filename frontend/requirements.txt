@@ -1,0 +1,2 @@
+npm install formatcoords
+npm install --save @maptiler/sdk

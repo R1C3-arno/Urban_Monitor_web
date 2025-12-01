@@ -1,0 +1,81 @@
+:root{
+    --color-primary: #1B3C53;
+    --color-secondary: #305669;
+    --color-success: #B7E5CD;
+    --color-error: #C1785A;
+    --color-warning: #E3E3E3;
+    --color-white: #ffffff;
+    --color-close: #715A5A
+}
+
+.btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.btn-primary {
+    background-color: #91C4C3;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #305669;
+}
+
+
+
+.btn-primary { background-color: var(--color-primary); color: var(--color-white); }
+.btn-secondary { background-color: var(--color-secondary); color: var(--color-white); }
+.btn-success { background-color: var(--color-success); color: var(--color-white); }
+.btn-error { background-color: var(--color-error); color: var(--color-white); }
+.btn-warning { background-color: var(--color-warning); color: var(--color-white); }
+.btn-close { background-color: var(--color-close); color: var(--color-white); }
+
+.btn:hover:not(:disabled) {
+    opacity: 0.85;
+}
+
+
+.btn-sm { font-size: 0.875rem; padding: 0.375rem 0.75rem; }
+.btn-md { font-size: 1rem; padding: 0.5rem 1rem; }
+.btn-lg { font-size: 1.125rem; padding: 0.75rem 1.5rem; }
+.btn-xl { font-size: 1.5rem; padding: 1.5rem 2rem; }
+
+.btn-loading {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn:focus {
+    outline: 2px solid #000000;
+    outline-offset: 2px;
+}
+
+.btn:active:not(:disabled) {
+    transform: scale(0.98);
+}
+
+
+.spinner {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+    margin-right: 0.5rem;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}

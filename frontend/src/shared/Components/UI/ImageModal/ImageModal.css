@@ -1,0 +1,58 @@
+.image-modal-wrapper {
+    background: #f5f5f5;
+    border-radius: 12px;
+    border: 3px solid black;
+    padding: 12px;
+}
+
+.image-modal-header {
+    background: black;
+    color: white;
+    padding: 6px 16px;
+    border-radius: 8px;
+    width: fit-content;
+    margin: 0 auto 12px auto;
+    font-weight: bold;
+}
+
+.image-modal-body {
+    border: 3px solid black;
+    padding: 8px;
+    background: white;
+}
+
+.image-modal-body img {
+    width: 100%;
+    max-height: 70vh;
+    object-fit: contain;
+}
+
+.image-modal-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+    border-top: 3px solid black;
+    padding-top: 10px;
+}
+
+.image-modal-footer span {
+    font-weight: bold;
+}
+
+.nav-btn {
+    border: 2px solid black;
+    border-radius: 8px;
+    padding: 4px 14px;
+    font-size: 18px;
+    background: white;
+    cursor: pointer;
+}
+/* GỠ HOÀN TOÀN VIỀN & KHOẢNG TRẮNG IMAGE MODAL */
+.modal-content.modal-lg {
+    padding: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    box-sizing: border-box;
+}

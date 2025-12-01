@@ -1,0 +1,129 @@
+.footer-container {
+    width: 100%;
+    background: #0a0a0a !important;
+    padding: 4rem;
+    color: #9ca3af;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.footer-content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 4rem;
+}
+
+/* Cột chung */
+.footer-col {
+    flex: 1;
+}
+
+/* LEFT */
+.footer-logo {
+    width: auto;
+    max-height: 4rem;
+    margin-bottom: 1rem;
+}
+
+.footer-left p {
+    line-height: 1.6;
+    font-size: 1.15rem;
+    color: #FAF8F1;
+}
+
+/* MIDDLE */
+.footer-middle h3,
+.footer-right h3 {
+    color: #FCF6D9;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.footer-middle ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-middle li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-middle a {
+    text-decoration: none;
+    color: #9ca3af;
+    line-height: 1.6;
+    font-size: 1.15rem;
+    transition: 0.3s;
+}
+
+.footer-middle a:hover {
+    color: white;
+}
+
+/* RIGHT */
+.footer-right p {
+    max-width: 400px;
+    line-height: 1.6;
+    font-size: 1.15rem;
+    margin-bottom: 1rem;
+    color: #FAF8F1;
+}
+
+.footer-form {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.footer-form input {
+    flex: 1;
+    padding: 0.6rem;
+    border-radius: 6px;
+    border: 1px solid #374151;
+    background: #1f2933;
+    color: #FAF8F1;
+    outline: none;
+}
+
+.footer-form button {
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+    background: #9CC6DB;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.footer-form button:hover {
+    background: #9CC6DB;
+}
+
+.success-text {
+    margin-top: 0.8rem;
+    color: #22c55e;
+    font-size: 1.5rem;
+}
+
+/* BOTTOM */
+.footer-bottom {
+    width: 100%;
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #374151;
+    color: #6b7280;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .footer-content {
+        flex-direction: column;
+    }
+
+    .footer-form {
+        flex-direction: column;
+    }
+}

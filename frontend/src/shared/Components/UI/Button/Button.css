@@ -5,7 +5,11 @@
     --color-error: #C1785A;
     --color-warning: #E3E3E3;
     --color-white: #ffffff;
-    --color-close: #715A5A
+    --color-close: #715A5A;
+
+    --color-timhong: #F2AEBB;
+    --color-da: #F5D3C4;
+
 }
 
 .btn {

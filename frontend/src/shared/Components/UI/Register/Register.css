@@ -1,0 +1,27 @@
+/* RegisterModal.css */
+
+.register-input {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: 1.5px solid #D9CFC7;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    outline: none;
+}
+
+.register-input:focus {
+    border-color: var(--card-title-color);
+}
+
+.link {
+    color: var(--card-title-color);
+    cursor: pointer;
+    font-weight: 600;
+}
+
+
+.popup-register {
+    max-width: 420px;
+    margin: 0 auto;
+}

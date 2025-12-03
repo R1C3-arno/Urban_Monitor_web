@@ -1,0 +1,45 @@
+/* PopupFrame.css */
+
+.popup-frame {
+    background: #EFE9E3;
+    border-radius: 12px;
+    border: 2px solid #D9CFC7;
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+    min-width: 320px;
+}
+
+/* HEADER */
+.popup-header {
+    padding: 1.25rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--card-title-color);
+    background: #EFE9E3;
+    border-bottom: 2px solid #D9CFC7;
+}
+
+/* BODY */
+.popup-body {
+    padding: 1.5rem;
+}
+
+/* FOOTER */
+.popup-footer {
+    padding: 1rem;
+    background: #C9B59C;
+    border-top: 2px solid #D9CFC7;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+/* ✅ OVERRIDE DÀNH RIÊNG CHO LOGIN */
+.popup-login {
+    width: 380px;
+}
+
+/* ✅ OVERRIDE DÀNH RIÊNG CHO IMAGE */
+.popup-image {
+    width: 800px;
+}

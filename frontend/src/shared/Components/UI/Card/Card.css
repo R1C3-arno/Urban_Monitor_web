@@ -1,10 +1,12 @@
 :root {
     --card-bg: #ECF4E8;
     --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    --card-header-border: #CBF3BB;
-    --card-footer-bg: #ABE7B2;
-    --card-title-color: #93BFC7;
-    --card-subtitle-color: #96A78D;
+    --card-header-border: #37353E;
+    --card-footer-bg: #44444E;
+    --card-title-color: #715A5A;
+    --card-subtitle-color: #D3DAD9;
+
+    --card-background-color: #F2AEBB;
 }
 
 .card {

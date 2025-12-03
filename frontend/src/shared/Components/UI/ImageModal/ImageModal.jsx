@@ -1,5 +1,6 @@
 import React from "react";
-import Modal from "../Modal/Modal.jsx";
+import Modal from "../Modal/Modal";
+import PopupFrame from "../../UI/PopUpFrame/PopUpFrame.jsx";
 import "./ImageModal.css";
 
 const ImageModal = ({
@@ -16,24 +17,21 @@ const ImageModal = ({
 
     return (
         <Modal isOpen={isOpen} onClose={onClose} size="lg">
-            <div className="image-modal-wrapper">
-                {/* HEADER */}
-                <div className="image-modal-header">
-                    <span>{title}</span>
-                </div>
-
-                {/* IMAGE */}
+            <PopupFrame
+                title={title}
+                className="popup-image"
+                footer={
+                    <>
+                        <button onClick={onPrev} className="nav-btn">◀</button>
+                        <span>{index + 1} / {total}</span>
+                        <button onClick={onNext} className="nav-btn">▶</button>
+                    </>
+                }
+            >
                 <div className="image-modal-body">
                     <img src={currentImage} alt="preview" />
                 </div>
-
-                {/* FOOTER */}
-                <div className="image-modal-footer">
-                    <button onClick={onPrev} className="nav-btn">◀</button>
-                    <span>{index + 1} / {total}</span>
-                    <button onClick={onNext} className="nav-btn">▶</button>
-                </div>
-            </div>
+            </PopupFrame>
         </Modal>
     );
 };

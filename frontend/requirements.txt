@@ -1,3 +1,4 @@
 npm install formatcoords
 npm install --save @maptiler/sdk
 npm install react-router-dom
+npm install axios

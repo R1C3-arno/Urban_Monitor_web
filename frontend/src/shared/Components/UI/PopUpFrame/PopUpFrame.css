@@ -1,5 +1,8 @@
-/* PopupFrame.css */
+/* =============================================
+   POPUP FRAME - FIXED VERSION
+   ============================================= */
 
+/* ===== BASE POPUP FRAME ===== */
 .popup-frame {
     background: #EFE9E3;
     border-radius: 12px;
@@ -7,9 +10,12 @@
     box-shadow: var(--card-shadow);
     overflow: hidden;
     min-width: 320px;
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* QUAN TRỌNG! */
 }
 
-/* HEADER */
+/* ===== HEADER ===== */
 .popup-header {
     padding: 1.25rem;
     font-size: 1.25rem;
@@ -17,29 +23,105 @@
     color: var(--card-title-color);
     background: #EFE9E3;
     border-bottom: 2px solid #D9CFC7;
+    flex-shrink: 0; /* Không cho header bị co */
 }
 
-/* BODY */
+/* ===== BODY ===== */
 .popup-body {
     padding: 1.5rem;
+    flex: 1; /* Chiếm hết không gian còn lại */
+    overflow: hidden; /* Quan trọng! */
+    display: flex;
+    flex-direction: column;
 }
 
-/* FOOTER */
+/* ===== FOOTER ===== */
 .popup-footer {
     padding: 1rem;
     background: #C9B59C;
     border-top: 2px solid #D9CFC7;
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 1rem;
+    flex-shrink: 0; /* Không cho footer bị co */
 }
 
-/* ✅ OVERRIDE DÀNH RIÊNG CHO LOGIN */
+/* ===== VARIANTS ===== */
+
+/* Login Popup - Small & Fixed */
 .popup-login {
     width: 380px;
+    height: auto; /* Auto height cho login */
 }
 
-/* ✅ OVERRIDE DÀNH RIÊNG CHO IMAGE */
+/* Image Popup - Full Size (BỎ WIDTH CỐ ĐỊNH!) */
 .popup-image {
-    width: 800px;
+    width: 100%; /* Thay đổi từ 800px */
+    max-width: 100%;
+    height: 100%;
+}
+
+.popup-image .popup-body {
+    padding: 1rem; /* Giảm padding cho image popup */
+}
+
+/* ===== RESPONSIVE ===== */
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .popup-header {
+        padding: 1rem;
+        font-size: 1.125rem;
+    }
+
+    .popup-body {
+        padding: 1rem;
+    }
+
+    .popup-footer {
+        padding: 0.75rem;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .popup-frame {
+        min-width: 100%;
+        border-radius: 8px;
+    }
+
+    .popup-login {
+        width: 100%;
+    }
+
+    .popup-header {
+        padding: 0.875rem;
+        font-size: 1rem;
+    }
+
+    .popup-body {
+        padding: 0.875rem;
+    }
+
+    .popup-footer {
+        padding: 0.625rem;
+        flex-direction: column;
+    }
+
+    .popup-footer button {
+        width: 100%;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+    .popup-header {
+        font-size: 0.9375rem;
+        padding: 0.75rem;
+    }
+
+    .popup-body {
+        padding: 0.75rem;
+    }
 }

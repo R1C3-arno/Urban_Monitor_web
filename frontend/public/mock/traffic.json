@@ -1,0 +1,57 @@
+{
+  "markers": [
+    {
+      "id": 1,
+      "title": "Tai nạn nghiêm trọng",
+      "description": "Xe máy va chạm xe tải",
+      "image": "accident1",
+      "lat": 10.77,
+      "lng": 106.69,
+      "level": "HIGH"
+    },
+    {
+      "id": 2,
+      "title": "Va chạm nhẹ",
+      "description": "Xe máy va chạm xe đạp",
+      "image": "accident2",
+      "lat": 10.775,
+      "lng": 106.695,
+      "level": "MEDIUM"
+    },
+    {
+      "id": 3,
+      "title": "Tắc đường",
+      "description": "Đường Nguyễn Văn Linh",
+      "image": "accident1",
+      "lat": 10.78,
+      "lng": 106.68,
+      "level": "LOW"
+    },
+    {
+      "id": 4,
+      "title": "test polygon",
+      "description": "HCMIU",
+      "image": "accident1",
+      "lat": "10.8801669",
+      "lng": "106.7994137",
+      "level": "LOW"
+    }
+
+  ],
+  "polygons": [
+    {
+      "id": 1,
+      "level": "HIGH",
+      "coordinates": [
+        [106.688, 10.768],
+        [106.692, 10.768],
+        [106.692, 10.772],
+        [106.688, 10.772],
+        [106.688, 10.768]
+      ]
+    }
+  ]
+
+}
+
+

@@ -9,24 +9,31 @@ import Button from './shared/Components/UI/Button/Button.jsx'
 import Card from './shared/Components/UI/Card/Card.jsx'
 import Test from './Test.jsx'
 import General from "./General/Pages/General.jsx";
+import ImageLayout_Left from "./domains/Citizen/Layouts/ImageLayout_Left.jsx";
+import ReportAccident from "./domains/Citizen/features/Traffic/Components/ReportAccident/ReportAccident.jsx";
+import Traffic from "./domains/Citizen/Pages/Traffic/Traffic.jsx";
+import Map from "./shared/Components/Map/BaseMap/Map.jsx";
+
 
 const App = () => {
     return (
 
         <div>
-            <General />
+            <Traffic />
         </div>
 
 
 
 
 
-            /*
+
+
+        /*
         <div>
-           <Test />
+            <Traffic />
         </div>
 
-             */
+         */
 
 
     )

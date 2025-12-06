@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
+
 import './Modal.css';
 
 const Modal = ({
@@ -47,6 +48,7 @@ const Modal = ({
                 )}
             </div>
         </div>
+
     );
 };
 

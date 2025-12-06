@@ -1,0 +1,24 @@
+.traffic-popup {
+    overflow: hidden;
+}
+
+.popup-image {
+    width: 250px;
+    height: 250px;
+    flex-shrink: 0;
+}
+
+.popup-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.popup-content {
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: auto;
+}

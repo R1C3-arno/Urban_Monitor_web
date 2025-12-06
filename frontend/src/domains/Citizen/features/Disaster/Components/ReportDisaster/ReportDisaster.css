@@ -1,0 +1,27 @@
+:root{
+    --color-primary: #1B3C53;
+    --color-secondary: #C0C9EE;
+    --color-success: #B7E5CD;
+    --color-error: #C1785A;
+    --color-warning: #E3E3E3;
+    --color-white: #ffffff;
+    --color-close: #715A5A;
+
+    --color-disaster: #FF6B35;
+    --color-disaster-light: #FFE5D9;
+}
+
+.disaster-report-button {
+    background: var(--color-disaster);
+    border-radius: 999px;
+    width: fit-content;
+    padding: 10px 18px;
+    color: var(--color-white);
+}
+
+.disaster-report-button-container {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    z-index: 20;
+}

@@ -11,3 +11,17 @@ export const COLORS = {
         high: '#EF4444'
     }
 };
+
+export const MARKER_COLORS = {
+    PRIMARY: "#3B82F6",
+    SUCCESS: "#22C55E",
+    WARNING: "#F97316",
+    DANGER:  "#EF4444",
+    GRAY:    "#9CA3AF",
+};
+
+export const TRAFFIC_LEVEL_COLORS = {
+    LOW: "#22C55E",
+    MEDIUM: "#FACC15",
+    HIGH: "#EF4444",
+};

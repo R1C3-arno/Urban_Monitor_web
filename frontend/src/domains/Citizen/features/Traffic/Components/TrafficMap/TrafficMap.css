@@ -1,0 +1,28 @@
+.traffic-map .base-map-wrapper {
+    width: 100%;
+    max-width: 1400px;
+    height: 600px;
+    margin: 0 auto;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.map-popup-wrapper {
+    position: absolute;
+
+}
+
+.map-popup-inner .traffic-popup {
+    overflow: hidden;
+}
+
+
+
+.traffic-map {
+    position: relative;
+    border-radius: 16px;
+}
+
+.map-popup-container .map-popup-inner .traffic-popup {
+    overflow: hidden !important;
+}

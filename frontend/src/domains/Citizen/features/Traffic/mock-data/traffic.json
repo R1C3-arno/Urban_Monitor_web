@@ -1,0 +1,105 @@
+{
+  "markers": [
+    {
+      "id": 1,
+      "title": "Tai nạn nghiêm trọng",
+      "description": "Va chạm giữa 2 xe ô tô, gây tắc đường nghiêm trọng. Cảnh sát giao thông đang xử lý hiện trường.",
+      "lat": 10.7769,
+      "lng": 106.7009,
+      "level": "HIGH",
+      "image": "accident1",
+      "timestamp": 1702834800000,
+      "reporter": "Nguyễn Văn A",
+      "status": "VALIDATED"
+    },
+    {
+      "id": 2,
+      "title": "Va chạm nhẹ",
+      "description": "Xe máy va chạm nhẹ, không có thương vong. Đang chờ bảo hiểm xử lý.",
+      "lat": 10.7750,
+      "lng": 106.6950,
+      "level": "MEDIUM",
+      "image": "accident2",
+      "timestamp": 1702838400000,
+      "reporter": "Trần Thị B",
+      "status": "VALIDATED"
+    },
+    {
+      "id": 3,
+      "title": "Xe hỏng giữa đường",
+      "description": "Xe bị hỏng động cơ, đang chờ cứu hộ. Gây cản trở giao thông nhẹ.",
+      "lat": 10.7800,
+      "lng": 106.7050,
+      "level": "LOW",
+      "image": null,
+      "timestamp": 1702842000000,
+      "reporter": "Lê Văn C",
+      "status": "VALIDATED"
+    },
+    {
+      "id": 4,
+      "title": "Đổ dầu trên đường",
+      "description": "Xe tải đổ dầu gây trơn trượt nguy hiểm. Cần xử lý gấp.",
+      "lat": 10.7720,
+      "lng": 106.6980,
+      "level": "HIGH",
+      "image": null,
+      "timestamp": 1702845600000,
+      "reporter": "Phạm Thị D",
+      "status": "VALIDATED"
+    },
+    {
+      "id": 5,
+      "title": "Cây đổ chắn đường",
+      "description": "Cây lớn đổ do mưa gió, chắn một phần đường. Giao thông vẫn lưu thông được.",
+      "lat": 10.7850,
+      "lng": 106.7100,
+      "level": "MEDIUM",
+      "image": null,
+      "timestamp": 1702849200000,
+      "reporter": "Hoàng Văn E",
+      "status": "VALIDATED"
+    },
+    {
+      "id": 6,
+      "title": "Tai nạn xe máy",
+      "description": "Hai xe máy va chạm ở ngã tư, có người bị thương nhẹ. Đang chờ xe cứu thương.",
+      "lat": 10.7690,
+      "lng": 106.6920,
+      "level": "HIGH",
+      "image": "accident1",
+      "timestamp": 1702852800000,
+      "reporter": "Võ Thị F",
+      "status": "VALIDATED"
+    },
+    {
+      "id": 7,
+      "title": "Ùn tắc giao thông",
+      "description": "Đoạn đường đang thi công, gây ùn tắc kéo dài. Nên tránh khu vực này.",
+      "lat": 10.7820,
+      "lng": 106.7020,
+      "level": "MEDIUM",
+      "image": null,
+      "timestamp": 1702856400000,
+      "reporter": "Đỗ Văn G",
+      "status": "VALIDATED"
+    },
+    {
+      "id": 8,
+      "title": "Đường ngập nước",
+      "description": "Mưa lớn gây ngập cục bộ, xe khó lưu thông.",
+      "lat": 10.7740,
+      "lng": 106.7080,
+      "level": "LOW",
+      "image": null,
+      "timestamp": 1702860000000,
+      "reporter": "Bùi Thị H",
+      "status": "VALIDATED"
+    }
+  ],
+  "meta": {
+    "total": 8,
+    "lastUpdated": 1702860000000,
+    "source": "mock_data"
+  }
+}

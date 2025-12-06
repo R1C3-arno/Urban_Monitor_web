@@ -1,62 +1,52 @@
-import React, {useState,useRef,useEffect} from "react";
-import Card from "../../UI/Card/Card.jsx";
-import './PopUp.css';
+// Lo cái khung gắn với vị trí GPS
+import "./PopUp.css";
+import { useEffect, useState } from "react"
 
-const MapPopUp = ({ map, coords, title, children }) => {
+/**
+ * Khugn thuần
+ *
+ */
+const MapPopUp = ({ map, coords, children, onClose }) => {
     const [pixel, setPixel] = useState([0, 0]);
-    const [open, setOpen] = useState(false);
 
-    // Cập nhật pixel mỗi lần map di chuyển
     useEffect(() => {
-        if (!map) return;
+        if (!map || !coords) return;
+        console.log("[MapPopUp] project coords:", coords);
+        const p = map.project(coords);
+        console.log("[MapPopUp] pixel:", p);
+        setPixel([p.x, p.y]);
 
         const updatePixel = () => {
-            const p = map.project(coords); // [x, y] pixel
-            setPixel(p);
+            const p = map.project(coords);
+            setPixel([p.x, p.y]);
         };
 
         updatePixel();
-        map.on('move', updatePixel);
-        map.on('zoom', updatePixel);
+        map.on("move", updatePixel);
+        map.on("zoom", updatePixel);
 
         return () => {
-            map.off('move', updatePixel);
-            map.off('zoom', updatePixel);
+            map.off("move", updatePixel);
+            map.off("zoom", updatePixel);
         };
     }, [map, coords]);
 
-    // Render marker click
-    useEffect(() => {
-        if (!map) return;
-
-        const el = document.createElement('div');
-        el.className = 'marker';
-        el.addEventListener('click', () => setOpen(!open));
-
-        const marker = new maptilersdk.Marker({ element: el })
-            .setLngLat(coords)
-            .addTo(map);
-
-        return () => marker.remove();
-    }, [map, coords, open]);
-
-    if (!open) return null;
+    if (!coords) return null;
 
     return (
         <div
-            className="marker-popup"
+            className="map-popup-wrapper"
             style={{
                 left: pixel[0],
                 top: pixel[1],
-                transform: 'translate(-50%, -100%)', // đặt phía trên marker
-                position: 'absolute',
-                pointerEvents: 'auto',
             }}
         >
-            <Card title={title}>
+            <div className="map-popup-inner">
+                <button className="popup-close" onClick={onClose}>×</button>
                 {children}
-            </Card>
+            </div>
         </div>
     );
 };
+
 export default MapPopUp;

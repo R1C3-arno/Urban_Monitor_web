@@ -1,0 +1,52 @@
+.branch-report-button {
+    background: var(--color-timhong);
+    border-radius: 999px;
+    width: fit-content;
+    padding: 10px 18px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    transition: all 0.2s ease;
+}
+
+.branch-report-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.branch-report-button-container {
+    position: absolute;
+    bottom: 80px; /* Lệch lên khỏi các button khác */
+    right: 20px;
+    z-index: 20;
+}
+
+.branch-location-picker {
+    margin-top: 16px;
+    padding: 12px;
+    background: #f5f5f5;
+    border-radius: 8px;
+}
+
+.branch-location-picker button {
+    padding: 10px 20px;
+    width: 100%;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.branch-location-picker button:hover {
+    background: #2563eb;
+}
+
+.branch-location-info {
+    margin-top: 8px;
+    font-size: 13px;
+    color: #6b7280;
+}

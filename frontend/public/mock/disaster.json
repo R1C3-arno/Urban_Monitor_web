@@ -1,0 +1,13 @@
+{
+  "disasters": [
+    {
+      "id": "dis_001",
+      "type": "FIRE",
+      "level": "HIGH",
+      "lat": 10.78,
+      "lng": 106.69,
+      "title": "Cháy lớn tại Quận 1",
+      "description": "Cháy kho hàng"
+    }
+  ]
+}

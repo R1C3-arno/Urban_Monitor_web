@@ -25,3 +25,10 @@ export const TRAFFIC_LEVEL_COLORS = {
     MEDIUM: "#FACC15",
     HIGH: "#EF4444",
 };
+
+export const SECURITY_LEVEL_COLORS = {
+    LOW: "#22C55E",
+    MEDIUM: "#FACC15",
+    HIGH: "#EF4444",
+};
+

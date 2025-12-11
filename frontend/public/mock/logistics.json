@@ -1,0 +1,180 @@
+{
+  "branches": [
+    {
+      "id": "branch_001",
+      "branchName": "Chi nhánh Quận 1",
+      "branchType": "RETAIL",
+      "type": "RETAIL",
+      "performanceLevel": "EXCELLENT",
+      "level": "EXCELLENT",
+      "lat": 10.77,
+      "lng": 106.7,
+      "coords": [106.7, 10.77],
+      "image": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400",
+      "manager": "Nguyễn Văn A",
+      "employeeCount": 15,
+      "monthlyRevenue": 500000000,
+      "monthlyExpense": 300000000,
+      "monthlyProfit": 200000000,
+      "inventoryValue": 150000000,
+      "inventoryCount": 1250,
+      "address": "123 Nguyễn Huệ, Quận 1, TP.HCM"
+    },
+    {
+      "id": "branch_002",
+      "branchName": "Kho Bình Tân",
+      "branchType": "WAREHOUSE",
+      "type": "WAREHOUSE",
+      "performanceLevel": "GOOD",
+      "level": "GOOD",
+      "lat": 10.73,
+      "lng": 106.61,
+      "coords": [106.61, 10.73],
+      "image": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=400",
+      "manager": "Trần Thị B",
+      "employeeCount": 8,
+      "monthlyRevenue": 200000000,
+      "monthlyExpense": 150000000,
+      "monthlyProfit": 50000000,
+      "inventoryValue": 500000000,
+      "inventoryCount": 5000,
+      "address": "456 Lê Văn Quới, Bình Tân, TP.HCM"
+    },
+    {
+      "id": "branch_003",
+      "branchName": "Nhà máy Thủ Đức",
+      "branchType": "FACTORY",
+      "type": "FACTORY",
+      "performanceLevel": "AVERAGE",
+      "level": "AVERAGE",
+      "lat": 10.85,
+      "lng": 106.78,
+      "coords": [106.78, 10.85],
+      "image": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400",
+      "manager": "Lê Văn C",
+      "employeeCount": 50,
+      "monthlyRevenue": 1000000000,
+      "monthlyExpense": 850000000,
+      "monthlyProfit": 150000000,
+      "inventoryValue": 300000000,
+      "inventoryCount": 2000,
+      "address": "789 Quốc lộ 1A, Thủ Đức, TP.HCM"
+    },
+    {
+      "id": "branch_004",
+      "branchName": "Văn phòng Quận 3",
+      "branchType": "OFFICE",
+      "type": "OFFICE",
+      "performanceLevel": "GOOD",
+      "level": "GOOD",
+      "lat": 10.78,
+      "lng": 106.69,
+      "coords": [106.69, 10.78],
+      "image": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=400",
+      "manager": "Phạm Thị D",
+      "employeeCount": 25,
+      "monthlyRevenue": 300000000,
+      "monthlyExpense": 250000000,
+      "monthlyProfit": 50000000,
+      "inventoryValue": 50000000,
+      "inventoryCount": 100,
+      "address": "321 Võ Văn Tần, Quận 3, TP.HCM"
+    },
+    {
+      "id": "branch_005",
+      "branchName": "Chi nhánh Quận 7",
+      "branchType": "RETAIL",
+      "type": "RETAIL",
+      "performanceLevel": "POOR",
+      "level": "POOR",
+      "lat": 10.73,
+      "lng": 106.72,
+      "coords": [106.72, 10.73],
+      "image": "https://images.unsplash.com/photo-1556742044-3c52d6e88c62?w=400",
+      "manager": "Hoàng Văn E",
+      "employeeCount": 10,
+      "monthlyRevenue": 150000000,
+      "monthlyExpense": 180000000,
+      "monthlyProfit": -30000000,
+      "inventoryValue": 80000000,
+      "inventoryCount": 600,
+      "address": "555 Nguyễn Thị Thập, Quận 7, TP.HCM"
+    }
+  ],
+  "zones": [
+    {
+      "id": "zone_001",
+      "coords": [
+        [106.69, 10.78],
+        [106.71, 10.78],
+        [106.71, 10.76],
+        [106.69, 10.76],
+        [106.69, 10.78]
+      ],
+      "color": "#22C55E",
+      "opacity": 0.25,
+      "branchId": "branch_001",
+      "level": "EXCELLENT"
+    },
+    {
+      "id": "zone_002",
+      "coords": [
+        [106.60, 10.74],
+        [106.62, 10.74],
+        [106.62, 10.72],
+        [106.60, 10.72],
+        [106.60, 10.74]
+      ],
+      "color": "#3B82F6",
+      "opacity": 0.25,
+      "branchId": "branch_002",
+      "level": "GOOD"
+    },
+    {
+      "id": "zone_003",
+      "coords": [
+        [106.77, 10.86],
+        [106.79, 10.86],
+        [106.79, 10.84],
+        [106.77, 10.84],
+        [106.77, 10.86]
+      ],
+      "color": "#F59E0B",
+      "opacity": 0.25,
+      "branchId": "branch_003",
+      "level": "AVERAGE"
+    },
+    {
+      "id": "zone_004",
+      "coords": [
+        [106.68, 10.79],
+        [106.70, 10.79],
+        [106.70, 10.77],
+        [106.68, 10.77],
+        [106.68, 10.79]
+      ],
+      "color": "#3B82F6",
+      "opacity": 0.25,
+      "branchId": "branch_004",
+      "level": "GOOD"
+    },
+    {
+      "id": "zone_005",
+      "coords": [
+        [106.71, 10.74],
+        [106.73, 10.74],
+        [106.73, 10.72],
+        [106.71, 10.72],
+        [106.71, 10.74]
+      ],
+      "color": "#EF4444",
+      "opacity": 0.25,
+      "branchId": "branch_005",
+      "level": "POOR"
+    }
+  ],
+  "metadata": {
+    "total": 5,
+    "lastUpdated": "2024-12-07T10:00:00Z"
+  }
+}

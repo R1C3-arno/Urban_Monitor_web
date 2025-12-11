@@ -1,0 +1,4 @@
+// ✅ Sample from LARGEST component only
+        Set<Long> largestComponent = components.stream()
+                .max(Comparator.comparingInt(Set::size))
+                .orElse(new HashSet<>());

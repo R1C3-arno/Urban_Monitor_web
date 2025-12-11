@@ -6,7 +6,13 @@
  * Immutable and self-validating
  */
 
-import { TRAFFIC_LEVELS, VALIDATION_RULES } from "../Config/trafficConfig.js";
+/**
+ * TrafficIncident Domain Model
+ * ✅ UPDATED: Added `type` field to match backend
+ * Backend sends: { id, title, lat, lng, level, type, image, ... }
+ */
+
+import {TRAFFIC_LEVELS, VALIDATION_RULES} from "../Config/trafficConfig.js";
 
 export class TrafficIncident {
     constructor({
@@ -16,13 +22,14 @@ export class TrafficIncident {
                     lat,
                     lng,
                     level,
+                    type,           //update : NEW: CAR,BIKe,ACCident,JAM
                     image,
                     timestamp,
                     reporter,
                     status = "PENDING",
                 }) {
         // Validate on construction
-        this._validate({ id, title, lat, lng, level });
+        this._validate({id, title, lat, lng, level,type});
 
         // Immutable properties
         this._id = id;
@@ -31,6 +38,7 @@ export class TrafficIncident {
         this._lat = lat;
         this._lng = lng;
         this._level = level;
+        this._type = type || "ACCIDENT"; // ✅ Default to ACCIDENT
         this._image = image || null;
         this._timestamp = timestamp || Date.now();
         this._reporter = reporter || "Anonymous";
@@ -62,6 +70,10 @@ export class TrafficIncident {
 
     get level() {
         return this._level;
+    }
+
+    get type() {
+        return this._type; //  NEW
     }
 
     get image() {
@@ -109,8 +121,17 @@ export class TrafficIncident {
         return this._image !== null && this._image !== undefined;
     }
 
+    //  NEW: Check incident type
+    isAccident() {
+        return this._type === "ACCIDENT";
+    }
+
+    isTrafficJam() {
+        return this._type === "JAM";
+    }
+
     // ==================== VALIDATION ====================
-    _validate({ id, title, lat, lng, level }) {
+    _validate({id, title, lat, lng, level,type}) {
         const errors = [];
 
         if (!id) {
@@ -133,6 +154,12 @@ export class TrafficIncident {
             errors.push(`Invalid level. Must be one of: ${VALIDATION_RULES.VALID_LEVELS.join(", ")}`);
         }
 
+        // ✅ NEW: Validate type
+        const validTypes = ["CAR", "BIKE", "ACCIDENT", "JAM", "SLOW", "FAST"];
+        if (type && !validTypes.includes(type)) {
+            errors.push(`Invalid type. Must be one of: ${validTypes.join(", ")}`);
+        }
+
         if (errors.length > 0) {
             throw new Error(`TrafficIncident validation failed: ${errors.join(", ")}`);
         }
@@ -147,6 +174,7 @@ export class TrafficIncident {
             lat: this._lat,
             lng: this._lng,
             level: this._level,
+            type: this._type,     //  NEW
             image: this._image,
             timestamp: this._timestamp,
             reporter: this._reporter,
@@ -167,6 +195,7 @@ export class TrafficIncident {
             lat: apiData.lat,
             lng: apiData.lng,
             level: apiData.level,
+            type: apiData.type,   // ✅ NEW: Backend sends this
             image: apiData.image,
             timestamp: apiData.timestamp,
             reporter: apiData.reporter,
@@ -182,6 +211,7 @@ export class TrafficIncident {
             lat: mockData.lat,
             lng: mockData.lng,
             level: mockData.level,
+            type: mockData.type || "ACCIDENT", // ✅ NEW
             image: mockData.image,
             timestamp: mockData.timestamp || Date.now(),
             reporter: mockData.reporter || "Mock User",

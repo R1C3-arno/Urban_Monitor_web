@@ -1,0 +1,453 @@
+[UI Component]
+   ↓
+[Hook] useFeatureData / useFeatureReport
+   ↓
+[Service] FeatureAPIService / FeatureMockService
+   ↓
+[Mapper] featureDataMapper
+   ↓
+[Domain Model] FeatureIncident / FeatureZone / FeatureReport
+   ↓
+[Map Engine] BaseMap + BaseZone + BaseMarker
+
+
+
+
+FLOW LOAD DATA HIỂN THỊ MAP (Polygon + Marker)
+
+User vào Map Page
+   ↓
+FeatureMap.jsx
+   ↓
+useFeatureData()
+   ↓
+FeatureAPIService.getIncidents()
+   ↓
+Backend trả về JSON
+   ↓
+featureDataMapper()
+   ↓
+BaseIncident / BaseZone
+   ↓
+BaseMap render polygon + marker
+
+Mục tiêu:
+
+UI không biết backend
+
+Backend không biết UI
+
+Mapper chịu trách nhiệm "dịch ngôn ngữ"
+
+
+
+
+FLOW REPORT (GỬI SỰ CỐ TỪ USER LÊN BACKEND)
+
+User click "Report"
+   ↓
+FeatureReportForm.jsx
+   ↓
+useFeatureReport()
+   ↓
+FeatureReportAPIService.submitReport()
+   ↓
+Backend lưu DB
+   ↓
+Trả về incident mới
+   ↓
+Map tự cập nhật marker
+
+
+
+FLOW REPORT (GỬI SỰ CỐ TỪ USER LÊN BACKEND)
+
+User click "Report"
+   ↓
+FeatureReportForm.jsx
+   ↓
+useFeatureReport()
+   ↓
+FeatureReportAPIService.submitReport()
+   ↓
+Backend lưu DB
+   ↓
+Trả về incident mới
+   ↓
+Map tự cập nhật marker
+
+
+
+
+
+API GET INCIDENTS (Traffic | Security | Disaster | Emergency | Market)
+Endpoint mẫu:
+GET /api/traffic/incidents
+GET /api/security/incidents
+GET /api/disaster/incidents
+GET /api/market/incidents
+Response chuẩn backend phải trả:
+[
+  {
+    "id": "abc123",
+    "title": "Tai nạn giao thông",
+    "description": "Va chạm xe máy",
+    "lat": 10.762622,
+    "lng": 106.660172,
+    "level": "HIGH",
+    "category": "ACCIDENT",
+    "image": "https://cdn.com/image.jpg",
+    "radius": 300,
+    "createdAt": "2025-12-06T08:00:00Z"
+  }
+]
+
+
+Mapping vào Domain:
+
+API SUBMIT REPORT
+Endpoint mẫu:
+POST /api/traffic/report
+POST /api/security/report
+...
+
+
+Request Backend nhận:
+{
+  "title": "Cướp giật",
+  "description": "Có cướp gần chợ",
+  "lat": 10.76,
+  "lng": 106.66,
+  "image": "base64..."
+}
+
+
+Backend trả về sau khi lưu:
+{
+  "id": "new123",
+  "title": "Cướp giật",
+  "description": "Có cướp gần chợ",
+  "lat": 10.76,
+  "lng": 106.66,
+  "level": "MEDIUM",
+  "radius": 200,
+  "status": "PENDING"
+}
+
+
+┌─────────────┐
+│   Database  │
+└──────┬──────┘
+       ↓
+┌──────────────────────────┐
+│        BACKEND           │  NƠI DUY NHẤT XỬ LÝ LOGIC
+│--------------------------│
+│ - Phân loại level        │
+│ - Tính bán kính          │
+│ - Sinh polygon           │
+│ - Gán màu theo mức độ    │
+│ - Validate report        │
+│ - Anti-spam              │
+│ - Gom vùng chồng lấp     │
+└──────────┬───────────────┘
+           ↓ JSON CHUẨN
+┌──────────────────────────┐
+│        FRONTEND          │  CHỈ LÀ VIEW ENGINE
+│--------------------------│
+│ - Vẽ polygon             │
+│ - Gắn marker             │
+│ - Mở popup               │
+│ - Gửi report form        │
+└──────────────────────────┘
+
+HỢP ĐỒNG JSON CHUẨN TOÀN PROJECT (DÙNG CHUNG CHO TRAFFIC / SECURITY / DISASTER / MARKET)
+
+
+INCIDENT (Marker)
+{
+  "id": "inc-123",
+  "title": "Tai nạn ngã tư",
+  "description": "Xe máy va chạm ô tô",
+  "lat": 10.762622,
+  "lng": 106.660172,
+  "level": "HIGH",
+  "icon": "car-crash.png",
+  "image": "https://..."
+}
+\
+Backend chịu trách nhiệm:
+
+Level
+
+Icon
+
+Data hiển thị
+
+Frontend chỉ:
+
+new BaseIncident(apiData)
+
+
+ZONE (Polygon tròn)
+
+{
+  "id": "zone-123",
+  "coords": [
+    [106.6601, 10.7626],
+    [106.6605, 10.7629],
+    [106.6609, 10.7626],
+    [106.6601, 10.7626]
+  ],
+  "level": "HIGH",
+  "color": "#EF4444",
+  "opacity": 0.35
+}
+
+
+oàn bộ:
+
+Polygon
+
+Color
+
+Opacity
+==> Backend xử lý hết
+
+Frontend:
+
+new BaseZone(apiData)
+
+
+REPORT SUBMIT (Frontend → Backend)
+{
+  "title": "Cướp giật",
+  "description": "Hai người giật điện thoại",
+  "lat": 10.77,
+  "lng": 106.66,
+  "image": "base64..."
+}
+
+Backend làm:
+
+Validate
+
+Gán level
+
+Gộp zone
+
+Sinh zone mới nếu cần
+POST /report
+
+
+SHARED BASE CLASS PHẢI THEO ĐÚNG TRIẾT LÝ NÀY
+ BaseIncident (FE chỉ đọc)
+
+export class BaseIncident {
+    constructor({ id, title, description, lat, lng, level, icon, image }) {
+        this._id = id;
+        this._title = title;
+        this._description = description;
+        this._coords = [lng, lat];
+        this._level = level;
+        this._icon = icon;
+        this._image = image;
+
+        Object.freeze(this);
+    }
+
+    get id() { return this._id; }
+    get title() { return this._title; }
+    get description() { return this._description; }
+    get coords() { return this._coords; }
+    get level() { return this._level; }
+    get icon() { return this._icon; }
+    get image() { return this._image; }
+
+    toJSON() {
+        return {
+            id: this._id,
+            title: this._title,
+            description: this._description,
+            coords: this._coords,
+            level: this._level,
+            icon: this._icon,
+            image: this._image,
+        };
+    }
+}
+
+
+BaseZone (KHÔNG CÓ TÍNH TOÁN)
+
+export class BaseZone {
+    constructor({ id, coords, level, color, opacity = 0.3 }) {
+        this._id = id;
+        this._coords = coords;     //  Backend gửi sẵn
+        this._level = level;
+        this._color = color;
+        this._opacity = opacity;
+
+        Object.freeze(this);
+    }
+
+    get id() { return this._id; }
+    get coords() { return this._coords; }
+    get level() { return this._level; }
+    get color() { return this._color; }
+    get opacity() { return this._opacity; }
+
+    toGeoJSON() {
+        return {
+            type: "Feature",
+            geometry: {
+                type: "Polygon",
+                coordinates: [this._coords],
+            },
+        };
+    }
+}
+
+
+useBaseMapData UX HOÀN TOÀN KHỚP VỚI TRIẾT LÝ “BACKEND LÀ NÃO”
+
+const raw = await dataSource.fetchItems();
+
+// FE không xử lý logic
+const incidents = mapToIncidents(raw.incidents);
+const zones = mapToZones(raw.zones);
+
+
+Backend phải trả:
+{
+  "incidents": [...],
+  "zones": [...]
+}
+
+
+MỖI FEATURE CHỈ CÒN 3 THỨ
+
+Ví dụ: Security
+
+security/
+ ├─ hooks/
+ │   └─ useSecurityData.js   ==> chỉ gọi shared
+ ├─ mappers/
+ │   └─ mapSecurityMarkers.js ==> đổi icon/style
+ ├─ components/
+ │   └─ SecurityMap.jsx ==> render map
+
+ Security KHÔNG được phép:
+
+ Tự tính zone
+
+ Tự gán màu level
+
+ Tự suy đoán danger
+
+ KẾT LUẬN KIẾN TRÚC (CHỐT CỨNG)
+ Vai trò	Được làm	Cấm làm
+ Backend	==> Toàn bộ nghiệp vụ GIS, danger, polygon	❌ Không render
+ Frontend	==> Render map, marker, popup, call API	❌ Không logic nghiệp vụ
+
+ Đây là kiến trúc Large-Scale Map System chuẩn enterprise
+ 👉 Sau này có:
+
+ AI Heatmap
+
+ Predict Disaster
+
+ Crime Forecast
+ → Chỉ cần nâng Backend – FE không phải sửa logic
+
+ BASE MAP FLOW CHUẨN
+ Backend API
+    ↓
+ createBaseMapDataSource()
+    ↓
+ useBaseMapData()
+    ↓
+ mapApiToBaseIncidents()
+ mapApiToBaseZones()
+    ↓
+ BaseIncident / BaseZone
+    ↓
+ mapIncidentToMarkerProps()
+    ↓
+ BaseMarker
+    ↓
+ BaseMap renders:
+    - <BaseCircle />
+    - <BaseMarker />
+    - <BasePopup />
+
+Cái này chính là “engine dùng cho mọi feature”.
+
+BASE REPORT FLOW
+Report Form (feature)
+   ↓
+mapFormToBaseReport()
+   ↓
+BaseReport
+   ↓
+useBaseReport()
+   ↓
+BaseReportDataSource.submit()
+   ↓
+Backend xử lý hết
+
+
+KHI ĐÃ CÓ SHARED → MỖI FEATURE CHỈ CẦN OVERRIDE 6 THỨ
+
+features/security/
+├── config/
+│   └── securityConfig.js
+│
+├── components/
+│   ├── SecurityMap.jsx
+│   ├── SecurityMarker.jsx
+│   └── ReportSecurity.jsx
+│
+├── hooks/
+│   ├── useSecurityData.js
+│   └── useSecurityReport.js
+│
+└── services/
+    ├── SecurityAPIService.js
+    └── SecurityReportAPIService.js
+
+KHÔNG CẦN:
+
+Incident model
+
+Zone model
+
+Base hook
+
+Polygon logic
+
+Marker logic
+
+
+export const securityFormSchema = [
+  { name: "title", label: "Tiêu đề", type: "text" },
+  { name: "image", label: "Ảnh", type: "file" },
+  {
+    name: "type",
+    label: "Loại",
+    type: "select",
+    options: [
+      { label: "Sự kiện", value: "event" },
+      { label: "Cảnh báo", value: "warning" },
+    ],
+  },
+  {
+    name: "severity",
+    label: "Mức độ",
+    type: "select",
+    options: [
+      { label: "Thấp", value: "LOW" },
+      { label: "Cao", value: "HIGH" },
+    ],
+  },
+  { name: "description", label: "Mô tả", type: "textarea" },
+];

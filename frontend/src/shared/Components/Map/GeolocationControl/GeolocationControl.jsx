@@ -22,130 +22,69 @@ const GeolocationControl = ({
     const isAddedRef = useRef(false);
 
     useEffect(() => {
-        if (!map || isAddedRef.current) {
-            console.log('⏭️ Skipping GeolocateControl creation (already exists or no map)');
+        if (!map) return;
+
+        if (!map.isStyleLoaded()) {
+            map.once("load", () => {
+                // trigger lại effect
+                controlRef.current = null;
+            });
             return;
         }
 
-        console.log('🔧 Creating GeolocateControl...');
+        let control;
 
         try {
-            const geolocateControl = new maptilersdk.GeolocateControl({
+            control = new maptilersdk.GeolocateControl({
                 positionOptions: {
                     enableHighAccuracy: true,
-                    timeout: 10000,
-                    maximumAge: 0,
                 },
                 trackUserLocation,
                 showUserLocation,
-                showAccuracyCircle: showAccuracyCircle && maxAccuracyRadius > 0,
+                showAccuracyCircle,
             });
 
-            // Check if control already exists on map
-            const existingControls = map._controls || [];
-            const hasGeolocate = existingControls.some(
-                (ctrl) => ctrl instanceof maptilersdk.GeolocateControl
-            );
+            map.addControl(control, position);
+            controlRef.current = control;
 
-            if (hasGeolocate) {
-                console.log('⚠️ GeolocateControl already exists on map, skipping');
-                return;
-            }
+            console.log("✅ GeolocateControl added safely");
 
-            // Add control
-            const safePosition = ["top-left", "top-right", "bottom-left", "bottom-right"].includes(position)
-                ? position
-                : "top-right";
+            control.on("geolocate", (e) => {
+                const locationData = {
+                    lng: e.coords.longitude,
+                    lat: e.coords.latitude,
+                    accuracy: e.coords.accuracy,
+                };
 
-            map.addControl(geolocateControl, safePosition);
-
-            controlRef.current = geolocateControl;
-            isAddedRef.current = true;
-
-            console.log('✅ GeolocateControl added to map');
-
-            // ==================== EVENT LISTENERS ====================
-
-            geolocateControl.on('geolocate', (e) => {
-                console.log('📍 Geolocate event');
-
-                try {
-                    const locationData = {
-
-                        lng: e.coords.longitude,
-                        lat: e.coords.latitude,
-                        accuracy: e.coords.accuracy,
-                        heading: e.coords.heading,
-                        speed: e.coords.speed,
-                        timestamp: e.timestamp,
-                    };
-                    map.easeTo({
-                        center: [locationData.lng, locationData.lat],
-                        zoom: 16,
-                        duration: 800
-                    });
-
-
-                    console.log('📍 Location:', locationData);
-
-                    // ✅ FIX: Apply maxAccuracyRadius limit to accuracy circle
-                    if (showAccuracyCircle && maxAccuracyRadius) {
-                        // pass center coords explicitly
-                        applyAccuracyRadiusLimit(map, locationData.accuracy, maxAccuracyRadius, {
-                            lng: locationData.lng,
-                            lat: locationData.lat
-                        });
-
-                    }
-
-                    onGeolocate?.(locationData);
-                } catch (err) {
-                    console.error('❌ Error in geolocate callback:', err);
+                if (showAccuracyCircle && maxAccuracyRadius) {
+                    applyAccuracyRadiusLimit(
+                        map,
+                        locationData.accuracy,
+                        maxAccuracyRadius,
+                        locationData
+                    );
                 }
+
+                onGeolocate?.(locationData);
             });
 
-            geolocateControl.on('error', (e) => {
-                console.error('❌ Geolocation error:', e);
-
-                let errorMessage = 'Unable to get location';
-                if (e.code === 1) errorMessage = 'Permission denied';
-                else if (e.code === 2) errorMessage = 'Position unavailable';
-                else if (e.code === 3) errorMessage = 'Timeout';
-                else if (e.message) errorMessage = e.message;
-
-                onError?.(errorMessage);
+            control.on("error", (e) => {
+                onError?.(e.message || "Geolocation error");
             });
 
-            geolocateControl.on('trackuserlocationstart', () => {
-                console.log('🎯 Tracking started');
-            });
-
-            geolocateControl.on('trackuserlocationend', () => {
-                console.log('⏹️ Tracking stopped');
-            });
-
-        } catch (error) {
-            console.error('❌ Failed to create GeolocateControl:', error);
-            onError?.('Failed to initialize location control');
+        } catch (err) {
+            console.error("❌ Geolocate init failed:", err);
         }
 
-        // ==================== CLEANUP ====================
         return () => {
-            console.log('🧹 Cleaning up GeolocateControl');
-
             try {
-                if (controlRef.current && map && isAddedRef.current) {
-                    console.log('🗑️ Removing GeolocateControl from map');
-                    map.removeControl(controlRef.current);
+                if (control && map) {
+                    map.removeControl(control);
                     controlRef.current = null;
-                    isAddedRef.current = false;
                 }
-            } catch (error) {
-                console.error('❌ Error during cleanup:', error);
-            }
+            } catch {}
         };
-    }, [map, position, trackUserLocation, showUserLocation, showAccuracyCircle, maxAccuracyRadius]);
-
+    }, [map]);
     return null;
 };
 
@@ -185,7 +124,8 @@ const createCircleCoords = (centerLng, centerLat, radiusMeters, points = 64) => 
  */
 const applyAccuracyRadiusLimit = (map, locationAccuracy, maxRadius, center) => {
     try {
-        if (!map || !center) return;
+        if (!map || !center || !map.isStyleLoaded()) return;
+
 
         const safeAccuracy =
             typeof locationAccuracy === "number" && locationAccuracy > 0

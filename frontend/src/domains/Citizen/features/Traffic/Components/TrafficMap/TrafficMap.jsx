@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect,useRef} from "react";
 import Map from "../../../../../../shared/Components/Map/BaseMap/Map.jsx";
 import {TrafficMarker} from "../TrafficMarker/TrafficMarker.jsx";
 import MapPopUp from "../../../../../../shared/Components/Map/MapPopUp/PopUp.jsx";
@@ -9,6 +9,13 @@ import accident2 from "../../../../../../assets/accident2.jpg"
 import TrafficCircle from "../TrafficCircle/TrafficCircle.jsx";
 import {useTrafficData} from "../../Hooks/useTrafficData.js";
 
+import {BlackspotLayer} from "@/domains/Citizen/features/Traffic/Components/Blackspots/BlackspotLayer.jsx";
+import {RouteFinder} from "@/domains/Citizen/features/Traffic/Components/RouteFinder/RouteFinder.jsx";
+import {NearestIncidentsLayer} from "@/domains/Citizen/features/Traffic/Components/NearestIncidents/NearestIncidentsLayer.jsx";
+
+import { AdminPanel } from '../AdminPanel/AdminPanel';
+import ValidationDisplay from "@/domains/Citizen/features/Traffic/Components/AdminPanel/ValidationDisplay.jsx";
+import AlgorithmComparison from "@/domains/Citizen/features/Traffic/Components/RouteVisualizer/AlgorithmComparison.jsx";
 
 import {
     TRAFFIC_MAP_CONFIG,
@@ -23,6 +30,19 @@ const TrafficMap = () => {
     const [selectedIncident, setSelectedIncident] = useState(null);
     const [userLocation, setUserLocation] = useState(null);
 
+    // DSA Features toggles
+    const [showBlackspots, setShowBlackspots] = useState(false);
+    const [showRouteFinder, setShowRouteFinder] = useState(false);
+    const [showNearestFinder, setShowNearestFinder] = useState(false);
+
+    // ✅ NEW: Design Patterns & Algorithm Comparison
+    const [showComparison, setShowComparison] = useState(false);
+    const [showAdmin, setShowAdmin] = useState(false);
+    const [showValidation, setShowValidation] = useState(false);
+    const [nodes, setNodes] = useState([]); // For AlgorithmComparison
+
+    const mapRef = useRef();
+
     // ==================== CUSTOM HOOK ====================
     const {
         markers,
@@ -32,7 +52,7 @@ const TrafficMap = () => {
         isReady,
         dataSourceName,
     } = useTrafficData({
-        useMock: true, // ✅ Toggle này để switch giữa mock và real API
+        useMock: true, // ✅ USE MOCK DATA - Backend doesn't have /api/traffic/incidents endpoint
         autoFetch: true,
         onIncidentClick: (incident) => {
             console.log("📍 Incident clicked:", incident.title);
@@ -139,13 +159,9 @@ const TrafficMap = () => {
                 onGeolocationError={handleGeolocationError}
             />
 
-
-
             {/* Traffic Circles (Danger Zones) */}
             {map && circles.length > 0 && (
-
                 <TrafficCircle map={map} data={circles}/>
-
             )}
 
             {/* Popup for selected incident */}
@@ -176,16 +192,73 @@ const TrafficMap = () => {
                         zIndex: 1000,
                     }}
                 >
-                    <div>📊 Data: {dataSourceName}</div>
-                    <div>📍 Incidents: {markers.length}</div>
-                    <div>⭕ Zones: {circles.length}</div>
+                    <div> Data: {dataSourceName}</div>
+                    <div> Incidents: {markers.length}</div>
+                    <div> Zones: {circles.length}</div>
                     {userLocation && (
                         <div>
-                            📌 User: [{userLocation.lng.toFixed(4)}, {userLocation.lat.toFixed(4)}]
+                             User: [{userLocation.lng.toFixed(4)}, {userLocation.lat.toFixed(4)}]
                         </div>
                     )}
                 </div>
             )}
+
+            {/* DSA Feature Toggles */}
+            <div style={{
+                position: 'absolute',
+                top: '20px',
+                right: '20px',
+                background: '#FACE68',
+                padding: '10px',
+                borderRadius: '12px',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+                zIndex: 999
+            }}>
+                <div style={{ fontWeight: 'bold', marginBottom: '10px', fontSize: '14px' }}>
+                     DSA Features
+                </div>
+
+
+
+                <button
+                    onClick={() => setShowRouteFinder(!showRouteFinder)}
+                    style={{
+                        display: 'block',
+                        width: '100%',
+                        padding: '8px 12px',
+                        marginBottom: '8px',
+                        background: showRouteFinder ? '#334443' : '#005461',
+                        color: showRouteFinder ? '#FFF8DE' : '#FAEAB1',
+                        border: 'none',
+                        borderRadius: '6px',
+                        cursor: 'pointer',
+                        fontSize: '13px'
+                    }}
+                >
+                     Route Finder
+                </button>
+
+
+            </div>
+
+            {/* DSA Layers */}
+            <BlackspotLayer visible={showBlackspots} top={5} mapRef={mapRef} />
+            <NearestIncidentsLayer visible={showNearestFinder} mapRef={mapRef} />
+
+            {/* Route Finder with fixed exploration animation */}
+            <RouteFinder visible={showRouteFinder} map={map} />
+
+            {/*  NEW COMPONENTS - CONDITIONAL RENDERING */}
+            {showComparison && (
+                <AlgorithmComparison
+                    map={map}
+                    nodes={nodes}
+                />
+            )}
+
+            {showAdmin && <AdminPanel />}
+
+            {showValidation && <ValidationDisplay visible={true} />}
         </div>
     );
 };

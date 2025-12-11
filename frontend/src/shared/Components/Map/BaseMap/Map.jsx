@@ -25,42 +25,58 @@ const Map = ({
     const mapContainer = useRef(null);
     const map = useRef(null);
     const [mapLoaded, setMapLoaded] = useState(false);
+    const [geolocationReady, setGeolocationReady] = useState(false);
+
 
     useEffect(() => {
+        // ✅ 1. CHẶN container chưa sẵn sàng
+        if (!mapContainer.current) return;
+
+        // ✅ 2. Map chỉ được tạo 1 lần duy nhất
         if (map.current) return;
+
         maptilersdk.config.apiKey = import.meta.env.VITE_MAPTILER_API_KEY;
+
+        // ✅ 3. BẮT BUỘC validate style
+        const safeStyle =
+            typeof styleUrl === "string" && styleUrl.startsWith("http")
+                ? styleUrl
+                : "https://api.maptiler.com/maps/streets-v2/style.json?key=" +
+                import.meta.env.VITE_MAPTILER_API_KEY;
 
         map.current = new maptilersdk.Map({
             container: mapContainer.current,
-            style: styleUrl,
+            style: safeStyle,   // ✅ không bao giờ invalid
             center: center,
             zoom: zoom,
-            interactive: true,  // giữ true nếu muốn zoom/drag
-            attributionControl: false, // tắt credit/bản quyền mặc định
-            logoPosition: 'none'
+            interactive: true,
+            attributionControl: false,
+            logoPosition: "none",
         });
 
-        map.current.on('load', () => {
+        map.current.on("load", () => {
             setMapLoaded(true);
-            console.log('✅ Map loaded');
+            console.log("✅ Map loaded");
+
+            if (getMap) getMap(map.current);
+            if (onMapClick) map.current.on("click", onMapClick);
+
+            // ✅ ĐÁNH DẤU LÚC NÀY MỚI ĐƯỢC ADD GEOLOCATION
+            setGeolocationReady(true);
         });
 
-        //  TRẢ MAP RA NGOÀI
-        if (getMap) {
-            getMap(map.current);
-        }
-        if (onMapClick) {
-            map.current.on('click', onMapClick);
-        }
-
+        // ✅ 5. KHÔNG remove map khi styleUrl đổi
         return () => {
             if (map.current) {
-                map.current.remove();
-                map.current = null;
+                try {
+                    map.current.off();     // clear event trước
+                } catch (e) {
+                    console.warn("Map cleanup failed:", e);
+                }
             }
         };
+    }, []); // ✅ KHÔNG ĐƯỢC để [styleUrl]
 
-    }, [styleUrl]);
 
 
     return (
@@ -84,7 +100,7 @@ const Map = ({
                         />
                     ))}
                 {/* Geolocation control */}
-                {map.current && mapLoaded && enableGeolocation && (
+                {map.current && geolocationReady && enableGeolocation && (
                     <GeolocationControl
                         key="geolocate-control"
                         map={map.current}
@@ -94,6 +110,7 @@ const Map = ({
                         onError={onGeolocationError}
                     />
                 )}
+
             </div>
         </>
     );

@@ -1,7 +1,7 @@
 .traffic-map .base-map-wrapper {
     width: 100%;
     max-width: 1400px;
-    height: 600px;
+    height: 100%;
     margin: 0 auto;
     border-radius: 16px;
     overflow: hidden;
@@ -20,7 +20,8 @@
 
 .traffic-map {
     position: relative;
-    border-radius: 16px;
+    width: 100%;
+    height: 100%;
 }
 
 .map-popup-container .map-popup-inner .traffic-popup {

@@ -54,7 +54,7 @@ export class TrafficAPIService extends ITrafficDataSource {
      */
     async fetchIncidents() {
         try {
-            const response = await this._client.get(TRAFFIC_API_CONFIG.ENDPOINTS.GET_MAP_DATA);
+            const response = await this._client.get(TRAFFIC_API_CONFIG.ENDPOINTS.GET_INCIDENTS);
 
             // Backend returns: { markers: [...], meta: {...} }
             const incidents = response.data.markers || [];

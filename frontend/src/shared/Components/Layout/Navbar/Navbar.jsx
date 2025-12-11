@@ -72,9 +72,9 @@ const Navbar = () => {
                 <img src={logo} alt="" className='logo_dark'/>
 
                 <ul className="navbar-menu">
-                    <li className="nav-item" onClick={() => scrollTo(homeRef)}>Home</li>
+                    <li className="nav-item" onClick={() => navigate("/")}>Home</li>
                     <li className="nav-item" onClick={() => scrollTo(aboutRef)}>About</li>
-                    <li className="nav-item" onClick={() => scrollTo(featureRef)}>Features</li>
+                    <li className="nav-item" onClick={() => navigate("/?scroll=projects")}>Features</li>
 
 
                     <li
@@ -86,12 +86,9 @@ const Navbar = () => {
 
                         {openMenu && (
                             <ul className="dropdown-menu">
-                                <li onClick={() => navigate("")}>Traffic</li>
-                                <li onClick={() => navigate("")}>Disaster</li>
-                                <li onClick={() => navigate("")}>Security</li>
-                                <li onClick={() => navigate("")}>Energy</li>
-                                <li onClick={() => navigate("")}>Urban Architecture</li>
-                                <li onClick={() => navigate("")}>Logistics</li>
+                                <li onClick={() => navigate("/traffic")}>Traffic</li>
+                                <li onClick={() => navigate("/branch")}>Logistics</li>
+
                             </ul>
                         )}
                     </li>

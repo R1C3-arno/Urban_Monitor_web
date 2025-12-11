@@ -1,0 +1,39 @@
+.branch-map-container .map-popup-wrapper {
+    position: absolute;
+    overflow: hidden;
+}
+.branch-container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.branch-map-container  {
+    width: 100%;
+    max-width: 1400px;
+    margin: 24px auto 0 auto;
+    overflow: hidden;
+}
+
+
+/* Override report modal */
+/* Modal overlay - full screen */
+.image-modal-overlay {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+/* Modal content */
+.image-modal-content {
+    width: 90vw !important;
+    max-width: 1200px !important;
+    height: 90vh !important;
+    max-height: 800px !important;
+}

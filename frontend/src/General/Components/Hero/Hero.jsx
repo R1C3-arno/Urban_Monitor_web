@@ -2,7 +2,7 @@ import React from "react";
 import './Hero.css'
 import hero_background from '../../../assets/background.jpg'
 
-const Hero = () => {
+const Hero = ({ onScrollToProjects }) => {
     return (
         <div className="hero_container">
             <section className="hero-section">
@@ -23,7 +23,10 @@ const Hero = () => {
                             <p>
                                URBAN MONITOR FOCUSES ON IMPLEMENTING MAP FOR SEVERAL FIELD TRAFFIC, SECURITY, WEATHER FORECASTER, DISASTER HANDLING, CREDIT SUPERMARKET
                             </p>
-                            <button className="cta-button">What We Do</button>
+                            {/* 👉 NHẤN LÀ CUỘN XUỐNG PROJECT */}
+                            <button className="cta-button" onClick={onScrollToProjects}>
+                                What We Do
+                            </button>
                         </div>
                     </div>
                 </div>

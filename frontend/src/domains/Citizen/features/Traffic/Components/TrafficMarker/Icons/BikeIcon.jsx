@@ -1,9 +1,14 @@
-import { TRAFFIC_LEVEL_COLORS} from "../../../../../../../shared/Constants/color.js";
+import { TRAFFIC_LEVEL_COLORS } from "../../../../../../../shared/Constants/color.js";
 
-const BikeIcon = () => {
+/**
+ * BikeIcon - Motorcycle/bike incident indicator
+ */
+const BikeIcon = ({ level }) => {
+    const color = TRAFFIC_LEVEL_COLORS[level] || "#10B981";
+
     return (
-        <div className="traffic-icon-bike">
-            💥
+        <div className="traffic-icon traffic-icon-bike" style={{ background: color }}>
+            🏍️
         </div>
     );
 };

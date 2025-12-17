@@ -25,7 +25,7 @@ import java.util.Optional;
 @Slf4j
 @RestController
 @RequestMapping("/api/company/method1")
-@CrossOrigin(origins = "*", allowCredentials = "false")
+@CrossOrigin(origins = "*")
 public class Method1Controller {
 
     @Autowired

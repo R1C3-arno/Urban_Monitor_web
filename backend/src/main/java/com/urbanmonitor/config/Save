@@ -65,5 +65,3 @@ public class CorsConfig implements WebMvcConfigurer {
 }
 
 
-ROute COntroller
-BranchOptimizationController

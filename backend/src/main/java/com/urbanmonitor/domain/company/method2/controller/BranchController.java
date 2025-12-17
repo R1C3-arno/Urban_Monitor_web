@@ -13,7 +13,7 @@ import java.util.Map;
 @Slf4j
 @RestController
 @RequestMapping("/api/company/method2/branches")
-@CrossOrigin(origins = "*", allowCredentials = "false")
+@CrossOrigin(origins = "*")
 public class BranchController {
 
     @Autowired

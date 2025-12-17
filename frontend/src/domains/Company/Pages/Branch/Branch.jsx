@@ -15,9 +15,6 @@ const Branch = () => {
                 <div className="branch-map-container">
                     <BranchMap/>
                 </div>
-                <div className ="disaster-report-button-container">
-                    <ReportBranch/>
-                </div>
             </main>
             <Footer/>
         </>

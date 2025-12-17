@@ -1,0 +1,32 @@
+.maplibregl-popup-content {
+    background: #FCF9EA;
+}
+/* Popup container */
+.maplibregl-popup-content {
+    padding: 0 !important;
+    max-width: 300px !important;
+    box-sizing: border-box;
+    overflow: visible !important; /* 👈 QUAN TRỌNG */
+    border-radius: 16px;
+}
+
+/* Nội dung popup */
+.maplibregl-popup-content > div {
+    box-sizing: border-box;
+    padding-bottom: 14px; /* 👈 CHỪA ĐÁY */
+}
+
+/* Chặn cắt text dưới cùng */
+.maplibregl-popup-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* Fix bo góc + bóng */
+.maplibregl-popup {
+    filter: drop-shadow(0 10px 30px rgba(0,0,0,0.45));
+}
+
+/* Fix mũi tên không bị cắt */
+.maplibregl-popup-tip {
+    margin-top: -1px;
+}

@@ -86,8 +86,14 @@ const Navbar = () => {
 
                         {openMenu && (
                             <ul className="dropdown-menu">
-                                <li onClick={() => navigate("/traffic")}>Traffic</li>
                                 <li onClick={() => navigate("/branch")}>Logistics</li>
+                                <li onClick={() => navigate("/incident")}>Incident</li>
+                                <li onClick={() => navigate("/disaster")}>Disaster</li>
+                                <li onClick={() => navigate("/emergency")}>Emergency</li>
+                                <li onClick={() => navigate("/market")}>Market</li>
+                                <li onClick={() => navigate("/temperature")}>Temperature</li>
+                                <li onClick={() => navigate("/utility")}>Utility</li>
+                                <li onClick={() => navigate("/monitor")}>View Data</li>
 
                             </ul>
                         )}

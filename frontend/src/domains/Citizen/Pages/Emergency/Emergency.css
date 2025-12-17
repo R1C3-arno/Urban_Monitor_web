@@ -1,0 +1,393 @@
+/* Emergency.css */
+
+.emergency-hub-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+    padding: 100px 20px 40px;
+}
+
+.emergency-hub-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.emergency-hub-header h1 {
+    font-size: 2.5rem;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.emergency-hub-header p {
+    color: #888;
+    font-size: 1.1rem;
+}
+
+/* Cards Grid */
+.emergency-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.emergency-card {
+    background: rgba(30, 30, 30, 0.95);
+    border-radius: 16px;
+    padding: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.emergency-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: #F2EFE7;
+}
+
+.emergency-card:hover {
+    transform: translateY(-8px);
+    border-color: #F2EFE7;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4),
+    0 0 30px color-mix(in srgb, #F2EFE7 20%, transparent);
+}
+
+.emergency-card-icon {
+    font-size: 4rem;
+    margin-bottom: 16px;
+}
+
+.emergency-card-title {
+    font-size: 1.4rem;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.emergency-card-description {
+    color: #888;
+    font-size: 0.95rem;
+    margin-bottom: 16px;
+    line-height: 1.5;
+}
+
+.emergency-card-hotline {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: #ccc;
+    margin-bottom: 16px;
+}
+
+.emergency-card-hotline strong {
+    color: #9ACBD0;
+    font-size: 1.1rem;
+}
+
+.emergency-card-button {
+    width: 100%;
+    padding: 12px 20px;
+    background: #9ACBD0;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.emergency-card-button:hover {
+    filter: brightness(1.1);
+    transform: scale(1.02);
+}
+
+/* Footer */
+.emergency-hub-footer {
+    max-width: 1200px;
+    margin: 50px auto 0;
+    padding: 0 20px;
+}
+
+.emergency-hotlines {
+    background: rgba(255, 0, 0, 0.1);
+    border: 1px solid rgba(255, 0, 0, 0.3);
+    border-radius: 12px;
+    padding: 20px 30px;
+    text-align: center;
+}
+
+.emergency-hotlines h3 {
+    color: #F5AFAF;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+.hotline-list {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    color: #ccc;
+    font-size: 1rem;
+}
+
+.hotline-list strong {
+    color: #fff;
+    font-size: 1.2rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .emergency-hub-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .emergency-cards-grid {
+        grid-template-columns: 1fr;
+        padding: 0 10px;
+    }
+
+    .hotline-list {
+        flex-direction: column;
+        gap: 12px;
+    }
+}
+
+/* ======================
+   ROOT + LAYOUT
+====================== */
+
+.emergency-hub-container {
+    min-height: 100vh;
+    background: linear-gradient(180deg, #94B4C1, #EAE0CF);
+    color: #BF124D;
+    padding: 40px 24px;
+}
+
+/* ======================
+   HEADER
+====================== */
+
+.emergency-hub-header {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.emergency-hub-header h1 {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 36px;
+    font-weight: 700;
+    color: #f8fafc;
+}
+
+.emergency-hub-header h1 svg {
+    color: #ef4444;
+}
+
+.emergency-hub-header p {
+    margin-top: 12px;
+    font-size: 1.2rem;
+    color: #48A6A7;
+}
+
+/* ======================
+   GRID
+====================== */
+
+.emergency-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ======================
+   CARD
+====================== */
+
+.emergency-card {
+    position: relative;
+    padding: 24px;
+    border-radius: 18px;
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    overflow: hidden;
+}
+
+/* gradient glow */
+.emergency-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+            600px circle at top left,
+            color-mix(in srgb, var(--card-color) 35%, transparent),
+            transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.emergency-card:hover::before {
+    opacity: 1;
+}
+
+.emergency-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--card-color);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+}
+
+/* ======================
+   ICON
+====================== */
+
+.emergency-card-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: color-mix(in srgb, #94B4C1 20%, transparent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+.emergency-card-icon svg {
+    width: 28px;
+    height: 28px;
+    color: #94B4C1;
+}
+
+/* ======================
+   TEXT
+====================== */
+
+.emergency-card-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #F9F8F6;
+}
+
+.emergency-card-description {
+    font-size: 14px;
+    color: #FBF3D5;
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+
+/* ======================
+   HOTLINE
+====================== */
+
+.emergency-card-hotline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: color-mix(in srgb, #FBEFEF 15%, transparent);
+    color: #f8fafc;
+    font-size: 13px;
+    margin-bottom: 16px;
+}
+
+.emergency-card-hotline svg {
+    width: 16px;
+    height: 16px;
+    color: #F9DFDF;
+}
+
+/* ======================
+   BUTTON
+====================== */
+
+.emergency-card-button {
+    margin-top: auto;
+    font-size: 14px;
+    font-weight: 500;
+    color: #FAF8F1;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.emergency-card:hover .emergency-card-button {
+    text-decoration: underline;
+}
+
+/* ======================
+   FOOTER
+====================== */
+
+.emergency-hub-footer {
+    margin-top: 64px;
+    display: flex;
+    justify-content: center;
+}
+
+.emergency-hotlines {
+    background: rgba(15, 23, 42, 0.8);
+    padding: 24px 32px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    max-width: 520px;
+    width: 100%;
+}
+
+.emergency-hotlines h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    margin-bottom: 16px;
+    color: #f8fafc;
+}
+
+.hotline-list {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.hotline-list span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    color: #e5e7eb;
+}
+
+.hotline-list svg {
+    width: 16px;
+    height: 16px;
+    color: #F5AFAF;
+}
+
+.emergency-hub-container {
+    position: relative;
+    min-height: 100vh;
+
+    margin-left: 5rem;
+    margin-right: 5rem;
+    border-radius: 3rem;
+}
+
+
+

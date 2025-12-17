@@ -3,5 +3,7 @@ npm install --save @maptiler/sdk
 npm install react-router-dom
 npm install axios
 npm install lucide-react
-
+npm install --save @maptiler/sdk @maptiler/3d
 npm install maplibre-gl
+npm install @turf/turf
+npm install --save @maptiler/sdk @maptiler/3d

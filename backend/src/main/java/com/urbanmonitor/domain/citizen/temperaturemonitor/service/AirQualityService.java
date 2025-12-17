@@ -115,9 +115,6 @@ public class AirQualityService {
 
             String jsonNameNormalized = normalizeName(rawJsonName);
 
-            // --- DEBUG 1: In ra tên tỉnh đang xét trong JSON ---
-            // System.out.println("Đang xét JSON: " + rawJsonName + " -> Clean: " + jsonNameNormalized);
-
             // Tìm trong DB
             Optional<AirQualityZone> match = backendData.stream()
                     .filter(d -> {
@@ -150,9 +147,6 @@ public class AirQualityService {
                 newProps.put("color", color); // Quan trọng nhất
                 newProps.put("hasData", true);
             } else {
-                // --- DEBUG 4: KHÔNG TÌM THẤY ---
-                // System.out.println("❌ KHÔNG KHỚP: " + rawJsonName + " (Clean JSON: " + jsonNameNormalized + ")");
-
                 newProps.put("zoneName", rawJsonName);
                 newProps.put("districtName", "Chưa có trạm đo");
                 newProps.put("aqi", "N/A");
@@ -166,7 +160,6 @@ public class AirQualityService {
                     .properties(newProps)
                     .build());
         }
-        System.out.println("---------- KẾT THÚC MERGE ----------");
 
         return AirQualityResponse.GeoJsonData.builder()
                 .type("FeatureCollection")

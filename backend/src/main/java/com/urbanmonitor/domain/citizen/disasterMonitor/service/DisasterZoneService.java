@@ -180,18 +180,18 @@ public class DisasterZoneService {
     // --- LOGIC MERGE GEOJSON (Port từ FE) ---
     private Map<String, Object> mergeDisasterDataWithProvinces(List<DisasterZone> disasters) {
         if (rawProvincesGeoJson == null || !rawProvincesGeoJson.containsKey("features")) {
-            System.err.println("❌ [DEBUG] GeoJSON bị null hoặc không có features!");
+            System.err.println("Error: [DEBUG] GeoJSON bị null hoặc không có features!");
             return Map.of("type", "FeatureCollection", "features", Collections.emptyList());
         }
 
         List<Map<String, Object>> rawFeatures = (List<Map<String, Object>>) rawProvincesGeoJson.get("features");
         List<Map<String, Object>> mergedFeatures = new ArrayList<>();
 
-        System.out.println("🔄 [DEBUG] Bắt đầu Merge. Tổng số tỉnh trong GeoJSON: " + rawFeatures.size());
+        System.out.println("Process; [DEBUG] Bắt đầu Merge. Tổng số tỉnh trong GeoJSON: " + rawFeatures.size());
 
         if(!rawFeatures.isEmpty()) {
             Map<String, Object> firstProps = (Map<String, Object>) rawFeatures.get(0).get("properties");
-            System.out.println("🔎 [DEBUG] Key trong properties của JSON: " + firstProps.keySet());
+            System.out.println("Finding:  [DEBUG] Key trong properties của JSON: " + firstProps.keySet());
         }
 
 

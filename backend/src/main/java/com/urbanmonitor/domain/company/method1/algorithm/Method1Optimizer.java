@@ -38,7 +38,7 @@ public class Method1Optimizer {
      * Main optimization method
      */
     public static OptimizationResult optimize(Method1OptimizationDTO params) {
-        log.info("🚀 Starting Method1 optimization - Demand: {}", params.getDemand());
+        log.info(" Starting Method1 optimization - Demand: {}", params.getDemand());
 
         // Initialize variables
         double q = 30.0;
@@ -54,7 +54,7 @@ public class Method1Optimizer {
 
         // Compute valid setup times
         List<Double> tsList = computeTsList(params);
-        log.info("📊 Setup times: {}", tsList.size());
+        log.info("Setup times: {}", tsList.size());
 
         // Iterate through each setup time
         for (double tsVal : tsList) {
@@ -79,14 +79,14 @@ public class Method1Optimizer {
                                 .n(n).q(q).p(p).k1(k1).av(av)
                                 .theta(theta).ts(tsVal).tc(tc)
                                 .build();
-                        log.debug("✅ TC improved: {}", Math.round(tc * 100.0) / 100.0);
+                        log.debug("TC improved: {}", Math.round(tc * 100.0) / 100.0);
                     }
                 }
             }
         }
 
         if (bestResult != null) {
-            log.info("✅ Optimization complete - TC: {}", Math.round(bestResult.getTc() * 100.0) / 100.0);
+            log.info("Optimization complete - TC: {}", Math.round(bestResult.getTc() * 100.0) / 100.0);
         }
 
         return bestResult;

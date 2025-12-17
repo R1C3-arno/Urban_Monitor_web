@@ -27,14 +27,14 @@ public class Method1Service {
      * Run optimization and save result to database
      */
     public Method1Optimization runOptimization(Method1OptimizationDTO dto) {
-        log.info("🚀 Method1 Optimization - Branch: {}", dto.getBranchId());
+        log.info("Method1 Optimization - Branch: {}", dto.getBranchId());
 
         try {
             // Run algorithm
             Method1Optimizer.OptimizationResult result = Method1Optimizer.optimize(dto);
 
             if (result == null) {
-                log.error("❌ Optimization failed");
+                log.error("Optimization failed");
                 return null;
             }
 
@@ -54,12 +54,12 @@ public class Method1Service {
                     .build();
 
             Method1Optimization saved = repository.save(optimization);
-            log.info("✅ Optimization saved - ID: {}, TC: {}", saved.getId(), saved.getTc());
+            log.info("Optimization saved - ID: {}, TC: {}", saved.getId(), saved.getTc());
 
             return saved;
 
         } catch (Exception e) {
-            log.error("❌ Error during optimization: {}", e.getMessage(), e);
+            log.error("Error during optimization: {}", e.getMessage(), e);
             return null;
         }
     }
@@ -68,7 +68,7 @@ public class Method1Service {
      * Get all optimization history for a branch
      */
     public List<Method1Optimization> getHistory(Long branchId) {
-        log.info("📜 Getting history for branch: {}", branchId);
+        log.info("Getting history for branch: {}", branchId);
         return repository.findByBranchId(branchId);
     }
 
@@ -76,7 +76,7 @@ public class Method1Service {
      * Get latest optimization result for a branch
      */
     public Optional<Method1Optimization> getLatest(Long branchId) {
-        log.info("📊 Getting latest optimization for branch: {}", branchId);
+        log.info("Getting latest optimization for branch: {}", branchId);
         return repository.findFirstByBranchIdOrderByCreatedAtDesc(branchId);
     }
 }

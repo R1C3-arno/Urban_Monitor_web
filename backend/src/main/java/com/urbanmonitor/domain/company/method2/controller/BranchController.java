@@ -24,9 +24,9 @@ public class BranchController {
      */
     @GetMapping
     public ResponseEntity<List<Branch>> getAllBranches() {
-        log.info("📡 Fetching all branches");
+        log.info("Fetching all branches");
         List<Branch> branches = branchRepository.findAll();
-        log.info("✅ Retrieved {} branches", branches.size());
+        log.info("Retrieved {} branches", branches.size());
         return ResponseEntity.ok(branches);
     }
 
@@ -38,11 +38,11 @@ public class BranchController {
         log.info("📡 Fetching branch {}", id);
         return branchRepository.findById(id)
                 .map(branch -> {
-                    log.info("✅ Found branch {}: {}", id, branch.getName());
+                    log.info("Found branch {}: {}", id, branch.getName());
                     return ResponseEntity.ok(branch);
                 })
                 .orElseGet(() -> {
-                    log.warn("⚠️ Branch {} not found", id);
+                    log.warn("Branch {} not found", id);
                     return ResponseEntity.notFound().build();
                 });
     }
@@ -52,7 +52,7 @@ public class BranchController {
      */
     @GetMapping("/health")
     public ResponseEntity<Map<String, Object>> health() {
-        log.info("🏥 Health check");
+        log.info("Health check");
         return ResponseEntity.ok(Map.of(
                 "status", "UP",
                 "service", "Branch Optimization Service",

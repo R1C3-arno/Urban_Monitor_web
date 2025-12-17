@@ -46,14 +46,14 @@ public class Method1Controller {
             Method1Optimization result = method1Service.runOptimization(dto);
 
             if (result != null) {
-                log.info("✅ Optimization success - TC: {}", result.getTc());
+                log.info("Optimization success - TC: {}", result.getTc());
                 return ResponseEntity.ok(result);
             } else {
-                log.warn("⚠️ Optimization returned null");
+                log.warn("Optimization returned null");
                 return ResponseEntity.badRequest().body(Map.of("error", "Optimization failed"));
             }
         } catch (Exception e) {
-            log.error("❌ Error: {}", e.getMessage());
+            log.error("Error: {}", e.getMessage());
             return ResponseEntity.internalServerError().body(Map.of("error", e.getMessage()));
         }
     }
@@ -67,7 +67,7 @@ public class Method1Controller {
      */
     @GetMapping("/branches/{branchId}/history")
     public ResponseEntity<List<Method1Optimization>> getHistory(@PathVariable Long branchId) {
-        log.info("📡 GET /history - Branch: {}", branchId);
+        log.info("GET /history - Branch: {}", branchId);
         List<Method1Optimization> history = method1Service.getHistory(branchId);
         return ResponseEntity.ok(history);
     }

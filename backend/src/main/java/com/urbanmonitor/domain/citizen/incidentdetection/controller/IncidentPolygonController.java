@@ -10,6 +10,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
+/**
+ * REST Controller - Endpoints giữ nguyên
+ * 
+ * SOLID:
+ * - Single Responsibility: Chỉ handle HTTP
+ * - Dependency Inversion: Depend on interface
+ */
 @RestController
 @RequestMapping("/api/incidents")
 @RequiredArgsConstructor
@@ -19,30 +26,18 @@ public class IncidentPolygonController {
 
     private final IncidentPolygonService service;
 
-    /**
-     * GET /api/incidents/geojson
-     * Returns GeoJSON FeatureCollection with all incident points
-     */
     @GetMapping("/geojson")
     public ResponseEntity<Map<String, Object>> getGeoJson() {
         log.info("GET /api/incidents/geojson");
         return ResponseEntity.ok(service.getIncidentGeoJson());
     }
 
-    /**
-     * GET /api/incidents/stats
-     * Returns pre-calculated statistics
-     */
     @GetMapping("/stats")
     public ResponseEntity<IncidentStatsDTO> getStats() {
         log.info("GET /api/incidents/stats");
         return ResponseEntity.ok(service.getStats());
     }
 
-    /**
-     * GET /api/incidents/legend
-     * Returns legend data with colors and counts
-     */
     @GetMapping("/legend")
     public ResponseEntity<IncidentLegendDTO> getLegend() {
         log.info("GET /api/incidents/legend");

@@ -1,18 +1,25 @@
 package com.urbanmonitor.domain.citizen.disasterMonitor.repository;
 
 import com.urbanmonitor.domain.citizen.disasterMonitor.entity.DisasterZone;
-import com.urbanmonitor.domain.citizen.disasterMonitor.entity.DisasterZone.DisasterType;
-import com.urbanmonitor.domain.citizen.disasterMonitor.entity.DisasterZone.ZoneStatus;
-import com.urbanmonitor.domain.citizen.disasterMonitor.entity.DisasterZone.SeverityLevel;
+import com.urbanmonitor.domain.citizen.disasterMonitor.entity.DisasterZone.*;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * Repository interface cho DisasterZone entity.
+ * 
+ * Extends JpaSpecificationExecutor để support Specification Pattern.
+ * Giữ nguyên các methods cũ để đảm bảo backward compatibility.
+ */
 @Repository
-public interface DisasterZoneRepository extends JpaRepository<DisasterZone, Long> {
+public interface DisasterZoneRepository extends 
+        JpaRepository<DisasterZone, Long>, 
+        JpaSpecificationExecutor<DisasterZone> {
 
     List<DisasterZone> findByDisasterType(DisasterType type);
 

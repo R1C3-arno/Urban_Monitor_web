@@ -1,98 +1,66 @@
 package com.urbanmonitor.domain.citizen.incidentdetection.mapper;
 
+import com.urbanmonitor.domain.citizen.incidentdetection.builder.GeoJsonCollectionBuilder;
+import com.urbanmonitor.domain.citizen.incidentdetection.builder.GeoJsonPointBuilder;
+import com.urbanmonitor.domain.citizen.incidentdetection.config.IncidentVisualConfig;
 import com.urbanmonitor.domain.citizen.incidentdetection.entity.TrafficIncident;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
 
+/**
+ * SINGLE RESPONSIBILITY: Map incidents to GeoJSON
+ * Sử dụng Builder Pattern
+ */
 @Component
+@RequiredArgsConstructor
 public class GeoJsonMapper {
 
-    /**
-     * Tạo GeoJSON FeatureCollection với Point features
-     * Mỗi point sẽ được render với animated icon trên map
-     */
+    private final IncidentVisualConfig visualConfig;
+
     public Map<String, Object> toPointFeatureCollection(List<TrafficIncident> incidents) {
-        List<Map<String, Object>> features = incidents.stream()
-                .map(this::toPointFeature)
-                .toList();
+        GeoJsonCollectionBuilder collectionBuilder = GeoJsonCollectionBuilder.create();
 
-        return Map.of(
-                "type", "FeatureCollection",
-                "features", features
-        );
-    }
-
-    /**
-     * Tạo Point feature với properties cho animated icon
-     */
-    private Map<String, Object> toPointFeature(TrafficIncident incident) {
-        // Ensure description is never null
-        String description = incident.getDescription();
-        if (description == null || description.trim().isEmpty()) {
-            description = "No description available";
+        for (TrafficIncident incident : incidents) {
+            if (hasValidCoordinates(incident)) {
+                collectionBuilder.addFeature(toPointFeature(incident));
+            }
         }
 
-        // Ensure isHighPriority is never null
-        Boolean isHighPriority = incident.getIsHighPriority();
-        if (isHighPriority == null) {
-            isHighPriority = false;
-        }
-
-        return Map.of(
-                "type", "Feature",
-                "geometry", Map.of(
-                        "type", "Point",
-                        "coordinates", List.of(incident.getLng(), incident.getLat())
-                ),
-                "properties", Map.of(
-                        "id", incident.getId(),
-                        "title", incident.getTitle(),
-                        "description", description,
-                        "level", incident.getLevel().name(),
-                        "type", incident.getType().name(),
-                        "isHighPriority", isHighPriority,
-                        "color", getColorForLevel(incident.getLevel()),
-                        "iconSize", getIconSizeForLevel(incident.getLevel()),
-                        "pulseSpeed", getPulseSpeedForLevel(incident.getLevel())
-                )
-        );
+        return collectionBuilder.build();
     }
 
-    /**
-     * Màu sắc cho từng level (để tạo animated icon)
-     */
-    private String getColorForLevel(TrafficIncident.IncidentLevel level) {
-        return switch (level) {
-            case CRITICAL -> "#dc2626"; // Red
-            case HIGH -> "#ea580c";     // Orange
-            case MEDIUM -> "#f59e0b";   // Amber
-            case LOW -> "#84cc16";      // Green
-        };
+    private GeoJsonPointBuilder toPointFeature(TrafficIncident incident) {
+        String description = getDescription(incident);
+        Boolean isHighPriority = getIsHighPriority(incident);
+
+        return GeoJsonPointBuilder.create()
+            .withPoint(incident.getLng(), incident.getLat())
+            .withProperty("id", incident.getId())
+            .withProperty("title", incident.getTitle())
+            .withProperty("description", description)
+            .withProperty("level", incident.getLevel().name())
+            .withProperty("type", incident.getType().name())
+            .withProperty("isHighPriority", isHighPriority)
+            .withProperty("color", visualConfig.getColor(incident.getLevel()))
+            .withProperty("iconSize", visualConfig.getIconSize(incident.getLevel()))
+            .withProperty("pulseSpeed", visualConfig.getPulseSpeed(incident.getLevel()));
     }
 
-    /**
-     * Kích thước icon dựa trên mức độ nghiêm trọng
-     */
-    private int getIconSizeForLevel(TrafficIncident.IncidentLevel level) {
-        return switch (level) {
-            case CRITICAL -> 80;  // Lớn nhất
-            case HIGH -> 60;
-            case MEDIUM -> 50;
-            case LOW -> 40;       // Nhỏ nhất
-        };
+    private boolean hasValidCoordinates(TrafficIncident incident) {
+        return incident.getLat() != null && incident.getLng() != null;
     }
 
-    /**
-     * Tốc độ pulse animation (ms)
-     */
-    private int getPulseSpeedForLevel(TrafficIncident.IncidentLevel level) {
-        return switch (level) {
-            case CRITICAL -> 800;  // Nhanh nhất
-            case HIGH -> 1000;
-            case MEDIUM -> 1200;
-            case LOW -> 1500;      // Chậm nhất
-        };
+    private String getDescription(TrafficIncident incident) {
+        String desc = incident.getDescription();
+        return (desc == null || desc.trim().isEmpty()) 
+            ? "No description available" 
+            : desc;
+    }
+
+    private Boolean getIsHighPriority(TrafficIncident incident) {
+        return Boolean.TRUE.equals(incident.getIsHighPriority());
     }
 }

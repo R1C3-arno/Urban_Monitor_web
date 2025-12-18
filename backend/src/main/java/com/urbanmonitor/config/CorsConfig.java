@@ -18,7 +18,7 @@ public class CorsConfig {
         // Cho phép credentials (cookies, authorization headers)
         config.setAllowCredentials(true);
 
-        // ✅ Dùng allowedOriginPatterns thay vì allowedOrigins
+        // Dùng allowedOriginPatterns thay vì allowedOrigins
         // Cho phép localhost với bất kỳ port nào (dev mode)
         config.setAllowedOriginPatterns(Arrays.asList(
                 "http://localhost:*",

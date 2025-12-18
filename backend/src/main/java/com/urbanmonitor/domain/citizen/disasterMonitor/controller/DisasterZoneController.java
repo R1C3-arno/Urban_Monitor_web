@@ -3,9 +3,8 @@ package com.urbanmonitor.domain.citizen.disasterMonitor.controller;
 import com.urbanmonitor.domain.citizen.disasterMonitor.dto.DisasterDashboardResponse;
 import com.urbanmonitor.domain.citizen.disasterMonitor.entity.DisasterZone;
 import com.urbanmonitor.domain.citizen.disasterMonitor.entity.DisasterZone.DisasterType;
+import com.urbanmonitor.domain.citizen.disasterMonitor.entity.DisasterZone.ZoneStatus;
 import com.urbanmonitor.domain.citizen.disasterMonitor.service.DisasterZoneService;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +12,15 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
+/**
+ * REST Controller cho Disaster Zone API.
+ * 
+ * SOLID PRINCIPLES:
+ * - Single Responsibility: Chỉ handle HTTP requests/responses
+ * - Dependency Inversion: Depend on DisasterZoneService interface
+ * 
+ * API ENDPOINTS UNCHANGED - đảm bảo backward compatibility với Frontend.
+ */
 @RestController
 @RequestMapping("/api/disaster")
 @RequiredArgsConstructor
@@ -20,10 +28,10 @@ import java.util.*;
 @CrossOrigin(origins = "*")
 public class DisasterZoneController {
 
+    // Dependency Inversion: Depend on interface, not implementation
     private final DisasterZoneService service;
-    private final ObjectMapper objectMapper = new ObjectMapper();
 
-    // ============== DATA ENDPOINTS ==============
+    //  DATA ENDPOINTS
 
     @GetMapping("/data")
     public ResponseEntity<List<DisasterZone>> getAllData() {
@@ -32,7 +40,7 @@ public class DisasterZoneController {
 
     @GetMapping("/data/{type}")
     public ResponseEntity<List<DisasterZone>> getDataByType(@PathVariable String type) {
-        DisasterType disasterType = DisasterType.valueOf(type.toUpperCase());
+        DisasterType disasterType = parseDisasterType(type);
         return ResponseEntity.ok(service.getByType(disasterType));
     }
 
@@ -43,64 +51,64 @@ public class DisasterZoneController {
 
     @GetMapping("/data/active/{type}")
     public ResponseEntity<List<DisasterZone>> getActiveDataByType(@PathVariable String type) {
-        DisasterType disasterType = DisasterType.valueOf(type.toUpperCase());
+        DisasterType disasterType = parseDisasterType(type);
         return ResponseEntity.ok(service.getActiveByType(disasterType));
     }
 
-    // ============== GEOJSON POLYGON ENDPOINTS ==============
+    //  GEOJSON POLYGON ENDPOINTS
 
     @GetMapping("/geojson")
     public ResponseEntity<Map<String, Object>> getAllGeoJSON() {
-        return ResponseEntity.ok(buildPolygonGeoJSON(service.getAll()));
+        return ResponseEntity.ok(service.getPolygonGeoJson(service.getAll()));
     }
 
     @GetMapping("/geojson/flood")
     public ResponseEntity<Map<String, Object>> getFloodGeoJSON() {
-        return ResponseEntity.ok(buildPolygonGeoJSON(service.getByType(DisasterType.FLOOD)));
+        return ResponseEntity.ok(service.getPolygonGeoJson(service.getByType(DisasterType.FLOOD)));
     }
 
     @GetMapping("/geojson/earthquake")
     public ResponseEntity<Map<String, Object>> getEarthquakeGeoJSON() {
-        return ResponseEntity.ok(buildPolygonGeoJSON(service.getByType(DisasterType.EARTHQUAKE)));
+        return ResponseEntity.ok(service.getPolygonGeoJson(service.getByType(DisasterType.EARTHQUAKE)));
     }
 
     @GetMapping("/geojson/heatwave")
     public ResponseEntity<Map<String, Object>> getHeatwaveGeoJSON() {
-        return ResponseEntity.ok(buildPolygonGeoJSON(service.getByType(DisasterType.HEATWAVE)));
+        return ResponseEntity.ok(service.getPolygonGeoJson(service.getByType(DisasterType.HEATWAVE)));
     }
 
     @GetMapping("/geojson/storm")
     public ResponseEntity<Map<String, Object>> getStormGeoJSON() {
-        return ResponseEntity.ok(buildPolygonGeoJSON(service.getByType(DisasterType.STORM)));
+        return ResponseEntity.ok(service.getPolygonGeoJson(service.getByType(DisasterType.STORM)));
     }
 
     // Active only endpoints
     @GetMapping("/geojson/active")
     public ResponseEntity<Map<String, Object>> getActiveGeoJSON() {
-        return ResponseEntity.ok(buildPolygonGeoJSON(service.getAllActiveOrderBySeverity()));
+        return ResponseEntity.ok(service.getPolygonGeoJson(service.getAllActiveOrderBySeverity()));
     }
 
     @GetMapping("/geojson/active/flood")
     public ResponseEntity<Map<String, Object>> getActiveFloodGeoJSON() {
-        return ResponseEntity.ok(buildPolygonGeoJSON(service.getActiveByType(DisasterType.FLOOD)));
+        return ResponseEntity.ok(service.getPolygonGeoJson(service.getActiveByType(DisasterType.FLOOD)));
     }
 
     @GetMapping("/geojson/active/earthquake")
     public ResponseEntity<Map<String, Object>> getActiveEarthquakeGeoJSON() {
-        return ResponseEntity.ok(buildPolygonGeoJSON(service.getActiveByType(DisasterType.EARTHQUAKE)));
+        return ResponseEntity.ok(service.getPolygonGeoJson(service.getActiveByType(DisasterType.EARTHQUAKE)));
     }
 
     @GetMapping("/geojson/active/heatwave")
     public ResponseEntity<Map<String, Object>> getActiveHeatwaveGeoJSON() {
-        return ResponseEntity.ok(buildPolygonGeoJSON(service.getActiveByType(DisasterType.HEATWAVE)));
+        return ResponseEntity.ok(service.getPolygonGeoJson(service.getActiveByType(DisasterType.HEATWAVE)));
     }
 
     @GetMapping("/geojson/active/storm")
     public ResponseEntity<Map<String, Object>> getActiveStormGeoJSON() {
-        return ResponseEntity.ok(buildPolygonGeoJSON(service.getActiveByType(DisasterType.STORM)));
+        return ResponseEntity.ok(service.getPolygonGeoJson(service.getActiveByType(DisasterType.STORM)));
     }
 
-    // ============== CRUD ENDPOINTS ==============
+    //  CRUD ENDPOINTS
 
     @PostMapping
     public ResponseEntity<DisasterZone> create(@RequestBody DisasterZone zone) {
@@ -123,76 +131,24 @@ public class DisasterZoneController {
     public ResponseEntity<DisasterZone> updateStatus(
             @PathVariable Long id, 
             @RequestParam String status) {
-        DisasterZone.ZoneStatus newStatus = DisasterZone.ZoneStatus.valueOf(status.toUpperCase());
+        ZoneStatus newStatus = parseZoneStatus(status);
         return ResponseEntity.ok(service.updateStatus(id, newStatus));
     }
 
-    // ============== HELPER METHODS ==============
-
-    private Map<String, Object> buildPolygonGeoJSON(List<DisasterZone> zones) {
-        List<Map<String, Object>> features = new ArrayList<>();
-
-        for (DisasterZone zone : zones) {
-            if (zone.getPolygonCoordinates() == null || zone.getPolygonCoordinates().isEmpty()) {
-                continue;
-            }
-
-            Map<String, Object> feature = new LinkedHashMap<>();
-            feature.put("type", "Feature");
-
-            // Parse polygon coordinates from JSON string
-            Map<String, Object> geometry = new LinkedHashMap<>();
-            geometry.put("type", "Polygon");
-            
-            try {
-                List<List<List<Double>>> coordinates = new ArrayList<>();
-                List<List<Double>> ring = objectMapper.readValue(
-                    zone.getPolygonCoordinates(), 
-                    new TypeReference<List<List<Double>>>() {}
-                );
-                coordinates.add(ring);
-                geometry.put("coordinates", coordinates);
-            } catch (Exception e) {
-                log.error("Failed to parse polygon coordinates for zone {}: {}", zone.getId(), e.getMessage());
-                continue;
-            }
-            
-            feature.put("geometry", geometry);
-
-            // Properties
-            Map<String, Object> properties = new LinkedHashMap<>();
-            properties.put("id", zone.getId());
-            properties.put("disasterType", zone.getDisasterType().name());
-            properties.put("name", zone.getName());
-            properties.put("description", zone.getDescription());
-            properties.put("region", zone.getRegion());
-            properties.put("severity", zone.getSeverity() != null ? zone.getSeverity().name() : null);
-            properties.put("status", zone.getStatus() != null ? zone.getStatus().name() : null);
-            properties.put("centerLongitude", zone.getCenterLongitude());
-            properties.put("centerLatitude", zone.getCenterLatitude());
-            properties.put("affectedAreaKm2", zone.getAffectedAreaKm2());
-            properties.put("affectedPopulation", zone.getAffectedPopulation());
-            properties.put("measurementValue", zone.getMeasurementValue());
-            properties.put("measurementUnit", zone.getMeasurementUnit());
-            properties.put("alertMessage", zone.getAlertMessage());
-            properties.put("evacuationInfo", zone.getEvacuationInfo());
-            properties.put("contactHotline", zone.getContactHotline());
-            properties.put("startedAt", zone.getStartedAt() != null ? zone.getStartedAt().toString() : null);
-            properties.put("expectedEndAt", zone.getExpectedEndAt() != null ? zone.getExpectedEndAt().toString() : null);
-
-            feature.put("properties", properties);
-            features.add(feature);
-        }
-
-        Map<String, Object> featureCollection = new LinkedHashMap<>();
-        featureCollection.put("type", "FeatureCollection");
-        featureCollection.put("features", features);
-
-        return featureCollection;
-    }
+    // DASHBOARD ENDPOINT
 
     @GetMapping("/dashboard")
     public ResponseEntity<DisasterDashboardResponse> getDashboard() {
         return ResponseEntity.ok(service.getDashboardData());
+    }
+
+    // HELPER METHODS
+
+    private DisasterType parseDisasterType(String type) {
+        return DisasterType.valueOf(type.toUpperCase());
+    }
+
+    private ZoneStatus parseZoneStatus(String status) {
+        return ZoneStatus.valueOf(status.toUpperCase());
     }
 }

@@ -1,15 +1,25 @@
 package com.urbanmonitor.domain.citizen.utilityMonitor.controller;
 
+import com.urbanmonitor.domain.citizen.utilityMonitor.builder.UtilityGeoJsonBuilder;
 import com.urbanmonitor.domain.citizen.utilityMonitor.dto.UtilityDashboardResponse;
 import com.urbanmonitor.domain.citizen.utilityMonitor.entity.UtilityMonitor;
-import com.urbanmonitor.domain.citizen.utilityMonitor.service.UtilityMonitorService;
+import com.urbanmonitor.domain.citizen.utilityMonitor.service.IUtilityMonitorService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 
+/**
+ * Dependency Inversion Principle (DIP):
+ * Controller depend on IUtilityMonitorService interface thay vì concrete class
+ * Depend on UtilityGeoJsonBuilder interface cho việc build GeoJSON
+ * 
+ * Single Responsibility Principle (SRP):
+ * Controller chỉ handle HTTP requests, delegate logic cho service và builder
+ */
 @RestController
 @RequestMapping("/api/utility-monitor")
 @RequiredArgsConstructor
@@ -17,7 +27,8 @@ import java.util.*;
 @CrossOrigin(origins = "*")
 public class UtilityMonitorController {
 
-    private final UtilityMonitorService service;
+    private final IUtilityMonitorService service;
+    private final UtilityGeoJsonBuilder geoJsonBuilder;
 
     @GetMapping("/data")
     public ResponseEntity<List<UtilityMonitor>> getData() {
@@ -28,44 +39,9 @@ public class UtilityMonitorController {
     @GetMapping("/geojson")
     public ResponseEntity<Map<String, Object>> getGeoJSON() {
         List<UtilityMonitor> stations = service.getAllStations();
-
-        List<Map<String, Object>> features = new ArrayList<>();
-
-        for (UtilityMonitor station : stations) {
-            if (station.getLongitude() == null || station.getLatitude() == null) {
-                continue;
-            }
-
-            Map<String, Object> feature = new LinkedHashMap<>();
-            feature.put("type", "Feature");
-
-            Map<String, Object> geometry = new LinkedHashMap<>();
-            geometry.put("type", "Point");
-            geometry.put("coordinates", Arrays.asList(station.getLongitude(), station.getLatitude()));
-            feature.put("geometry", geometry);
-
-            Map<String, Object> properties = new LinkedHashMap<>();
-            properties.put("id", station.getId());
-            properties.put("stationName", station.getStationName());
-            properties.put("address", station.getAddress());
-            properties.put("waterUsage", station.getWaterUsage());
-            properties.put("electricityUsage", station.getElectricityUsage());
-            properties.put("wifiPing", station.getWifiPing());
-            properties.put("wifiStatus", station.getWifiStatus() != null ? station.getWifiStatus().name() : null);
-            properties.put("measuredAt", station.getMeasuredAt() != null ? station.getMeasuredAt().toString() : null);
-            feature.put("properties", properties);
-
-            features.add(feature);
-        }
-
-        Map<String, Object> featureCollection = new LinkedHashMap<>();
-        featureCollection.put("type", "FeatureCollection");
-        featureCollection.put("features", features);
-
-        return ResponseEntity.ok(featureCollection);
+        return ResponseEntity.ok(geoJsonBuilder.buildFeatureCollection(stations));
     }
 
-    // --- ENDPOINT MỚI ---
     @GetMapping("/dashboard")
     public ResponseEntity<UtilityDashboardResponse> getDashboard() {
         return ResponseEntity.ok(service.getDashboardData());

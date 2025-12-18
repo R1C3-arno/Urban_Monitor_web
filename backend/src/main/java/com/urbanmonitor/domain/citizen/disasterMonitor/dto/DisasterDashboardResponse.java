@@ -7,13 +7,17 @@ import lombok.NoArgsConstructor;
 
 import java.util.Map;
 
+/**
+ * DTO cho Dashboard response.
+ * Sử dụng Builder Pattern từ Lombok.
+ */
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class DisasterDashboardResponse {
     private Stats stats;
-    private Map<String, Object> mapData; // GeoJSON đã merge
+    private Map<String, Object> mapData;
 
     @Data
     @Builder
@@ -32,7 +36,6 @@ public class DisasterDashboardResponse {
     @NoArgsConstructor
     public static class StatDetail {
         private int total;
-        // Các trường đặc biệt cho từng loại
         private int emergency; // Flood, Storm
         private int alert;     // Earthquake
         private int extreme;   // Heatwave

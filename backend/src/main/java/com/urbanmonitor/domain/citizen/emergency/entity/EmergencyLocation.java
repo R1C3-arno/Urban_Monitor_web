@@ -22,13 +22,9 @@ public class EmergencyLocation {
     private EmergencyType emergencyType;
 
     private String name;
-
     private String description;
-
     private String address;
-
     private Double longitude;
-    
     private Double latitude;
 
     @Enumerated(EnumType.STRING)
@@ -38,48 +34,31 @@ public class EmergencyLocation {
     private PriorityLevel priority;
 
     private String contactPhone;
-
     private String imageUrl;
 
     private LocalDateTime reportedAt;
-    
     private LocalDateTime resolvedAt;
-    
     private LocalDateTime createdAt;
-    
     private LocalDateTime updatedAt;
 
     public enum EmergencyType {
-        AMBULANCE,
-        FIRE,
-        CRIME,
-        FAMILY
+        AMBULANCE, FIRE, CRIME, FAMILY
     }
 
     public enum EmergencyStatus {
-        ACTIVE,
-        RESPONDING,
-        RESOLVED,
-        CANCELLED
+        ACTIVE, RESPONDING, RESOLVED, CANCELLED
     }
 
     public enum PriorityLevel {
-        LOW,
-        MEDIUM,
-        HIGH,
-        CRITICAL
+        LOW, MEDIUM, HIGH, CRITICAL
     }
 
     @PrePersist
     public void prePersist() {
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
-        if (this.reportedAt == null) {
-            this.reportedAt = LocalDateTime.now();
-        }
-        if (this.status == null) {
-            this.status = EmergencyStatus.ACTIVE;
-        }
+        if (this.reportedAt == null) this.reportedAt = LocalDateTime.now();
+        if (this.status == null) this.status = EmergencyStatus.ACTIVE;
     }
 
     @PreUpdate

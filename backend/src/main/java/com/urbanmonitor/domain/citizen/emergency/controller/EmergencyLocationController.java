@@ -9,8 +9,18 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 
+/**
+ * REST Controller cho Emergency Location API.
+ * 
+ * SOLID:
+ * - Single Responsibility: Chỉ handle HTTP requests/responses
+ * - Dependency Inversion: Depend on EmergencyLocationService interface
+ * 
+ * API ENDPOINTS UNCHANGED - backward compatible với Frontend.
+ */
 @RestController
 @RequestMapping("/api/emergency")
 @RequiredArgsConstructor
@@ -20,6 +30,8 @@ public class EmergencyLocationController {
 
     private final EmergencyLocationService service;
 
+    //  DATA ENDPOINTS
+
     @GetMapping("/data")
     public ResponseEntity<List<EmergencyLocation>> getAllData() {
         return ResponseEntity.ok(service.getAll());
@@ -27,74 +39,39 @@ public class EmergencyLocationController {
 
     @GetMapping("/data/{type}")
     public ResponseEntity<List<EmergencyLocation>> getDataByType(@PathVariable String type) {
-        EmergencyType emergencyType = EmergencyType.valueOf(type.toUpperCase());
+        EmergencyType emergencyType = parseEmergencyType(type);
         return ResponseEntity.ok(service.getByType(emergencyType));
     }
 
+    //  GEOJSON ENDPOINTS
+
     @GetMapping("/geojson")
     public ResponseEntity<Map<String, Object>> getAllGeoJSON() {
-        return ResponseEntity.ok(buildGeoJSON(service.getAll()));
+        return ResponseEntity.ok(service.getGeoJson(service.getAll()));
     }
 
     @GetMapping("/geojson/ambulance")
     public ResponseEntity<Map<String, Object>> getAmbulanceGeoJSON() {
-        return ResponseEntity.ok(buildGeoJSON(service.getByType(EmergencyType.AMBULANCE)));
+        return ResponseEntity.ok(service.getGeoJson(service.getByType(EmergencyType.AMBULANCE)));
     }
 
     @GetMapping("/geojson/fire")
     public ResponseEntity<Map<String, Object>> getFireGeoJSON() {
-        return ResponseEntity.ok(buildGeoJSON(service.getByType(EmergencyType.FIRE)));
+        return ResponseEntity.ok(service.getGeoJson(service.getByType(EmergencyType.FIRE)));
     }
 
     @GetMapping("/geojson/crime")
     public ResponseEntity<Map<String, Object>> getCrimeGeoJSON() {
-        return ResponseEntity.ok(buildGeoJSON(service.getByType(EmergencyType.CRIME)));
+        return ResponseEntity.ok(service.getGeoJson(service.getByType(EmergencyType.CRIME)));
     }
 
     @GetMapping("/geojson/family")
     public ResponseEntity<Map<String, Object>> getFamilyGeoJSON() {
-        return ResponseEntity.ok(buildGeoJSON(service.getByType(EmergencyType.FAMILY)));
+        return ResponseEntity.ok(service.getGeoJson(service.getByType(EmergencyType.FAMILY)));
     }
 
-    private Map<String, Object> buildGeoJSON(List<EmergencyLocation> locations) {
-        List<Map<String, Object>> features = new ArrayList<>();
+    //  DASHBOARD ENDPOINTS
 
-        for (EmergencyLocation loc : locations) {
-            if (loc.getLongitude() == null || loc.getLatitude() == null) {
-                continue;
-            }
-
-            Map<String, Object> feature = new LinkedHashMap<>();
-            feature.put("type", "Feature");
-
-            Map<String, Object> geometry = new LinkedHashMap<>();
-            geometry.put("type", "Point");
-            geometry.put("coordinates", Arrays.asList(loc.getLongitude(), loc.getLatitude()));
-            feature.put("geometry", geometry);
-
-            Map<String, Object> properties = new LinkedHashMap<>();
-            properties.put("id", loc.getId());
-            properties.put("emergencyType", loc.getEmergencyType().name());
-            properties.put("name", loc.getName());
-            properties.put("description", loc.getDescription());
-            properties.put("address", loc.getAddress());
-            properties.put("status", loc.getStatus() != null ? loc.getStatus().name() : null);
-            properties.put("priority", loc.getPriority() != null ? loc.getPriority().name() : null);
-            properties.put("contactPhone", loc.getContactPhone());
-            properties.put("imageUrl", loc.getImageUrl());
-            properties.put("reportedAt", loc.getReportedAt() != null ? loc.getReportedAt().toString() : null);
-            feature.put("properties", properties);
-
-            features.add(feature);
-        }
-
-        Map<String, Object> featureCollection = new LinkedHashMap<>();
-        featureCollection.put("type", "FeatureCollection");
-        featureCollection.put("features", features);
-
-        return featureCollection;
-    }
-    // Trong EmergencyLocationController.java
     @GetMapping("/dashboard/ambulance")
     public ResponseEntity<EmergencyDashboardResponse> getAmbulanceDashboard() {
         return ResponseEntity.ok(service.getDashboardByType(EmergencyType.AMBULANCE));
@@ -113,5 +90,11 @@ public class EmergencyLocationController {
     @GetMapping("/dashboard/family")
     public ResponseEntity<EmergencyDashboardResponse> getFamilyDashboard() {
         return ResponseEntity.ok(service.getDashboardByType(EmergencyType.FAMILY));
+    }
+
+    //  HELPER
+
+    private EmergencyType parseEmergencyType(String type) {
+        return EmergencyType.valueOf(type.toUpperCase());
     }
 }

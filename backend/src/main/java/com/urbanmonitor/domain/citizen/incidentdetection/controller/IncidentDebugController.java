@@ -22,9 +22,6 @@ public class IncidentDebugController {
 
     private final IncidentRepository repository;
 
-    /**
-     * Test 1: Count all incidents in database
-     */
     @GetMapping("/count")
     public ResponseEntity<Map<String, Object>> countIncidents() {
         try {
@@ -32,50 +29,43 @@ public class IncidentDebugController {
             log.info("Log: Total incidents in DB: {}", total);
 
             return ResponseEntity.ok(Map.of(
-                    "total", total,
-                    "message", "Successfully counted incidents"
+                "total", total,
+                "message", "Successfully counted incidents"
             ));
         } catch (Exception e) {
             log.error("Log: Error counting incidents", e);
             return ResponseEntity.internalServerError()
-                    .body(Map.of("error", e.getMessage()));
+                .body(Map.of("error", e.getMessage()));
         }
     }
 
-    /**
-     * Test 2: Get all incidents (raw data)
-     */
     @GetMapping("/all")
     public ResponseEntity<?> getAllIncidents() {
         try {
             List<TrafficIncident> incidents = repository.findAll();
             log.info("Log: Retrieved {} incidents", incidents.size());
-
             return ResponseEntity.ok(incidents);
         } catch (Exception e) {
-            log.error("Log:  Error getting all incidents", e);
+            log.error("Log: Error getting all incidents", e);
             return ResponseEntity.internalServerError()
-                    .body(Map.of("error", e.getMessage()));
+                .body(Map.of("error", e.getMessage()));
         }
     }
 
-    /**
-     * Test 3: Get validated incidents only
-     */
     @GetMapping("/validated")
     public ResponseEntity<?> getValidatedIncidents() {
         try {
             List<TrafficIncident> incidents = repository.findValidated(
-                    TrafficIncident.ValidationStatus.VALIDATED
+                TrafficIncident.ValidationStatus.VALIDATED
             );
-            log.info("Log:  Retrieved {} validated incidents", incidents.size());
+            log.info("Log: Retrieved {} validated incidents", incidents.size());
 
             return ResponseEntity.ok(Map.of(
-                    "count", incidents.size(),
-                    "incidents", incidents
+                "count", incidents.size(),
+                "incidents", incidents
             ));
         } catch (Exception e) {
-            log.error("Log:  Error getting validated incidents", e);
+            log.error("Log: Error getting validated incidents", e);
             Map<String, Object> errorResponse = new HashMap<>();
             errorResponse.put("error", e.getMessage());
             errorResponse.put("stackTrace", e.getStackTrace()[0].toString());
@@ -83,26 +73,23 @@ public class IncidentDebugController {
         }
     }
 
-    /**
-     * Test 4: Database connection test
-     */
     @GetMapping("/health")
     public ResponseEntity<Map<String, String>> healthCheck() {
         try {
             repository.count();
             log.info("Success: Database connection OK");
             return ResponseEntity.ok(Map.of(
-                    "status", "OK",
-                    "database", "Connected"
+                "status", "OK",
+                "database", "Connected"
             ));
         } catch (Exception e) {
             log.error("Error Database connection failed", e);
             return ResponseEntity.internalServerError()
-                    .body(Map.of(
-                            "status", "ERROR",
-                            "database", "Failed",
-                            "error", e.getMessage()
-                    ));
+                .body(Map.of(
+                    "status", "ERROR",
+                    "database", "Failed",
+                    "error", e.getMessage()
+                ));
         }
     }
 }

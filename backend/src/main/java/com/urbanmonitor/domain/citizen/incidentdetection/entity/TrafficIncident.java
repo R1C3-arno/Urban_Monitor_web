@@ -18,11 +18,8 @@ public class TrafficIncident {
     private Long id;
 
     private String title;
-
     private String description;
-
     private Double lat;
-
     private Double lng;
 
     @Enumerated(EnumType.STRING)
@@ -35,12 +32,9 @@ public class TrafficIncident {
     private ValidationStatus validationStatus;
 
     private LocalDateTime createdAt;
-
     private LocalDateTime updatedAt;
-
     private Boolean isHighPriority;
 
-    // Enums
     public enum ValidationStatus {
         VALIDATED, PENDING, REJECTED
     }

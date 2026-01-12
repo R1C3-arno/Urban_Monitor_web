@@ -13,13 +13,7 @@ import java.io.InputStream;
 import java.util.Collections;
 import java.util.Map;
 
-/**
- * Single Responsibility Principle (SRP):
- * Class này chỉ chịu trách nhiệm load GeoJSON từ classpath
- * 
- * Open/Closed Principle (OCP):
- * Có thể extend để load từ sources khác (URL, database, etc.)
- */
+
 @Component
 @RequiredArgsConstructor
 @Slf4j
@@ -47,7 +41,7 @@ public class ClasspathGeoJsonLoader implements GeoJsonLoader {
     }
 
     /**
-     * Template Method - có thể override để thay đổi cách load
+     * load
      */
     protected void loadFromClasspath() {
         try {
@@ -62,7 +56,7 @@ public class ClasspathGeoJsonLoader implements GeoJsonLoader {
     }
 
     /**
-     * Template Method - có thể override để thay đổi file path
+     * file path
      */
     protected String getFilePath() {
         return GEOJSON_FILE_PATH;

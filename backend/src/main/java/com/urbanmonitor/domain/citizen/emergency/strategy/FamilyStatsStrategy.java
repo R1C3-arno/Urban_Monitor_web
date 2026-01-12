@@ -16,5 +16,5 @@ public class FamilyStatsStrategy extends AbstractEmergencyStatsStrategy {
         return type == EmergencyType.FAMILY;
     }
     
-    // Không override gì thêm - chỉ dùng total từ base class
+    // chưa phát triển, cứ xài default đi
 }

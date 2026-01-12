@@ -9,8 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * STRATEGY PATTERN - Context
- * Orchestrates các strategies để tính stats
+ * STRATEGY PATTERN
  */
 @Component
 @RequiredArgsConstructor

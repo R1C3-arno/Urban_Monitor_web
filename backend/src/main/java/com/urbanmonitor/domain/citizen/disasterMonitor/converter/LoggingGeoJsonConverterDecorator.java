@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * DECORATOR PATTERN - Concrete Decorator
  * 
- * Decorator thêm logging cho conversion operations.
+ * Logging cho conversion operations.
  */
 @Slf4j
 public class LoggingGeoJsonConverterDecorator extends GeoJsonConverterDecorator {

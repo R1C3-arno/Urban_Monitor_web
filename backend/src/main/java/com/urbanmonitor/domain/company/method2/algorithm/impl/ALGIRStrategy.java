@@ -15,7 +15,6 @@ import java.util.*;
 /**
  * ALG-IR Strategy: Inventory Retrieval Optimization
  * Paper: He et al. (2022) - Computers & Operations Research
- *
  * Two-stage algorithm:
  * - Stage 1: Abundant inventory (y < threshold)
  * - Stage 2: Scarce inventory (y >= threshold) using Brent's method

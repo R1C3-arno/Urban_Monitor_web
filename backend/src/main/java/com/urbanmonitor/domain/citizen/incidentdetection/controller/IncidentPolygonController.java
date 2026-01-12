@@ -11,11 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 /**
- * REST Controller - Endpoints giữ nguyên
- * 
- * SOLID:
- * - Single Responsibility: Chỉ handle HTTP
- * - Dependency Inversion: Depend on interface
+ * REST Controller
  */
 @RestController
 @RequestMapping("/api/incidents")

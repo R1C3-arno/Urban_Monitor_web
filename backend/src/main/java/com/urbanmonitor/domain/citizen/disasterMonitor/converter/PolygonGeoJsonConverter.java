@@ -12,7 +12,6 @@ import java.util.Map;
 
 /**
  * SINGLE RESPONSIBILITY: Convert disaster zones to polygon GeoJSON
- * 
  * Sử dụng Builder Pattern để tạo GeoJSON objects.
  */
 @Component

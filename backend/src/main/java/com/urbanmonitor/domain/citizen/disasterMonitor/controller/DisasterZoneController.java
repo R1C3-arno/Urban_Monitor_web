@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 /**
- * REST Controller cho Disaster Zone API.
+ * REST Controller : Disaster Zone API.
  * 
  * SOLID PRINCIPLES:
- * - Single Responsibility: Chỉ handle HTTP requests/responses
- * - Dependency Inversion: Depend on DisasterZoneService interface
+ * - Single Responsibility:  handle HTTP requests/responses
+ * - Dependency Inversion: DisasterZoneService interface
  * 
- * API ENDPOINTS UNCHANGED - đảm bảo backward compatibility với Frontend.
+ * API ENDPOINTS UNCHANGED - Frontend.
  */
 @RestController
 @RequestMapping("/api/disaster")

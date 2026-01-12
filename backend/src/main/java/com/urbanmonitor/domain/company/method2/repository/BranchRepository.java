@@ -13,24 +13,14 @@ import java.util.Optional;
 
 /**
  * Repository: Branch data access (PostgreSQL)
- * Uses JPA for automatic SQL generation
  */
 @Repository
 public interface BranchRepository extends JpaRepository<Branch, Long> {
 
-    /**
-     * Find branch by code
-     */
     Optional<Branch> findByCode(String code);
 
-    /**
-     * Find all active branches in city
-     */
     List<Branch> findByIsActiveTrueAndCity(String city);
 
-    /**
-     * Find all active branches
-     */
     List<Branch> findByIsActiveTrue();
 
     /**

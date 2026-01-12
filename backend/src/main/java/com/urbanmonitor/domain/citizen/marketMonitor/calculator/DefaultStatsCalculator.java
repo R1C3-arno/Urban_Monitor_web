@@ -7,17 +7,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-/**
- * Single Responsibility Principle (SRP):
- * Class này chỉ chịu trách nhiệm tính toán statistics
- * 
- * Strategy Pattern:
- * Default implementation của StatsCalculator strategy
- * Có thể tạo các implementation khác cho các business rules khác nhau
- * 
- * Open/Closed Principle (OCP):
- * Có thể extend để thêm metrics mới mà không sửa code hiện tại
- */
+
 @Component
 public class DefaultStatsCalculator implements StatsCalculator {
 
@@ -42,14 +32,14 @@ public class DefaultStatsCalculator implements StatsCalculator {
     }
 
     /**
-     * Template Method - có thể override để thay đổi logic validation
+     * validation
      */
     protected boolean isEmptyList(List<LicensedStore> stores) {
         return stores == null || stores.isEmpty();
     }
 
     /**
-     * Template Method - có thể override để thay đổi cách tính total
+     * tính total
      */
     protected int calculateTotal(List<LicensedStore> stores) {
         return stores.size();
@@ -65,7 +55,7 @@ public class DefaultStatsCalculator implements StatsCalculator {
     }
 
     /**
-     * Template Method - có thể override để thay đổi cách tính average rating
+     * tính average rating
      */
     protected double calculateAverageRating(List<LicensedStore> stores) {
         double avg = stores.stream()
@@ -77,21 +67,21 @@ public class DefaultStatsCalculator implements StatsCalculator {
     }
 
     /**
-     * Helper method - kiểm tra store có active không
+     * kiểm tra store có active không
      */
     protected boolean isActiveStore(LicensedStore store) {
         return store.getLicenseStatus() == LicenseStatus.ACTIVE;
     }
 
     /**
-     * Helper method - lấy rating với default value
+     * lấy rating với default value
      */
     protected double getStoreRating(LicensedStore store) {
         return store.getRating() != null ? store.getRating() : DEFAULT_RATING;
     }
 
     /**
-     * Helper method - làm tròn số
+     *  làm tròn số
      */
     protected double roundToDecimalPlaces(double value, int places) {
         double factor = Math.pow(10, places);
@@ -99,7 +89,7 @@ public class DefaultStatsCalculator implements StatsCalculator {
     }
 
     /**
-     * Factory method - tạo empty stats
+     * tạo empty stats
      */
     protected MarketDashboardResponse.Stats buildEmptyStats() {
         return MarketDashboardResponse.Stats.builder()

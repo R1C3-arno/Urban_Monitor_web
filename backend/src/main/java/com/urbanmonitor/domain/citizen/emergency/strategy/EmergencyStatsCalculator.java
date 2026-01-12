@@ -10,11 +10,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 /**
- * STRATEGY PATTERN - Context
- * 
- * Sử dụng các strategies để tính stats cho từng loại emergency.
- * 
- * DEPENDENCY INVERSION: Depend on List<EmergencyStatsStrategy> interface
+ * STRATEGY PATTERN
  */
 @Component
 @RequiredArgsConstructor
@@ -22,10 +18,9 @@ import java.util.List;
 public class EmergencyStatsCalculator {
     
     private final List<EmergencyStatsStrategy> strategies;
-    
-    /**
-     * Tính stats cho emergency type
-     */
+
+     //Tính stats cho emergency type
+
     public Stats calculate(EmergencyType type, List<EmergencyLocation> locations) {
         return strategies.stream()
             .filter(strategy -> strategy.supports(type))

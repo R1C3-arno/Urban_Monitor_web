@@ -8,13 +8,6 @@ import org.springframework.stereotype.Component;
 
 /**
  * FACTORY PATTERN - Tạo GeoJSON converters phù hợp
- * 
- * Encapsulate logic quyết định sử dụng converter nào.
- * 
- * SOLID:
- * - Single Responsibility: Chỉ tạo converter objects
- * - Open/Closed: Thêm converter mới không cần sửa code cũ
- * - Dependency Inversion: Return interface, không phải implementation
  */
 
 @Component("disasterGeoJsonConverterFactory")

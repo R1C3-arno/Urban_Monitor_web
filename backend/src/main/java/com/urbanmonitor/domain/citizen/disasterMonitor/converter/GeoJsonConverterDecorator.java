@@ -11,12 +11,6 @@ import java.util.Map;
  * DECORATOR PATTERN
  * 
  * Base decorator cho GeoJsonConverter.
- * Cho phép thêm behavior vào converter mà không sửa code gốc.
- * 
- * Example decorators:
- * - LoggingGeoJsonConverterDecorator: Log conversion time
- * - CachingGeoJsonConverterDecorator: Cache conversion results
- * - ValidationGeoJsonConverterDecorator: Validate output
  */
 @RequiredArgsConstructor
 @Slf4j

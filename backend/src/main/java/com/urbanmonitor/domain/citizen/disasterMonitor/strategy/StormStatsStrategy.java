@@ -7,8 +7,7 @@ import com.urbanmonitor.domain.citizen.disasterMonitor.entity.DisasterZone.ZoneS
 import org.springframework.stereotype.Component;
 
 /**
- * Strategy cho tính stats của STORM disasters.
- * Storm đếm số zone ở trạng thái EMERGENCY.
+ * Strategy STORM disasters.
  */
 @Component
 public class StormStatsStrategy implements DisasterStatsStrategy {
@@ -17,7 +16,8 @@ public class StormStatsStrategy implements DisasterStatsStrategy {
     public boolean supports(DisasterZone zone) {
         return zone != null && zone.getDisasterType() == DisasterType.STORM;
     }
-    
+
+    //đếm số zone ở trạng thái EMERGENCY.
     @Override
     public void updateStats(StatDetail stats, DisasterZone zone) {
         stats.setTotal(stats.getTotal() + 1);

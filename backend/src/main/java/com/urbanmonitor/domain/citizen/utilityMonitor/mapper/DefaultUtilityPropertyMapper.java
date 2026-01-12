@@ -7,13 +7,7 @@ import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-/**
- * Single Responsibility Principle (SRP):
- * Class này chỉ chịu trách nhiệm mapping station entity sang properties map
- * 
- * Open/Closed Principle (OCP):
- * Có thể extend class này để thêm properties mới mà không sửa code hiện tại
- */
+
 @Component
 public class DefaultUtilityPropertyMapper implements UtilityPropertyMapper {
 
@@ -34,14 +28,14 @@ public class DefaultUtilityPropertyMapper implements UtilityPropertyMapper {
     }
 
     /**
-     * Template Method - có thể override để thay đổi format
+     * chuẩn hóa wifi status
      */
     protected String formatWifiStatus(UtilityMonitor.WifiStatus status) {
         return status != null ? status.name() : null;
     }
 
     /**
-     * Template Method - có thể override để thay đổi format datetime
+     * chuẩn hóa ngày
      */
     protected String formatDateTime(LocalDateTime dateTime) {
         return dateTime != null ? dateTime.toString() : null;

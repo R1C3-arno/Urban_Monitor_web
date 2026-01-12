@@ -10,7 +10,7 @@ import java.util.Map;
  * NULL OBJECT PATTERN
  * 
  * Converter trả về empty GeoJSON collection thay vì null.
- * Eliminates null checks trong code sử dụng.
+ * Eliminates null checks
  */
 public class NullGeoJsonConverter implements GeoJsonConverter {
     

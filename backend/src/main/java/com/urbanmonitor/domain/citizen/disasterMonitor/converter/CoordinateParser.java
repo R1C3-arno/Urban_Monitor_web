@@ -13,7 +13,7 @@ import java.util.Optional;
 /**
  * SINGLE RESPONSIBILITY PRINCIPLE
  * 
- * Class chỉ có một nhiệm vụ: parse polygon coordinates từ JSON string.
+ * Chỉ parse polygon coordinates từ JSON string.
  */
 @Component
 @RequiredArgsConstructor

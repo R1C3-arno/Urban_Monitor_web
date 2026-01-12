@@ -14,18 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Single Responsibility Principle (SRP):
- * Service giờ chỉ orchestrate các components, không chứa logic tính toán
- * 
- * Dependency Inversion Principle (DIP):
- * - Implement IAirQualityService interface
- * - Depend on abstractions: AirQualityGeoJsonBuilder, AirQualityStatsCalculator, LegendCalculator
- * 
- * Open/Closed Principle (OCP):
- * - Có thể thay đổi behavior bằng cách inject các implementations khác
- * - Không cần sửa code service khi thêm tính năng mới
- */
+
 @Service
 @RequiredArgsConstructor
 @Slf4j

@@ -7,8 +7,7 @@ import com.urbanmonitor.domain.citizen.disasterMonitor.entity.DisasterZone.Sever
 import org.springframework.stereotype.Component;
 
 /**
- * Strategy cho tính stats của HEATWAVE disasters.
- * Heatwave đếm số zone ở mức EXTREME severity.
+ * Strategy  HEATWAVE disasters.
  */
 @Component
 public class HeatwaveStatsStrategy implements DisasterStatsStrategy {
@@ -17,7 +16,8 @@ public class HeatwaveStatsStrategy implements DisasterStatsStrategy {
     public boolean supports(DisasterZone zone) {
         return zone != null && zone.getDisasterType() == DisasterType.HEATWAVE;
     }
-    
+
+    //đếm số zone ở mức EXTREME severity.
     @Override
     public void updateStats(StatDetail stats, DisasterZone zone) {
         stats.setTotal(stats.getTotal() + 1);

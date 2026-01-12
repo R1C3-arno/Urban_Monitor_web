@@ -1,7 +1,7 @@
 package com.urbanmonitor.domain.citizen.incidentdetection.observer;
 
 /**
- * OBSERVER PATTERN - Observer interface
+ * OBSERVER PATTERN
  */
 public interface IncidentObserver {
     void onIncidentEvent(IncidentEvent event);

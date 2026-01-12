@@ -8,15 +8,15 @@ import java.util.Map;
 
 /**
  * NULL OBJECT PATTERN
- * 
- * Trả về empty GeoJSON collection thay vì null.
  */
 public class NullGeoJsonConverter implements GeoJsonConverter {
     
     public static final NullGeoJsonConverter INSTANCE = new NullGeoJsonConverter();
     
     private NullGeoJsonConverter() {}
-    
+
+
+    // chống Null
     @Override
     public Map<String, Object> convert(List<EmergencyLocation> locations) {
         return GeoJsonCollectionBuilder.empty();

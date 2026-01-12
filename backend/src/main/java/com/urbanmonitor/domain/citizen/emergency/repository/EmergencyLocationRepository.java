@@ -14,6 +14,6 @@ public interface EmergencyLocationRepository extends
         JpaSpecificationExecutor<EmergencyLocation> {
 
     List<EmergencyLocation> findByEmergencyType(EmergencyType type);
-    List<EmergencyLocation> findByStatus(EmergencyStatus status);
+    List<EmergencyLocation> findByStatus(EmergencyStatus status);  // bỏ qua để chạy demo thuyết trình
     List<EmergencyLocation> findByEmergencyTypeAndStatus(EmergencyType type, EmergencyStatus status);
 }

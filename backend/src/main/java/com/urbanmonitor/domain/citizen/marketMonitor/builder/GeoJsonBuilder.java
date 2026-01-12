@@ -5,13 +5,7 @@ import com.urbanmonitor.domain.citizen.marketMonitor.entity.LicensedStore;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Interface Segregation Principle (ISP):
- * Interface chuyên biệt cho việc build GeoJSON
- * 
- * Dependency Inversion Principle (DIP):
- * High-level modules (Service, Controller) depend on this abstraction
- */
+
 public interface GeoJsonBuilder {
     
     /**

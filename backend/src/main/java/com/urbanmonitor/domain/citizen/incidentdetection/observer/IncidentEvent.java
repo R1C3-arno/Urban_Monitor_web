@@ -4,7 +4,7 @@ import com.urbanmonitor.domain.citizen.incidentdetection.entity.TrafficIncident;
 import lombok.Getter;
 
 /**
- * OBSERVER PATTERN - Event object
+ * OBSERVER PATTERN
  */
 @Getter
 public class IncidentEvent {

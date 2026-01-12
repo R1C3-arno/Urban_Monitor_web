@@ -6,9 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 /**
- * OBSERVER PATTERN - Concrete Observer
- * 
- * Logs emergency location events.
+ * OBSERVER PATTERN
+ * ghhi log emergency event.
  */
 @Component
 @RequiredArgsConstructor

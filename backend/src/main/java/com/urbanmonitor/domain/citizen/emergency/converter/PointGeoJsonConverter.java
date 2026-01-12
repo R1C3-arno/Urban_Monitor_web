@@ -9,9 +9,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * SINGLE RESPONSIBILITY: Convert emergency locations to Point GeoJSON
- * 
- * Sử dụng Builder Pattern để tạo GeoJSON objects.
+ * Convert emergency locations to Point GeoJSON
+ * Builder Pattern tạo GeoJSON objects.
  */
 @Component
 public class PointGeoJsonConverter implements GeoJsonConverter {

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 /**
- * Strategy cho AMBULANCE emergencies.
  * Tính: total, critical, responding
  */
 @Component

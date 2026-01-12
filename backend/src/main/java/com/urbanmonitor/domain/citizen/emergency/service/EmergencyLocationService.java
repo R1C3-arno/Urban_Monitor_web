@@ -10,8 +10,6 @@ import java.util.Optional;
 
 /**
  * DEPENDENCY INVERSION PRINCIPLE
- * 
- * Interface cho EmergencyLocation service operations.
  */
 public interface EmergencyLocationService {
     
@@ -22,6 +20,7 @@ public interface EmergencyLocationService {
     List<EmergencyLocation> getByTypeAndStatus(EmergencyType type, EmergencyStatus status);
     
     // Command operations
+    // Tạm bỏ qua hết để thuyết trình
     EmergencyLocation save(EmergencyLocation location);
     List<EmergencyLocation> saveAll(List<EmergencyLocation> locations);
     void deleteById(Long id);

@@ -8,11 +8,11 @@ export const createCrimePopupHTML = (props) => {
     return `
         <div style="font-family: system-ui; min-width: 220px; padding: 5px;">
             <h3 style="margin: 0 0 10px; color: #ff0000; border-bottom: 2px solid #ff0000; padding-bottom: 5px;">
-                🚨 ${props.name}
+                 ${props.name}
             </h3>
             ${imageHtml}
             <div style="font-size: 12px; color: #666; margin-bottom: 8px;">
-                📍 ${props.address}
+                 ${props.address}
             </div>
             <div style="background: ${priorityColors[props.priority]}; color: white; padding: 6px; border-radius: 4px; text-align: center; margin-bottom: 8px; font-weight: bold;">
                 ${props.priority} PRIORITY

@@ -8,9 +8,7 @@ import java.util.List;
 
 /**
  * TEMPLATE METHOD PATTERN
- * 
- * Abstract base class định nghĩa skeleton của algorithm.
- * Subclasses override các steps cụ thể.
+
  */
 public abstract class AbstractEmergencyStatsStrategy implements EmergencyStatsStrategy {
     
@@ -23,7 +21,7 @@ public abstract class AbstractEmergencyStatsStrategy implements EmergencyStatsSt
         Stats.StatsBuilder builder = Stats.builder()
             .total(locations.size());
         
-        // Hook methods - subclasses override
+        // Hook methods
         populateCriticalCount(builder, locations);
         populateRespondingCount(builder, locations);
         populateActiveCount(builder, locations);

@@ -6,11 +6,7 @@ import java.text.Normalizer;
 import java.util.regex.Pattern;
 
 /**
- * Single Responsibility Principle (SRP):
- * Class này chỉ chịu trách nhiệm normalize tên tiếng Việt
- * 
- * Open/Closed Principle (OCP):
- * Có thể extend để thêm rules normalize khác mà không sửa code hiện tại
+ * chuẩn hóa tiếng viêtk
  */
 @Component
 public class VietnameseNameNormalizer implements NameNormalizer {
@@ -30,7 +26,7 @@ public class VietnameseNameNormalizer implements NameNormalizer {
     }
 
     /**
-     * Template Method - có thể override để thay đổi cách remove diacritics
+     * remove diacritics
      */
     protected String removeDiacritics(String str) {
         String normalized = Normalizer.normalize(str, Normalizer.Form.NFD);
@@ -38,14 +34,14 @@ public class VietnameseNameNormalizer implements NameNormalizer {
     }
 
     /**
-     * Template Method - có thể override để thêm special chars khác
+     *  special chars
      */
     protected String removeVietnameseSpecialChars(String str) {
         return str.replace("đ", "d");
     }
 
     /**
-     * Template Method - có thể override để thêm prefixes khác
+     * prefixes
      */
     protected String removePrefixes(String str) {
         return str

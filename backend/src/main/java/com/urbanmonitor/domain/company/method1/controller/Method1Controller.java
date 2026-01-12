@@ -15,7 +15,6 @@ import java.util.Optional;
 /**
  * Method1 Optimization REST API Controller
  * Base path: /api/company/method1
- *
  * Endpoints:
  * - POST /optimize - Run optimization
  * - GET /branches/{branchId}/history - Get history

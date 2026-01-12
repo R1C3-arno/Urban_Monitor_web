@@ -5,7 +5,7 @@ import com.urbanmonitor.domain.citizen.emergency.entity.EmergencyLocation;
 import java.util.*;
 
 /**
- * BUILDER PATTERN cho GeoJSON Point Feature
+ * BUILDER PATTERN
  * 
  * Tạo GeoJSON Point features cho emergency locations.
  */
@@ -59,7 +59,7 @@ public class GeoJsonPointFeatureBuilder {
     }
     
     /**
-     * Check if builder has valid geometry
+     * hàm check format ( đang xơ xài thôi, có thể thêm giới hạn vùng quốc gia)
      */
     public boolean hasValidGeometry() {
         return geometry != null;

@@ -13,13 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * REST Controller cho Emergency Location API.
- * 
- * SOLID:
- * - Single Responsibility: Chỉ handle HTTP requests/responses
- * - Dependency Inversion: Depend on EmergencyLocationService interface
- * 
- * API ENDPOINTS UNCHANGED - backward compatible với Frontend.
+ * REST Controller : Emergency Location API.
  */
 @RestController
 @RequestMapping("/api/emergency")

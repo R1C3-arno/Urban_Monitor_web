@@ -9,7 +9,7 @@ import java.util.Map;
 
 /**
  * DTO cho Dashboard response.
- * Sử dụng Builder Pattern từ Lombok.
+ * Builder Pattern : Lombok.
  */
 @Data
 @Builder

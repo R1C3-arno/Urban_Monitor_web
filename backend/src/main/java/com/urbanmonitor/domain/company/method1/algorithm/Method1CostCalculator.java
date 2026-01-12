@@ -59,7 +59,7 @@ public class Method1CostCalculator {
         // T4: Backorder cost for subsequent batches
         double t4 = params.getDemand() * params.getPi() * (n - 1) / (n * q) * ex2;
 
-        // T5: Crashing cost (simplified to 0 for now)
+        // T5: Crashing cost
         double t5 = 0.0;
 
         return t1 + t2 + t3 + t4 + t5;

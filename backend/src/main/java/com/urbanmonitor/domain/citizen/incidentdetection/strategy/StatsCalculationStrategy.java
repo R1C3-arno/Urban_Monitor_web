@@ -6,17 +6,14 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * STRATEGY PATTERN - Interface cho các loại stats calculation
+ * STRATEGY PATTERN
  */
 public interface StatsCalculationStrategy {
 
-    /**
-     * Tính count theo một criteria
-     */
+    //tính count
     Map<String, Integer> calculate(List<TrafficIncident> incidents);
 
-    /**
-     * Tên của strategy
-     */
+    //tên loại
     String getStrategyName();
+    //chưa phát triển
 }

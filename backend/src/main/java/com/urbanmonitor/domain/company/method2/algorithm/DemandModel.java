@@ -7,7 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * DemandModel: Price-dependent demand with fluctuations
- *
+
  * Formula: d_t = (a - b*p_t) * δ_t
  * where:
  *   - a: demand intercept

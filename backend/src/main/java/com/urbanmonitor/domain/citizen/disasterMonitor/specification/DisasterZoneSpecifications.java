@@ -10,8 +10,8 @@ import java.util.List;
 /**
  * SPECIFICATION PATTERN + OPEN/CLOSED PRINCIPLE
  * 
- * Cho phép tạo các query phức tạp một cách linh hoạt mà không cần sửa repository.
- * Mỗi specification có thể được compose với nhau bằng and(), or(), not().
+ * Tạo query mới thì đừng sửa repository.
+ * xài được and(), or(), not().
  */
 public class DisasterZoneSpecifications {
 

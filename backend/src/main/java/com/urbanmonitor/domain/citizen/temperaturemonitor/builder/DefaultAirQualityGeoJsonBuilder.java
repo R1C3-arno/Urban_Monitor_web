@@ -10,16 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.*;
 
-/**
- * Single Responsibility Principle (SRP):
- * Class này chỉ chịu trách nhiệm merge và build GeoJSON data
- * 
- * Dependency Inversion Principle (DIP):
- * Depend on GeoJsonLoader và NameNormalizer abstractions
- * 
- * Open/Closed Principle (OCP):
- * Có thể extend để thay đổi merge logic mà không sửa code hiện tại
- */
+
 @Component
 @RequiredArgsConstructor
 @Slf4j
@@ -59,14 +50,14 @@ public class DefaultAirQualityGeoJsonBuilder implements AirQualityGeoJsonBuilder
     }
 
     /**
-     * Template Method - validation logic
+     * validation logic
      */
     protected boolean isValidGeoJson(Map<String, Object> geoJson) {
         return geoJson != null && geoJson.containsKey("features");
     }
 
     /**
-     * Template Method - extract features from raw GeoJSON
+     * extract features from raw GeoJSON
      */
     @SuppressWarnings("unchecked")
     protected List<Map<String, Object>> extractFeatures(Map<String, Object> rawGeoJson) {
@@ -126,7 +117,7 @@ public class DefaultAirQualityGeoJsonBuilder implements AirQualityGeoJsonBuilder
     }
 
     /**
-     * Template Method - extract name from properties
+     * extract name from properties
      */
     protected String extractName(Map<String, Object> properties) {
         return (String) properties.getOrDefault("Name",
@@ -135,7 +126,7 @@ public class DefaultAirQualityGeoJsonBuilder implements AirQualityGeoJsonBuilder
     }
 
     /**
-     * Template Method - find matching zone
+     * find matching zone
      */
     protected Optional<AirQualityZone> findMatchingZone(
             List<AirQualityZone> backendData, 
@@ -150,7 +141,7 @@ public class DefaultAirQualityGeoJsonBuilder implements AirQualityGeoJsonBuilder
     }
 
     /**
-     * Template Method - populate properties when match found
+     * populate properties when match found
      */
     protected void populateMatchedProperties(
             Map<String, Object> props, 
@@ -159,7 +150,7 @@ public class DefaultAirQualityGeoJsonBuilder implements AirQualityGeoJsonBuilder
         
         String color = getColorForLevel(data.getSafetyLevel());
 
-        log.info("✅ KHỚP: {} | AQI: {} | Level: {} | Màu: {}", 
+        log.info("KHỚP: {} | AQI: {} | Level: {} | Màu: {}",
                 rawJsonName, data.getAqi(), data.getSafetyLevel(), color);
 
         props.put("zoneName", data.getZoneName());
@@ -175,7 +166,7 @@ public class DefaultAirQualityGeoJsonBuilder implements AirQualityGeoJsonBuilder
     }
 
     /**
-     * Template Method - populate properties when no match found
+     * populate properties when no match found
      */
     protected void populateNoDataProperties(Map<String, Object> props, String rawJsonName) {
         props.put("zoneName", rawJsonName);
@@ -186,14 +177,14 @@ public class DefaultAirQualityGeoJsonBuilder implements AirQualityGeoJsonBuilder
     }
 
     /**
-     * Template Method - get color for safety level
+     * get color for safety level
      */
     protected String getColorForLevel(AirQualityZone.SafetyLevel level) {
         return LEVEL_COLORS.getOrDefault(level.name(), NO_DATA_COLOR);
     }
 
     /**
-     * Factory Method - create empty GeoJSON
+     * create empty GeoJSON
      */
     protected AirQualityResponse.GeoJsonData buildEmptyGeoJson() {
         return AirQualityResponse.GeoJsonData.builder()

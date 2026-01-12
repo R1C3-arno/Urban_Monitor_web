@@ -7,9 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * DECORATOR PATTERN - Base Decorator
- * 
- * Cho phép thêm behavior vào converter mà không sửa code gốc.
+ * DECORATOR PATTERN  Base Decorator
  */
 @RequiredArgsConstructor
 public abstract class GeoJsonConverterDecorator implements GeoJsonConverter {

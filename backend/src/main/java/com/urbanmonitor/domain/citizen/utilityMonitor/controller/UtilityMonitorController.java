@@ -12,14 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Dependency Inversion Principle (DIP):
- * Controller depend on IUtilityMonitorService interface thay vì concrete class
- * Depend on UtilityGeoJsonBuilder interface cho việc build GeoJSON
- * 
- * Single Responsibility Principle (SRP):
- * Controller chỉ handle HTTP requests, delegate logic cho service và builder
- */
+
 @RestController
 @RequestMapping("/api/utility-monitor")
 @RequiredArgsConstructor

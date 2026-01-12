@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 /**
- * Strategy cho FIRE emergencies.
+ * Strategy
  * Logic giống AMBULANCE: total, critical, responding
  */
 @Component

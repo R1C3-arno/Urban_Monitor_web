@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 /**
  * SINGLE RESPONSIBILITY PRINCIPLE
  * 
- * Class chỉ có một nhiệm vụ: normalize tên địa danh để so sánh.
+ *  Normalize tên địa danh để so sánh.
  */
 @Component
 public class NameNormalizer {

@@ -7,16 +7,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.*;
 
-/**
- * Single Responsibility Principle (SRP):
- * Class này chỉ chịu trách nhiệm build GeoJSON structure
- * 
- * Open/Closed Principle (OCP):
- * Có thể extend để thêm geometry types khác mà không sửa code hiện tại
- * 
- * Dependency Inversion Principle (DIP):
- * Depend on StorePropertyMapper abstraction
- */
+
 @Component
 @RequiredArgsConstructor
 public class DefaultGeoJsonBuilder implements GeoJsonBuilder {
@@ -60,7 +51,7 @@ public class DefaultGeoJsonBuilder implements GeoJsonBuilder {
     }
 
     /**
-     * Template Method - có thể override để support các geometry types khác
+     * Template Method
      */
     protected Map<String, Object> buildPointGeometry(LicensedStore store) {
         Map<String, Object> geometry = new LinkedHashMap<>();
@@ -70,7 +61,7 @@ public class DefaultGeoJsonBuilder implements GeoJsonBuilder {
     }
 
     /**
-     * Validation method - có thể override để thêm validation rules
+     * Validation method
      */
     protected boolean hasValidCoordinates(LicensedStore store) {
         return store.getLongitude() != null && store.getLatitude() != null;

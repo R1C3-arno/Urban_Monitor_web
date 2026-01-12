@@ -16,11 +16,12 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * SOLID + Design Patterns:
- * - Strategy Pattern: IncidentStatsCalculator
- * - Factory Pattern: LegendFactory
- * - Builder Pattern: GeoJsonMapper uses builders
- * - Observer Pattern: Ready for event publishing
+ * Design Patterns: (
+ *                      Strategy Pattern: IncidentStatsCalculator
+ *                      Factory Pattern: LegendFactory
+ *                      Builder Pattern: GeoJsonMapper
+ *                      Observer Pattern:
+ *                   )
  */
 @Service
 @RequiredArgsConstructor

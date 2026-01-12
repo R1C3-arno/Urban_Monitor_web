@@ -40,7 +40,8 @@ public class EmergencyLocationEvent {
                                                         EmergencyLocation.EmergencyStatus newStatus) {
         return new EmergencyLocationEvent(EventType.STATUS_CHANGED, location, previousStatus, newStatus);
     }
-    
+
+    //chưa phát triển
     public static EmergencyLocationEvent resolved(EmergencyLocation location) {
         return new EmergencyLocationEvent(EventType.RESOLVED, location, null, 
             EmergencyLocation.EmergencyStatus.RESOLVED);

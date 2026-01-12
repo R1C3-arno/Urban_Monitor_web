@@ -17,9 +17,6 @@ import java.util.Optional;
 
 /**
  * SINGLE RESPONSIBILITY PRINCIPLE
- * 
- * Class chỉ có một nhiệm vụ: load và cung cấp province GeoJSON data.
- * Cũng áp dụng một phần của Singleton Pattern thông qua Spring @Component.
  */
 @Component
 @RequiredArgsConstructor

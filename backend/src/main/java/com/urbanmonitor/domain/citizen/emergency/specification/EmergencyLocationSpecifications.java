@@ -5,9 +5,7 @@ import com.urbanmonitor.domain.citizen.emergency.entity.EmergencyLocation.*;
 import org.springframework.data.jpa.domain.Specification;
 
 /**
- * SPECIFICATION PATTERN + OPEN/CLOSED PRINCIPLE
- * 
- * Cho phép tạo các query phức tạp một cách linh hoạt.
+ * SPECIFICATION PATTERN
  */
 public class EmergencyLocationSpecifications {
 

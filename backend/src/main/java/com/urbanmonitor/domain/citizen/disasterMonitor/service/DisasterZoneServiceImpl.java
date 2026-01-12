@@ -21,35 +21,41 @@ import java.util.Optional;
 /**
  * SOLID PRINCIPLES IMPLEMENTATION:
  * 
- * S - Single Responsibility:
- *     - Service chỉ orchestrate các operations
- *     - Delegate: Stats calculation → StatsCalculator
- *     - Delegate: GeoJSON conversion → GeoJsonConverterFactory
- *     - Delegate: Event publishing → DisasterZoneEventPublisher
+ * S :
+ *     - Service chỉ gọi các operations
+ *     - Delegate:(
+ *                      Stats calculation → StatsCalculator
+ *                      GeoJSON conversion → GeoJsonConverterFactory
+ *                      Event publishing → DisasterZoneEventPublisher
+ *                 )
  * 
- * O - Open/Closed:
- *     - Thêm disaster type mới = thêm Strategy mới
- *     - Thêm GeoJSON format mới = thêm Converter mới
- *     - Không cần sửa Service code
+ * O :
+ *     - nếu thêm disaster kiểu mới thì thêm = Strategy mới ( đừng đụng code cũ bễ đó Hoan ơi)
+ *     - nếu GeoJSON format mới = thêm Converter mới nha mày
+ *     - đừng  sửa Service code
  * 
- * L - Liskov Substitution:
+ * L :
  *     - Implement DisasterZoneService interface
- *     - Có thể swap implementation mà không break Controller
+ *     - ==> tự do đổi code mà controller ko bị bễ
  * 
- * I - Interface Segregation:
- *     - Service interface được chia thành logical groups
- *     - Các helper interfaces nhỏ gọn (GeoJsonConverter, DisasterStatsStrategy)
+ * I :
+ *     - Service interface chia theo logical groups nha mày (mỗi feature một cái nha HOan)
+ *     - Các helper interfaces :
+ *                              (
+ *                              GeoJsonConverter,
+ *                              DisasterStatsStrategy
+ *                              )
  * 
- * D - Dependency Inversion:
- *     - Depend on abstractions (interfaces), not concretions
+ * D :
+ *     - Xài interface
  *     - Constructor injection cho tất cả dependencies
  * 
- * DESIGN PATTERNS USED:
- * - Strategy Pattern: StatsCalculator với các DisasterStatsStrategy
- * - Factory Pattern: GeoJsonConverterFactory
- * - Builder Pattern: GeoJsonFeatureBuilder, GeoJsonCollectionBuilder
- * - Observer Pattern: DisasterZoneEventPublisher
- * - Specification Pattern: DisasterZoneSpecifications (có thể dùng với JpaSpecificationExecutor)
+ * DESIGN PATTERNS đã thêm nha mày ( có gì thêm thì ghi vô):
+ * Strategy Pattern: StatsCalculator với các DisasterStatsStrategy
+ * Factory Pattern: GeoJsonConverterFactory
+ * Builder Pattern: GeoJsonFeatureBuilder, GeoJsonCollectionBuilder
+ * Observer Pattern: DisasterZoneEventPublisher
+ * Specification Pattern: DisasterZoneSpecifications (có thể dùng với JpaSpecificationExecutor)
  */
 @Service
 @RequiredArgsConstructor

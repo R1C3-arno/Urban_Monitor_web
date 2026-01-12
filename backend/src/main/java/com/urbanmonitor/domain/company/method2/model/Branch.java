@@ -8,7 +8,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
- * Branch Entity - Represents physical store location
+ * Branch Entity
  * Mapped to PostgreSQL table: branches_method2
  */
 @Entity

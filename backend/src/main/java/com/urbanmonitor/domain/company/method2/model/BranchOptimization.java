@@ -10,7 +10,7 @@ import org.hibernate.type.SqlTypes;
 import java.time.LocalDateTime;
 
 /**
- * BranchOptimization Entity - Stores optimization results
+ * BranchOptimization Entity
  * Mapped to PostgreSQL table: branch_optimizations_method2
  */
 @Entity

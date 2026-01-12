@@ -6,14 +6,14 @@
     padding: 0 !important;
     max-width: 300px !important;
     box-sizing: border-box;
-    overflow: visible !important; /* 👈 QUAN TRỌNG */
+    overflow: visible !important;
     border-radius: 16px;
 }
 
 /* Nội dung popup */
 .maplibregl-popup-content > div {
     box-sizing: border-box;
-    padding-bottom: 14px; /* 👈 CHỪA ĐÁY */
+    padding-bottom: 14px;
 }
 
 /* Chặn cắt text dưới cùng */

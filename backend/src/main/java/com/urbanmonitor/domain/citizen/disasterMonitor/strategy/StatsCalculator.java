@@ -12,12 +12,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * STRATEGY PATTERN - Context class
- * 
- * Sử dụng các strategies để tính toán stats cho từng loại disaster.
- * Không cần biết chi tiết logic - chỉ delegate cho strategy phù hợp.
- * 
- * DEPENDENCY INVERSION: Depend on List<DisasterStatsStrategy> interface
+ * STRATEGY PATTERN - Context class:
+ * TÍnh states từng loại
+ * List<DisasterStatsStrategy> interface
  */
 @Component
 @RequiredArgsConstructor

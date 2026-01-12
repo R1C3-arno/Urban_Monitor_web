@@ -19,19 +19,12 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
- * SOLID PRINCIPLES IMPLEMENTATION:
- * 
- * S - Single Responsibility: Service orchestrate, delegate to specialists
- * O - Open/Closed: Add new emergency type = add new Strategy
- * L - Liskov Substitution: Implements EmergencyLocationService interface
- * I - Interface Segregation: Small focused interfaces
- * D - Dependency Inversion: Depend on abstractions
- * 
- * DESIGN PATTERNS:
- * - Strategy Pattern: EmergencyStatsCalculator
- * - Factory Pattern: GeoJsonConverterFactory
- * - Builder Pattern: GeoJsonPointFeatureBuilder
- * - Observer Pattern: EmergencyLocationEventPublisher
+ * DESIGN PATTERNS: (
+ *                  Strategy Pattern: EmergencyStatsCalculator
+ *                  Factory Pattern: GeoJsonConverterFactory
+ *                  Builder Pattern: GeoJsonPointFeatureBuilder
+ *                  Observer Pattern: EmergencyLocationEventPublisher
+ *                  )
  */
 @Service
 @RequiredArgsConstructor

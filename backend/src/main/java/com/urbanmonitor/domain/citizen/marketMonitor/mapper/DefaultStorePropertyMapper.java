@@ -7,13 +7,7 @@ import java.time.LocalDate;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-/**
- * Single Responsibility Principle (SRP):
- * Class này chỉ chịu trách nhiệm mapping store entity sang properties map
- * 
- * Open/Closed Principle (OCP):
- * Có thể extend class này để thêm properties mới mà không sửa code hiện tại
- */
+
 @Component
 public class DefaultStorePropertyMapper implements StorePropertyMapper {
 
@@ -41,14 +35,14 @@ public class DefaultStorePropertyMapper implements StorePropertyMapper {
     }
 
     /**
-     * Template Method Pattern - có thể override trong subclass
+     * Template Method Pattern
      */
     protected String formatDate(LocalDate date) {
         return date != null ? date.toString() : null;
     }
 
     /**
-     * Template Method Pattern - có thể override trong subclass
+     * Template Method Pattern
      */
     protected String formatLicenseStatus(LicensedStore.LicenseStatus status) {
         return status != null ? status.name() : null;

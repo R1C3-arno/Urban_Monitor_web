@@ -8,7 +8,6 @@ import java.util.Map;
 
 /**
  * DECORATOR PATTERN - Concrete Decorator
- * 
  * Thêm logging cho conversion operations.
  */
 @Slf4j

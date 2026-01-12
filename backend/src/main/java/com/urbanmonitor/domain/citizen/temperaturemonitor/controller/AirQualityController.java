@@ -10,13 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * Dependency Inversion Principle (DIP):
- * Controller depend on IAirQualityService interface thay vì concrete class
- * 
- * Single Responsibility Principle (SRP):
- * Controller chỉ handle HTTP requests, delegate logic cho service
- */
+
 @RestController
 @RequestMapping("/api/air-quality")
 @RequiredArgsConstructor

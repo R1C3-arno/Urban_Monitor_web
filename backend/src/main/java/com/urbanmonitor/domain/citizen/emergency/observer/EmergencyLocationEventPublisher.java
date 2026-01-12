@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
- * OBSERVER PATTERN - Publisher/Subject
+ * OBSERVER PATTERN :Publisher/Subject
  */
 @Component
 @Slf4j
@@ -21,7 +21,8 @@ public class EmergencyLocationEventPublisher {
             log.info("Observer subscribed: {}", observer.getClass().getSimpleName());
         }
     }
-    
+
+    //chưa xài
     public void unsubscribe(EmergencyLocationObserver observer) {
         observers.remove(observer);
     }

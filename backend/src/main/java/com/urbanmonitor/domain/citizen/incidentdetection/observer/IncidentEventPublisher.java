@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
- * OBSERVER PATTERN - Publisher/Subject
+ * OBSERVER PATTERN
  */
 @Component
 @Slf4j

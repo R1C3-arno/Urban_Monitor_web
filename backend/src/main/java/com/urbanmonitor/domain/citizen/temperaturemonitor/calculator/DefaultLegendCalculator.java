@@ -7,13 +7,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Single Responsibility Principle (SRP):
- * Class này chỉ chịu trách nhiệm tính toán legend counts
- * 
- * Open/Closed Principle (OCP):
- * Có thể extend để thêm safety levels mới mà không sửa code hiện tại
- */
+
 @Component
 public class DefaultLegendCalculator implements LegendCalculator {
 
@@ -33,7 +27,7 @@ public class DefaultLegendCalculator implements LegendCalculator {
     }
 
     /**
-     * Template Method - có thể override để thêm safety levels khác
+     * safety levels
      */
     protected Map<String, Integer> initializeLegendMap() {
         Map<String, Integer> counts = new LinkedHashMap<>();
@@ -47,7 +41,7 @@ public class DefaultLegendCalculator implements LegendCalculator {
     }
 
     /**
-     * Template Method - có thể override để thay đổi cách increment
+     * cách increment
      */
     protected void incrementCount(Map<String, Integer> counts, AirQualityZone zone) {
         if (zone.getSafetyLevel() != null) {

@@ -8,14 +8,7 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
- * Single Responsibility Principle (SRP):
- * Class này chỉ chịu trách nhiệm tính toán air quality statistics
- * 
  * Strategy Pattern:
- * Default implementation của AirQualityStatsCalculator strategy
- * 
- * Open/Closed Principle (OCP):
- * Có thể extend để thêm metrics mới mà không sửa code hiện tại
  */
 @Component
 public class DefaultAirQualityStatsCalculator implements AirQualityStatsCalculator {
@@ -46,14 +39,14 @@ public class DefaultAirQualityStatsCalculator implements AirQualityStatsCalculat
     }
 
     /**
-     * Template Method - có thể override để thay đổi validation
+     * validation
      */
     protected boolean isEmptyOrNull(List<AirQualityZone> zones) {
         return zones == null || zones.isEmpty();
     }
 
     /**
-     * Template Method - có thể override để thay đổi filter logic
+     * filter logic
      */
     protected List<AirQualityZone> filterValidZones(List<AirQualityZone> zones) {
         return zones.stream()
@@ -62,14 +55,14 @@ public class DefaultAirQualityStatsCalculator implements AirQualityStatsCalculat
     }
 
     /**
-     * Template Method - có thể override để thay đổi cách tính total
+     * tính total
      */
     protected int calculateTotal(List<AirQualityZone> zones) {
         return zones.size();
     }
 
     /**
-     * Template Method - có thể override để thay đổi cách tính average
+     * tính average
      */
     protected int calculateAverageAqi(List<AirQualityZone> zones) {
         double avg = zones.stream()
@@ -80,7 +73,7 @@ public class DefaultAirQualityStatsCalculator implements AirQualityStatsCalculat
     }
 
     /**
-     * Template Method - có thể override để thay đổi cách tìm worst zone
+     * tìm worst zone
      */
     protected String findWorstZoneName(List<AirQualityZone> zones) {
         return zones.stream()
@@ -90,7 +83,7 @@ public class DefaultAirQualityStatsCalculator implements AirQualityStatsCalculat
     }
 
     /**
-     * Factory Method - tạo empty stats
+     * tạo empty stats
      */
     protected AirQualityResponse.Stats buildEmptyStats() {
         return AirQualityResponse.Stats.builder()

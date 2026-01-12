@@ -5,7 +5,6 @@ import lombok.Getter;
 
 /**
  * OBSERVER PATTERN - Event object
- * 
  * Immutable event chứa thông tin về disaster zone change.
  */
 @Getter

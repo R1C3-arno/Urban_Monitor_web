@@ -7,8 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * SINGLE RESPONSIBILITY PRINCIPLE
- * 
+ * SINGLE RESPONSIBILITY PRINCIPLE:
  * Extract province name from various possible property keys in GeoJSON.
  */
 @Component

@@ -10,10 +10,7 @@ import java.util.Optional;
 
 /**
  * DEPENDENCY INVERSION PRINCIPLE
- * 
  * Interface cho DisasterZone service operations.
- * High-level modules (Controller) depend on this abstraction,
- * not on low-level modules (Service implementation).
  */
 public interface DisasterZoneService {
     
@@ -21,25 +18,25 @@ public interface DisasterZoneService {
     
     List<DisasterZone> getAll();
     
-    Optional<DisasterZone> getById(Long id);
+    Optional<DisasterZone> getById(Long id); //chưa phát triển
     
     List<DisasterZone> getByType(DisasterType type);
     
     List<DisasterZone> getActiveByType(DisasterType type);
     
-    List<DisasterZone> getByTypeAndStatus(DisasterType type, ZoneStatus status);
+    List<DisasterZone> getByTypeAndStatus(DisasterType type, ZoneStatus status); // chưa phát triển
     
-    List<DisasterZone> getByTypeAndSeverity(DisasterType type, SeverityLevel severity);
+    List<DisasterZone> getByTypeAndSeverity(DisasterType type, SeverityLevel severity); // chưa phát triển
     
     List<DisasterZone> getAllActiveOrderBySeverity();
     
-    List<DisasterZone> getByRegion(String region);
+    List<DisasterZone> getByRegion(String region); // chưa phát triển
     
     // COMMAND OPERATIONS
     
     DisasterZone save(DisasterZone zone);
     
-    List<DisasterZone> saveAll(List<DisasterZone> zones);
+    List<DisasterZone> saveAll(List<DisasterZone> zones); // chưa phát triển
     
     void deleteById(Long id);
     

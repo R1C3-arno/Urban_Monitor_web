@@ -11,8 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * SINGLE RESPONSIBILITY: Map incidents to GeoJSON
- * Sử dụng Builder Pattern
+ * BUILDER PATTERN
  */
 @Component
 @RequiredArgsConstructor

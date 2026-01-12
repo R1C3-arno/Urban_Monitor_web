@@ -12,7 +12,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * Strategy cho CRIME emergencies.
  * Tính: total, active, responding, recentReports (top 5)
  */
 @Component

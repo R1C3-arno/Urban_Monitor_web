@@ -7,7 +7,7 @@ import java.util.EnumMap;
 import java.util.Map;
 
 /**
- * SINGLE RESPONSIBILITY: Configuration cho incident visual properties
+ * SINGLE RESPONSIBILITY:
  */
 @Component
 public class IncidentVisualConfig {

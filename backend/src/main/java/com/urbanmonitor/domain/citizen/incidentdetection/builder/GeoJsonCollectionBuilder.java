@@ -3,7 +3,7 @@ package com.urbanmonitor.domain.citizen.incidentdetection.builder;
 import java.util.*;
 
 /**
- * BUILDER PATTERN cho GeoJSON FeatureCollection
+ * BUILDER PATTERN
  */
 public class GeoJsonCollectionBuilder {
 

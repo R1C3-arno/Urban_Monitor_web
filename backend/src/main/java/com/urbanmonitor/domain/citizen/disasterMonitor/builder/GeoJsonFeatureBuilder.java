@@ -5,14 +5,11 @@ import com.urbanmonitor.domain.citizen.disasterMonitor.entity.DisasterZone;
 import java.util.*;
 
 /**
- * BUILDER PATTERN cho GeoJSON Feature
+ * BUILDER PATTERN
  * 
- * Tạo GeoJSON Feature objects một cách fluent và type-safe.
- * Tách biệt quá trình construction phức tạp ra khỏi representation.
- * 
- * SOLID:
- * - Single Responsibility: Chỉ build GeoJSON Feature
- * - Open/Closed: Dễ extend thêm properties mới
+ * SOLID includes:
+ * - Single Responsibility
+ * - Open/Closed
  */
 public class GeoJsonFeatureBuilder {
     

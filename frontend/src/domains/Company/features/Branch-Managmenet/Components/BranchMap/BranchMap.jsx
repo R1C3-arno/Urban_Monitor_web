@@ -19,7 +19,7 @@ class ErrorBoundary extends Component {
     }
 
     componentDidCatch(error, errorInfo) {
-        console.error("❌ Error Boundary caught:", error, errorInfo);
+        console.error(" Error Boundary caught:", error, errorInfo);
     }
 
     render() {
@@ -49,7 +49,7 @@ const BranchMap = () => {
     if (loading) {
         return (
             <div className="branch-map-loading">
-                <p>⏳ Đang tải dữ liệu chi nhánh...</p>
+                <p>Đang tải dữ liệu chi nhánh...</p>
             </div>
         );
     }
@@ -57,7 +57,7 @@ const BranchMap = () => {
     if (error) {
         return (
             <div className="branch-map-error">
-                <p>❌ {error}</p>
+                <p> {error}</p>
             </div>
         );
     }

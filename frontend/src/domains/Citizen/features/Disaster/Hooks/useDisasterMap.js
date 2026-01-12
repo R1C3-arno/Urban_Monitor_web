@@ -51,7 +51,7 @@ const useDisasterMap = (mapContainer) => {
 
         map.current.on('load', async () => {
             try {
-                console.log('🗺️ Map loaded');
+                console.log('Map loaded');
 
                 // Ẩn các boundary layers mặc định
                 const layers = map.current.getStyle().layers;
@@ -65,11 +65,11 @@ const useDisasterMap = (mapContainer) => {
                 });
 
                 // Fetch disaster data
-                console.log('📡 Fetching disaster data...');
+                console.log(' Fetching disaster data...');
                 const response = await fetch(DATA_API_URL);
                 const backendData = await response.json();
 
-                console.log('✅ Loaded data from BE:', backendData);
+                console.log(' Loaded data from BE:', backendData);
                 setStats(backendData.stats);
 
                 // Lấy GeoJSON đã được BE xử lý (merge, tính màu, ...)
@@ -98,7 +98,7 @@ const useDisasterMap = (mapContainer) => {
                         const imageData = ctx.getImageData(0, 0, targetSize, targetSize);
 
                         map.current.addImage(config.patternId, imageData);
-                        console.log(`✅ Pattern loaded: ${type} (resized to ${targetSize}x${targetSize})`);
+                        console.log(` Pattern loaded: ${type} (resized to ${targetSize}x${targetSize})`);
                     } catch (err) {
                         console.warn(`⚠️ Pattern not found: ${type}`, err);
                     }
@@ -200,7 +200,7 @@ const useDisasterMap = (mapContainer) => {
                 setLoading(false);
 
             } catch (error) {
-                console.error('❌ Error loading map:', error);
+                console.error(' Error loading map:', error);
                 setLoading(false);
             }
         });

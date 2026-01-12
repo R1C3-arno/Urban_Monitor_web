@@ -19,9 +19,6 @@ public class BranchController {
     @Autowired
     private BranchRepository branchRepository;
 
-    /**
-     * Get all branches
-     */
     @GetMapping
     public ResponseEntity<List<Branch>> getAllBranches() {
         log.info("Fetching all branches");
@@ -30,9 +27,6 @@ public class BranchController {
         return ResponseEntity.ok(branches);
     }
 
-    /**
-     * Get single branch by ID
-     */
     @GetMapping("/{id}")
     public ResponseEntity<Branch> getBranchById(@PathVariable Long id) {
         log.info("📡 Fetching branch {}", id);
@@ -47,9 +41,8 @@ public class BranchController {
                 });
     }
 
-    /**
-     * Health check
-     */
+
+    //CHeck connection
     @GetMapping("/health")
     public ResponseEntity<Map<String, Object>> health() {
         log.info("Health check");

@@ -8,11 +8,13 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Strategy tính count theo Level
+ * Strategy
  */
 @Component
 public class CountByLevelStrategy implements StatsCalculationStrategy {
 
+
+    //Tính count theo level
     @Override
     public Map<String, Integer> calculate(List<TrafficIncident> incidents) {
         Map<String, Integer> byLevel = new LinkedHashMap<>();

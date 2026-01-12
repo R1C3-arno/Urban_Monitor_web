@@ -1,11 +1,5 @@
 /**
  * BranchPopUp.jsx - With Custom Color Palette & Rounded Corners
- *
- * Tận dụng:
- * ✅ Custom color palette
- * ✅ Rounded corners
- * ✅ Non-solid backgrounds
- * ✅ UI Shared Components
  */
 
 import React, { useState, useEffect, useRef } from "react";
@@ -138,7 +132,7 @@ const OptimizationSection = ({ optimization }) => {
                 fontWeight: "700",
                 color: COLORS.secondary,
             }}>
-                📊 Tối ưu hoá vận hành (Method2)
+                 Tối ưu hoá vận hành (Method2)
             </h4>
 
             <div style={{ marginTop: "-4px" }}>
@@ -375,7 +369,7 @@ const BranchPopUp = ({ map, branch, onClose }) => {
                 .addTo(map);
 
             popup.on("close", () => {
-                console.log("🔍 Popup closed");
+                console.log(" Popup closed");
                 if (onClose) onClose();
             });
 
@@ -387,7 +381,7 @@ const BranchPopUp = ({ map, branch, onClose }) => {
                 }
             };
         } catch (error) {
-            console.error("❌ Error creating popup:", error);
+            console.error(" Error creating popup:", error);
         }
     }, [map, branch, onClose]);
 

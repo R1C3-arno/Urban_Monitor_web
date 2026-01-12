@@ -6,7 +6,6 @@ import { useBranchReport } from "../../hooks/useBranchReport";
 import { BRANCH_TYPES} from "@/domains/Company/features/Branch-Managmenet/Config/branchConfig.js";
 
 /**
- * ✅ Component tạo/báo cáo chi nhánh mới
  * 
  * Backend API endpoint: POST /api/company/branches/create
  * 
@@ -62,7 +61,7 @@ const ReportBranch = () => {
     const handlePickLocation = () => {
         // TODO: Tích hợp với Map để user click chọn vị trí
         setUserLocation({ lat: 10.77, lng: 106.69 });
-        alert("✅ Vị trí đã chọn");
+        alert(" Vị trí đã chọn");
     };
 
     // Convert file → base64
@@ -94,7 +93,7 @@ const ReportBranch = () => {
             // Backend sẽ validate và trả lỗi nếu có
             await submitReport(payload);
 
-            alert("✅ Tạo chi nhánh thành công!");
+            alert(" Tạo chi nhánh thành công!");
             setOpen(false);
             
             // Reset form
@@ -114,7 +113,7 @@ const ReportBranch = () => {
 
         } catch (err) {
             // Hiển thị lỗi từ backend
-            alert("❌ " + err.message);
+            alert(" " + err.message);
         }
     };
 
@@ -124,7 +123,7 @@ const ReportBranch = () => {
                 className="branch-report-button"
                 onClick={() => setOpen(true)}
             >
-                🏢 Tạo chi nhánh mới
+                 Tạo chi nhánh mới
             </button>
 
             <ImageModal
@@ -147,13 +146,13 @@ const ReportBranch = () => {
                             onSubmit={handleSubmit}
                             form={form}
                             setForm={setForm}
-                            fields={BRANCH_TYPES}  // ✅ 100% configurable từ branchConfig
+                            fields={BRANCH_TYPES}
                         />
 
                         {/* Location Picker */}
                         <div className="branch-location-picker">
                             <button onClick={handlePickLocation}>
-                                📍 {userLocation ? "Vị trí đã chọn" : "Chọn vị trí trên bản đồ"}
+                                {userLocation ? "Vị trí đã chọn" : "Chọn vị trí trên bản đồ"}
                             </button>
                             {userLocation && (
                                 <p className="branch-location-info">
@@ -163,8 +162,8 @@ const ReportBranch = () => {
                         </div>
 
                         {/* Loading/Error */}
-                        {loading && <p style={{ color: '#f59e0b', marginTop: '12px' }}>⏳ Đang tạo...</p>}
-                        {error && <p style={{ color: '#ef4444', marginTop: '12px' }}>❌ {error}</p>}
+                        {loading && <p style={{ color: '#f59e0b', marginTop: '12px' }}> Đang tạo...</p>}
+                        {error && <p style={{ color: '#ef4444', marginTop: '12px' }}> {error}</p>}
                     </>
                 }
             />

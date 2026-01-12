@@ -4,27 +4,29 @@ import com.urbanmonitor.domain.citizen.disasterMonitor.dto.DisasterDashboardResp
 import com.urbanmonitor.domain.citizen.disasterMonitor.entity.DisasterZone;
 
 /**
- * STRATEGY PATTERN - Interface cho việc tính stats của từng loại disaster.
- * 
- * Mỗi loại disaster (Flood, Earthquake, Heatwave, Storm) có logic riêng
- * để tính các chỉ số đặc biệt (emergency, alert, extreme).
- * 
- * SOLID:
- * - Single Responsibility: Mỗi strategy chỉ xử lý 1 loại disaster
- * - Open/Closed: Thêm disaster type mới = thêm strategy mới
- * - Liskov Substitution: Tất cả strategies đều implement chung interface
- * - Interface Segregation: Interface nhỏ gọn, chỉ 2 methods cần thiết
- * - Dependency Inversion: Service depend on interface, không phải implementation
+ * STRATEGY PATTERN
+
+ * Mỗi loại disaster (
+ *                  Flood,
+ *                  Earthquake,
+ *                  Heatwave,
+ *                  Storm
+ *                     )
+ * các chỉ số đặc biệt (
+ *                       emergency,
+ *                       alert,
+ *                       extreme
+ *                       ).
  */
 public interface DisasterStatsStrategy {
     
     /**
-     * Kiểm tra strategy này có xử lý được disaster zone này không
+     * hàm kiểm tra có handle dc kiểu disaster ko
      */
     boolean supports(DisasterZone zone);
     
     /**
-     * Cập nhật stats cho disaster zone
+     * update state cho zone
      */
     void updateStats(StatDetail stats, DisasterZone zone);
 }

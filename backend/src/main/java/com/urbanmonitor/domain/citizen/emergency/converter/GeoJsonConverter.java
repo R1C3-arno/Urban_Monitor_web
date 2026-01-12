@@ -6,14 +6,12 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * INTERFACE SEGREGATION PRINCIPLE
- * 
  * Interface cho GeoJSON converters.
  */
 public interface GeoJsonConverter {
     
     /**
-     * Convert list of emergency locations to GeoJSON FeatureCollection
+     * đổi danh sách Emergency qua Geojson
      */
     Map<String, Object> convert(List<EmergencyLocation> locations);
 }

@@ -52,7 +52,7 @@ public class AirQualityZone {
         HAZARDOUS    // AQI 301+ (Maroon)
     }
 
-    // Thêm hàm này để tự động tính mức độ an toàn trước khi lưu vào DB
+    // lưu database an toàn
     @PrePersist
     @PreUpdate
     public void calculateSafetyLevel() {

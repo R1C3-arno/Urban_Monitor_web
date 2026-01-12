@@ -12,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.List;
 
 /**
- * REST API Controller: Branch Optimization Endpoints
+ * REST API Controller
  * Base path: /api/company/method2/branches
  */
 @Slf4j

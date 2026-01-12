@@ -43,14 +43,14 @@ const BranchMarker = ({ map, data = [] }) => {
                     .setLngLat([lng, lat])
                     .addTo(map);
 
-                // ✅ Click handler
+                // Click handler
                 if (marker.onClick) {
                     el.addEventListener("click", () => {
                         marker.onClick();
                     });
                 }
 
-                console.log("✅ Marker added:", marker.id, [lng, lat]);
+                console.log(" Marker added:", marker.id, [lng, lat]);
             } catch (e) {
                 console.error("Log Error: Error adding marker:", e, marker);
             }

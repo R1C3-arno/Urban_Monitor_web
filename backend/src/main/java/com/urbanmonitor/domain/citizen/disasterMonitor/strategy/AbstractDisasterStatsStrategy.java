@@ -6,57 +6,56 @@ import com.urbanmonitor.domain.citizen.disasterMonitor.entity.DisasterZone;
 /**
  * TEMPLATE METHOD PATTERN
  * 
- * Abstract base class cho DisasterStatsStrategy với template method.
- * Định nghĩa skeleton của algorithm, cho phép subclasses override steps cụ thể.
- * 
- * SOLID:
- * - Open/Closed: Template method cố định, các steps có thể extend
- * - Liskov Substitution: Tất cả subclasses đều có thể thay thế base class
+ * Abstract base cho thằng  DisasterStatsStrategy.
+ *                                                  Skeleton (
+ *                                                              Logic hiển thị
+ *                                                            )
+ * SOLID:(
+ *          Open/Closed:
+ *          Liskov Substitution:
+ *       )
  */
 public abstract class AbstractDisasterStatsStrategy implements DisasterStatsStrategy {
     
     /**
-     * Template method - skeleton của algorithm
+     * skeleton của algorithm
      */
     @Override
     public final void updateStats(StatDetail stats, DisasterZone zone) {
-        // Step 1: Always increment total (common for all)
+        // đặt mặc định
         incrementTotal(stats);
         
-        // Step 2: Check special condition (varies by disaster type)
+        // check điều kiện (kiểu loại của thiên taiiii)
         if (shouldIncrementSpecialCount(zone)) {
             incrementSpecialCount(stats);
         }
         
-        // Step 3: Optional hook for additional processing
+        // thêm hook tùy biêến
         additionalProcessing(stats, zone);
     }
     
     /**
-     * Common step: increment total count
+     * increment total count
      */
     protected void incrementTotal(StatDetail stats) {
         stats.setTotal(stats.getTotal() + 1);
     }
     
     /**
-     * Abstract method: check if special count should be incremented
-     * Must be implemented by subclasses
+     * check if special count should be incremented
+     * nhớ override lại
      */
     protected abstract boolean shouldIncrementSpecialCount(DisasterZone zone);
     
     /**
-     * Abstract method: increment the special count
-     * Must be implemented by subclasses
+     * increment the special count
      */
     protected abstract void incrementSpecialCount(StatDetail stats);
     
     /**
-     * Hook method: optional additional processing
-     * Can be overridden by subclasses if needed
+     * Hook : optional additional processing
      */
     protected void additionalProcessing(StatDetail stats, DisasterZone zone) {
-        // Default: do nothing
-        // Subclasses can override for custom behavior
+        // mặc định
     }
 }

@@ -67,7 +67,7 @@ public class BrentRootFinder {
                 return (a + b) / 2;
             }
 
-            // Choose step: inverse quadratic interpolation or bisection
+            // inverse quadratic interpolation or bisection
             double s = chooseStep(a, b, c, fa, fb, fc, e, d);
 
             double fs = f.evaluate(s);
@@ -111,7 +111,6 @@ public class BrentRootFinder {
             if (Math.abs(denom) > EPS) {
                 double s_cand = p / denom;
 
-                // Check if interpolation step is reasonable
                 if (Math.abs(s_cand) < Math.abs((b - a) / 2)) {
                     return a + s_cand;
                 }

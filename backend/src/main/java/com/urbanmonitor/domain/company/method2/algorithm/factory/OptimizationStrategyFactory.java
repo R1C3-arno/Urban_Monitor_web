@@ -10,8 +10,7 @@ import org.springframework.stereotype.Component;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Factory Pattern: Creates optimization strategies
- * Encapsulates object creation, follows Open/Closed Principle (SOLID)
+ * Factory Pattern
  */
 @Slf4j
 @Component
@@ -65,9 +64,7 @@ public class OptimizationStrategyFactory {
         return new HybridStrategy(algIR, supplyChain);
     }
 
-    /**
-     * Factory method based on strategy name
-     */
+
     public OptimizationStrategy createStrategy(String strategyName, Branch branch) {
         switch (strategyName.toLowerCase()) {
             case "alg-ir":

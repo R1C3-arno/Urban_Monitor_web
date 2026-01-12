@@ -7,7 +7,7 @@ export const createPopupHTML = (props, config) => {
                 ${config.icon} ${props.name || props.provinceName}
             </h3>
             <div style="font-size: 12px; color: #666; margin-bottom: 8px;">
-                📍 ${props.region}
+                 ${props.region}
             </div>
             <div style="display: inline-block; background: ${config.color}; color: white; padding: 4px 10px; border-radius: 12px; font-size: 11px; margin-bottom: 10px;">
                 ${config.label}
@@ -28,12 +28,12 @@ export const createPopupHTML = (props, config) => {
             </div>
             ${props.alertMessage ? `
             <div style="background: #fff3cd; padding: 8px; border-radius: 4px; margin-top: 10px; font-size: 12px; border-left: 4px solid #ffc107;">
-                <strong>⚠️</strong> ${props.alertMessage}
+                <strong></strong> ${props.alertMessage}
             </div>` : ''}
             ${props.contactHotline ? `
             <div style="margin-top: 10px; text-align: center;">
                 <a href="tel:${props.contactHotline}" style="display: inline-block; background: #dc3545; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none; font-size: 12px;">
-                    📞 ${props.contactHotline}
+                     ${props.contactHotline}
                 </a>
             </div>` : ''}
         </div>

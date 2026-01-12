@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * FACTORY PATTERN - Tạo Legend DTO
+ * FACTORY PATTERN
  */
 @Component
 @RequiredArgsConstructor

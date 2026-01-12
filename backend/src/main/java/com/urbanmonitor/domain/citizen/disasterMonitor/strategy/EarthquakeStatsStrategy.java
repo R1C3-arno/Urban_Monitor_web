@@ -7,8 +7,7 @@ import com.urbanmonitor.domain.citizen.disasterMonitor.entity.DisasterZone.ZoneS
 import org.springframework.stereotype.Component;
 
 /**
- * Strategy cho tính stats của EARTHQUAKE disasters.
- * Earthquake đếm số zone ở trạng thái ALERT.
+ * Strategy : EARTHQUAKE disasters.
  */
 @Component
 public class EarthquakeStatsStrategy implements DisasterStatsStrategy {

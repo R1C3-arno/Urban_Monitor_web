@@ -7,15 +7,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 /**
- * Single Responsibility Principle (SRP):
- * Class này chỉ chịu trách nhiệm tính toán utility statistics
- * 
  * Strategy Pattern:
- * Default implementation của UtilityStatsCalculator strategy
- * Có thể tạo các implementation khác cho các business rules khác nhau
- * 
- * Open/Closed Principle (OCP):
- * Có thể extend để thêm metrics mới mà không sửa code hiện tại
  */
 @Component
 public class DefaultUtilityStatsCalculator implements UtilityStatsCalculator {
@@ -43,21 +35,21 @@ public class DefaultUtilityStatsCalculator implements UtilityStatsCalculator {
     }
 
     /**
-     * Template Method - có thể override để thay đổi validation
+     * validation
      */
     protected boolean isEmptyOrNull(List<UtilityMonitor> stations) {
         return stations == null || stations.isEmpty();
     }
 
     /**
-     * Template Method - có thể override để thay đổi cách tính total
+     * tính total
      */
     protected int calculateTotal(List<UtilityMonitor> stations) {
         return stations.size();
     }
 
     /**
-     * Template Method - có thể override để thay đổi cách tính average water
+     * tính average water
      */
     protected double calculateAverageWater(List<UtilityMonitor> stations, int total) {
         double totalWater = stations.stream()
@@ -67,7 +59,7 @@ public class DefaultUtilityStatsCalculator implements UtilityStatsCalculator {
     }
 
     /**
-     * Template Method - có thể override để thay đổi cách tính average electricity
+     * tính average electricity
      */
     protected double calculateAverageElectricity(List<UtilityMonitor> stations, int total) {
         double totalElec = stations.stream()
@@ -77,7 +69,7 @@ public class DefaultUtilityStatsCalculator implements UtilityStatsCalculator {
     }
 
     /**
-     * Template Method - có thể override để thay đổi cách tính average ping
+     *  tính average ping
      */
     protected int calculateAveragePing(List<UtilityMonitor> stations, int total) {
         int totalPing = stations.stream()
@@ -87,28 +79,28 @@ public class DefaultUtilityStatsCalculator implements UtilityStatsCalculator {
     }
 
     /**
-     * Helper method - lấy water usage với default value
+     * lấy water usage
      */
     protected double getWaterUsage(UtilityMonitor station) {
         return station.getWaterUsage() != null ? station.getWaterUsage() : DEFAULT_VALUE;
     }
 
     /**
-     * Helper method - lấy electricity usage với default value
+     * lấy electricity usage
      */
     protected double getElectricityUsage(UtilityMonitor station) {
         return station.getElectricityUsage() != null ? station.getElectricityUsage() : DEFAULT_VALUE;
     }
 
     /**
-     * Helper method - lấy wifi ping với default value
+     * lấy wifi ping
      */
     protected int getWifiPing(UtilityMonitor station) {
         return station.getWifiPing() != null ? station.getWifiPing() : 0;
     }
 
     /**
-     * Helper method - làm tròn số
+     * làm tròn số
      */
     protected double roundToDecimalPlaces(double value, int places) {
         double factor = Math.pow(10, places);
@@ -116,7 +108,7 @@ public class DefaultUtilityStatsCalculator implements UtilityStatsCalculator {
     }
 
     /**
-     * Factory method - tạo empty stats
+     * tạo empty stats
      */
     protected UtilityDashboardResponse.Stats buildEmptyStats() {
         return UtilityDashboardResponse.Stats.builder()

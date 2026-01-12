@@ -13,8 +13,6 @@ import java.util.*;
 
 /**
  * SINGLE RESPONSIBILITY: Merge disaster data with province GeoJSON boundaries
- * 
- * Sử dụng:
  * - Builder Pattern: GeoJsonFeatureBuilder, GeoJsonCollectionBuilder
  * - Dependency Injection: Các helper classes
  */

@@ -7,16 +7,12 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * SINGLE RESPONSIBILITY PRINCIPLE
- * 
- * Chỉ có một nhiệm vụ: map EmergencyLocation entity sang các formats khác.
+ * Map emergencies entity qua các formate kiểu khác
  */
 @Component
 public class EmergencyLocationMapper {
-    
-    /**
-     * Map EmergencyLocation to properties Map (for GeoJSON and stats)
-     */
+
+     //(for GeoJSON and stats)
     public Map<String, Object> toPropertiesMap(EmergencyLocation loc) {
         Map<String, Object> properties = new LinkedHashMap<>();
         properties.put("id", loc.getId());

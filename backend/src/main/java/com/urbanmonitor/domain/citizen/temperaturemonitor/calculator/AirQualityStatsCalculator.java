@@ -7,17 +7,10 @@ import java.util.List;
 
 /**
  * Strategy Pattern:
- * Interface định nghĩa strategy cho việc tính toán air quality stats
- * 
- * Interface Segregation Principle (ISP):
- * Interface chuyên biệt cho việc tính stats
  */
 public interface AirQualityStatsCalculator {
-    
-    /**
-     * Calculate statistics from list of air quality zones
-     * @param zones list of air quality zones
-     * @return calculated stats
-     */
+
+     //Calculate statistics from list of air quality zones
+
     AirQualityResponse.Stats calculate(List<AirQualityZone> zones);
 }

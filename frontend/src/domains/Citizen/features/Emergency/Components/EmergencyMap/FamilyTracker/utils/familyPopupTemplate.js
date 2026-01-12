@@ -13,11 +13,11 @@ export const createFamilyPopupHTML = (props) => {
                 ${props.description}
             </div>
             <div style="font-size: 12px; color: #666; margin-bottom: 8px;">
-                📍 ${props.address}
+                 ${props.address}
             </div>
             <div style="background: rgba(0,0,0,0.1); padding: 8px; border-radius: 6px; font-size: 12px;">
                 <div style="color: #888;">Contact</div>
-                <div style="color: #333; font-weight: bold;">📞 ${props.contactPhone}</div>
+                <div style="color: #333; font-weight: bold;"> ${props.contactPhone}</div>
             </div>
         </div>
     `;

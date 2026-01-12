@@ -8,11 +8,13 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * Strategy tính count theo Type
+ * Strategy
  */
 @Component
 public class CountByTypeStrategy implements StatsCalculationStrategy {
 
+
+    //Tính count theo type
     @Override
     public Map<String, Integer> calculate(List<TrafficIncident> incidents) {
         return incidents.stream()

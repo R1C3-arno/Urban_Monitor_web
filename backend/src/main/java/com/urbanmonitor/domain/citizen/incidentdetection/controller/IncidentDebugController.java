@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Debug controller để test database connection và data
+ * Debug controller
  */
 @RestController
 @RequestMapping("/api/incidents/debug")

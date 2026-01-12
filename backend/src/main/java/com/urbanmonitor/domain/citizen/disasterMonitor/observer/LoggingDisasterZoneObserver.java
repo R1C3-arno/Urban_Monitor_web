@@ -7,9 +7,6 @@ import org.springframework.stereotype.Component;
 
 /**
  * OBSERVER PATTERN - Concrete Observer
- * 
- * Sample observer that logs disaster zone events.
- * Có thể dễ dàng thêm các observers khác như:
  * - NotificationObserver: Gửi notification đến users
  * - CacheInvalidationObserver: Invalidate cache khi data thay đổi
  * - AuditLogObserver: Ghi audit log

@@ -8,13 +8,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * OBSERVER PATTERN - Subject/Publisher
- * 
  * Quản lý và notify các observers khi có disaster zone events.
  * Thread-safe với CopyOnWriteArrayList.
- * 
- * SOLID:
- * - Single Responsibility: Chỉ quản lý observers và publish events
- * - Open/Closed: Thêm observers mới không cần sửa code
  */
 @Component
 @Slf4j

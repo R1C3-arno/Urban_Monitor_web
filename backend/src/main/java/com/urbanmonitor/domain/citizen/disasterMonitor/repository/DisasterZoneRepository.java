@@ -14,7 +14,7 @@ import java.util.List;
  * Repository interface cho DisasterZone entity.
  * 
  * Extends JpaSpecificationExecutor để support Specification Pattern.
- * Giữ nguyên các methods cũ để đảm bảo backward compatibility.
+ * Giữ nguyên các methods cũ để đảm bảo ko bể nối
  */
 @Repository
 public interface DisasterZoneRepository extends 
@@ -23,9 +23,9 @@ public interface DisasterZoneRepository extends
 
     List<DisasterZone> findByDisasterType(DisasterType type);
 
-    List<DisasterZone> findByStatus(ZoneStatus status);
+    List<DisasterZone> findByStatus(ZoneStatus status); // ko xài
 
-    List<DisasterZone> findBySeverity(SeverityLevel severity);
+    List<DisasterZone> findBySeverity(SeverityLevel severity); // ko xài
 
     List<DisasterZone> findByDisasterTypeAndStatus(DisasterType type, ZoneStatus status);
 

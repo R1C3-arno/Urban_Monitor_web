@@ -3,9 +3,7 @@ package com.urbanmonitor.domain.citizen.disasterMonitor.builder;
 import java.util.*;
 
 /**
- * BUILDER PATTERN cho GeoJSON FeatureCollection
- * 
- * Build complete FeatureCollection với nhiều Features.
+ * BUILDER PATTERN cho GeoJSON
  */
 public class GeoJsonCollectionBuilder {
     

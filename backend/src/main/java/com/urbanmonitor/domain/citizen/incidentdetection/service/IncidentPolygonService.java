@@ -6,7 +6,7 @@ import com.urbanmonitor.domain.citizen.incidentdetection.dto.IncidentStatsDTO;
 import java.util.Map;
 
 /**
- * DEPENDENCY INVERSION - Service interface
+ * DEPENDENCY INVERSION
  */
 public interface IncidentPolygonService {
 
